@@ -59,16 +59,15 @@ router.post('/send-resume', upload.single('Resume'), async (req, res) => {
 
   // Check if all required fields are filled
   if (!Name || !Email || !resumeFile) {
-    return res.render('About', {
-      errorMessage: 'Please fill in all required fields.',
-    });
+    return res.redirect('/about?errorMessage=Please fill in all required fields.');
   }
 
   // Prepare email content
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: 'info@divinewisdom.edu.in',
-    subject: 'New Resume Submission',
+    cc: `${Email}`,
+    subject: 'Resume Submission',
     html: `
       <h3>New Resume Submission</h3><br>
       <p><strong>Name:</strong> ${Name}</p><br>
@@ -165,7 +164,7 @@ router.post('/contact', async (req, res) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: 'info@divinewisdom.edu.in',
-    subject: 'New Contact Us Message',
+    subject: 'Contact Us Message',
     html: `
       <h3>New Contact Us Message</h3><br>
       <p><strong>Name:</strong> ${Name}</p><br>

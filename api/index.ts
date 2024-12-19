@@ -1,4 +1,5 @@
 const express = require('express');
+const app = express();
 const path = require('path');
 const db = require("../config/mongoose-connection");
 const cookieParser = require('cookie-parser');
@@ -8,15 +9,24 @@ const adminRouter = require('../routes/adminRouter');
 const pageRouter = require('../routes/pageRouter');
 const aboutRoutes = require('../routes/aboutRoutes');
 const userRouter = require("../routes/userRouter");
+const expressSession = require("express-session");
+const flash = require("connect-flash");
+const methodOverride = require('method-override');
+const isLoggedin = require('../middlewares/isLoggedin');
 
-const app = express();
+app.use(expressSession({
+    secret: 'DWS@2011',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false },
+}));
+
+app.use(flash());
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-const methodOverride = require('method-override');
-const isLoggedin = require('../middlewares/isLoggedin');
 app.use(methodOverride('_method'));
 
 require('dotenv').config();

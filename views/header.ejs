@@ -57,7 +57,8 @@
                             </svg></span>
                         <div class="flex-1 px-4">
                             <div class="font-bold text-center">Email</div>
-                            <a href="mailto:info@divinewisdom.edu.in" class="hover:text-red-600 text-decoration-none">
+                            <a href="mailto:info@divinewisdom.edu.in" tabindex="-1"
+                                class="hover:text-red-600 text-decoration-none">
                                 <div class="text-center">info@divinewisdom.edu.in</div>
                             </a>
                         </div>
@@ -78,10 +79,10 @@
                         <div class="flex-1 px-4">
                             <div class="font-bold text-center">Phone</div>
                             <div class="text-center">
-                                <a href="tel:9805347187"
-                                    class="hover:text-red-600 text-decoration-none"><span>9805347187</span></a><span>,</span>&nbsp;<a
-                                    href="tel:1704298187"
-                                    class="hover:text-red-600 text-decoration-none"><span>1704298187</span></a>
+                                <a href="tel:9805347187" class="hover:text-red-600 text-decoration-none"
+                                    tabindex="-1"><span>9805347187</span></a><span>,</span>&nbsp;<a
+                                    href="tel:1704298187" class="hover:text-red-600 text-decoration-none"
+                                    tabindex="-1"><span>1704298187</span></a>
                             </div>
                         </div>
                     </div>
@@ -145,13 +146,13 @@
                 <div class="hidden min-h-screen mx-auto top-0 absolute w-full left-0 bg-slate-950 z-20 py-24" id="list">
                     <div class="mx-auto text-center p-12">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <a href="/"
+                        <a href="/" tabindex="-1"
                             class="text-gray-300 block  rounded-md px-3 py-2 text-base text-center font-medium ut-1 w-fit mx-auto">Home
                             <div
                                 class="w-full h-2 bg-[#FBDE9B] rounded-full {% if request.path != '/'%} ut-2 {% endif %}">
                             </div>
                         </a>
-                        <a href="/about/"
+                        <a href="/about/" tabindex="-1"
                             class="text-gray-300 block rounded-md px-3 py-2 text-base text-center font-medium ut-1 w-fit mx-auto">About
                             <div
                                 class="w-full h-2 bg-[#FBDE9B] rounded-full {% if request.path != '/about/'%} ut-2 {% endif %}">
@@ -160,9 +161,9 @@
 
                         <!-- Dropdown 1 -->
                         <li class="z-50 block rounded-md py-2 text-base text-center font-medium w-fit mx-auto">
-                            <button id="dropdownButton1" data-collapse-toggle="dropdownContent1" type="button"
+                            <button id="dropdownButton1" data-collapse-toggle="dropdownContent1" type="button" tabindex="-1"
                                 aria-controls="dropdownContent1" aria-expanded="false" class="text-gray-300 ut-1">
-                                <div class="flex mx-auto px-3">Facilities
+                                <div class="flex mx-auto px-3" tabindex="-1">Facilities
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                         fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                         stroke-linejoin="round" class="mt-0.5">
@@ -174,7 +175,7 @@
                                 class="hidden mx-auto top-0 w-full left-0 z-20 bg-[#e6e2f4] rounded-xl mt-2 ">
                                 <ul class="py-2 text-sm text-gray-700 text-center">
                                     <li>
-                                        <a href="/Infrastructure/"
+                                        <a href="/Infrastructure/" tabindex="-1"
                                             class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
                                             <div class="text-center text-xl py-2 text-violet-800"> Infrastructure</div>
                                         </a>
@@ -182,7 +183,8 @@
                                     <span
                                         class="block border-t-2 border-purple-300 w-[98%] mx-auto rounded-full"></span>
                                     <li>
-                                        <a href="/Club/" class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
+                                        <a href="/Club/" tabindex="-1"
+                                            class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
                                             <div class="text-center text-xl py-2 text-violet-800">Club</div>
                                         </a>
                                     </li>
@@ -190,7 +192,7 @@
                             </div>
                         </li>
                         <li class="z-50 block rounded-md py-2 text-base text-center font-medium w-fit mx-auto">
-                            <button id="dropdownButton3" data-collapse-toggle="dropdownContent3" type="button"
+                            <button id="dropdownButton3" data-collapse-toggle="dropdownContent3" type="button" tabindex="-1"
                                 aria-controls="dropdownContent3" aria-expanded="false" class="text-gray-300 ut-1">
                                 <div class="flex mx-auto px-3">Academics
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -204,14 +206,16 @@
                                 class="hidden mx-auto top-0 w-full left-0 z-20 bg-[#e6e2f4] rounded-xl mt-2 ">
                                 <ul class="py-2 text-sm text-gray-700 text-center">
                                     <li>
-                                        <a href="/Cbse/" class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
+                                        <a href="/Cbse/" tabindex="-1"
+                                            class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
                                             <div class="text-center text-xl py-2 text-violet-800"> CBSE</div>
                                         </a>
                                     </li>
                                     <span
                                         class="block border-t-2 border-purple-300 w-[98%] mx-auto rounded-full"></span>
                                     <li>
-                                        <a href="/Tc/" class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
+                                        <a href="/Tc/" tabindex="-1"
+                                            class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
                                             <div class="text-center text-xl py-2 text-violet-800">Tc</div>
                                         </a>
                                     </li>
@@ -221,7 +225,7 @@
 
                         <!-- Dropdown 2 -->
                         <li class="z-50 block rounded-md py-2 text-base text-center font-medium w-fit mx-auto">
-                            <button id="dropdownButton2" data-collapse-toggle="dropdownContent2" type="button"
+                            <button id="dropdownButton2" data-collapse-toggle="dropdownContent2" type="button" tabindex="-1"
                                 aria-controls="dropdownContent2" aria-expanded="false" class="text-gray-300 ut-1">
                                 <div class="flex mx-auto px-3">Programs
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -236,7 +240,7 @@
                                 <ul class="py-2 text-sm text-gray-700 text-center">
                                     <h6 class="text-xl font-bold text-red-500 mx-2">8 POINT EDUCATIONAL PROGRAM</h6>
                                     <li>
-                                        <a href="/PersonalGrowthandDevelopment/"
+                                        <a href="/PersonalGrowthandDevelopment/" tabindex="-1"
                                             class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
                                             <div class="text-left text-xl py-2 text-violet-800"> Personal Growth and
                                                 Development</div>
@@ -245,7 +249,7 @@
                                     <span
                                         class="block border-t-2 border-purple-300 w-[98%] mx-auto rounded-full"></span>
                                     <li>
-                                        <a href="/EffectiveInterpersonalSkills/"
+                                        <a href="/EffectiveInterpersonalSkills/" tabindex="-1"
                                             class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
                                             <div class="text-left text-xl py-2 text-violet-800">Effective Interpersonal
                                                 Skills</div>
@@ -254,7 +258,7 @@
                                     <span
                                         class="block border-t-2 border-purple-300 w-[98%] mx-auto rounded-full"></span>
                                     <li>
-                                        <a href="/EffectiveCommunicationSkills/"
+                                        <a href="/EffectiveCommunicationSkills/" tabindex="-1"
                                             class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
                                             <div class="text-left text-xl py-2 text-violet-800">Effective Communication
                                                 Skills</div>
@@ -263,7 +267,7 @@
                                     <span
                                         class="block border-t-2 border-purple-300 w-[98%] mx-auto rounded-full"></span>
                                     <li>
-                                        <a href="/DeepenedSpiritualValues/"
+                                        <a href="/DeepenedSpiritualValues/" tabindex="-1"
                                             class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
                                             <div class="text-left text-xl py-2 text-violet-800"> Deepened Spiritual
                                                 Values</div>
@@ -272,7 +276,7 @@
                                     <span
                                         class="block border-t-2 border-purple-300 w-[98%] mx-auto rounded-full"></span>
                                     <li>
-                                        <a href="/IntellectualGrowth/"
+                                        <a href="/IntellectualGrowth/" tabindex="-1"
                                             class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
                                             <div class="text-left text-xl py-2 text-violet-800"> Intellectual Growth
                                             </div>
@@ -281,7 +285,7 @@
                                     <span
                                         class="block border-t-2 border-purple-300 w-[98%] mx-auto rounded-full"></span>
                                     <li>
-                                        <a href="/RespondAesthetically/"
+                                        <a href="/RespondAesthetically/" tabindex="-1"
                                             class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
                                             <div class="text-left text-xl py-2 text-violet-800"> Respond Aesthetically
                                             </div>
@@ -290,7 +294,7 @@
                                     <span
                                         class="block border-t-2 border-purple-300 w-[98%] mx-auto rounded-full"></span>
                                     <li>
-                                        <a href="/PrepareforOccupation/"
+                                        <a href="/PrepareforOccupation/" tabindex="-1"
                                             class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
                                             <div class="text-left text-xl py-2 text-violet-800"> Prepare for Occupation
                                             </div>
@@ -299,7 +303,7 @@
                                     <span
                                         class="block border-t-2 border-purple-300 w-[98%] mx-auto rounded-full"></span>
                                     <li>
-                                        <a href="/SocialResponsibility/"
+                                        <a href="/SocialResponsibility/" tabindex="-1"
                                             class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
                                             <div class="text-left text-xl py-2 text-violet-800"> Social Responsibility
                                             </div>
@@ -310,25 +314,25 @@
                             </div>
                         </li>
 
-                        <a href="/gallery/"
+                        <a href="/gallery/" tabindex="-1"
                             class="text-gray-300 block rounded-md px-3 py-2 text-base text-center font-medium ut-1 w-fit mx-auto">Gallery
                             <div
                                 class="w-full h-2 bg-[#FBDE9B] rounded-full {% if request.path != '/gallery/'%} ut-2 {% endif %}">
                             </div>
                         </a>
-                        <a href="/parent/"
+                        <a href="/parent/" tabindex="-1"
                             class="text-gray-300 block rounded-md px-3 py-2 text-base text-center font-medium ut-1 w-fit mx-auto">Parent
                             <div
                                 class="w-full h-2 bg-[#FBDE9B] rounded-full {% if request.path != '/parent/'%} ut-2 {% endif %}">
                             </div>
                         </a>
-                        <a href="/contact/"
+                        <a href="/contact/" tabindex="-1"
                             class="text-gray-300 block rounded-md px-3 py-2 text-base text-center font-medium ut-1 w-fit mx-auto">Contact
                             <div
                                 class="w-full h-2 bg-[#FBDE9B] rounded-full {% if request.path != '/contact/'%} ut-2 {% endif %}">
                             </div>
                         </a>
-                        <a href="/admissions/">
+                        <a href="/admissions/" tabindex="-1">
                             <div
                                 class=" mx-auto p-4 w-fit text-center bg-[#F6C663] rounded-full text-lg font-medium my-auto hover:bg-[#F9BC3E]">
                                 Admissions
@@ -349,23 +353,20 @@
             <!-- {{request.path}} -->
             <div class=" flex w-full ">
                 <ul class="flex lg:w-10/12 w-full my-auto">
-                    <a href="">
-                        <li class="p-2 text-xl font-medium block ut-1">
-                            <a href="/" class="text-decoration-none"><span class="home">Home</span></a>
-                            <div
-                                class="w-full h-2 bg-[#FBDE9B] rounded-full {% if request.path != '/'%} ut-2 {% endif %}">
-                            </div>
-                            <!-- <div class="w-36 h-1 border-b-4 border-yellow-300 mt-4 rounded-3xl md:mt-4 "></div> -->
-                        </li>
-                    </a>
                     <li class="p-2 text-xl font-medium block ut-1">
-                        <a href="/about/" class="text-decoration-none"><span class="home">About</span></a>
+                        <a href="/" tabindex="-1" class="text-decoration-none"><span class="home">Home</span></a>
+                        <div class="w-full h-2 bg-[#FBDE9B] rounded-full {% if request.path != '/'%} ut-2 {% endif %}">
+                        </div>
+                        <!-- <div class="w-36 h-1 border-b-4 border-yellow-300 mt-4 rounded-3xl md:mt-4 "></div> -->
+                    </li>
+                    <li class="p-2 text-xl font-medium block ut-1">
+                        <a href="/about/" tabindex="-1" class="text-decoration-none"><span class="home">About</span></a>
                         <div
                             class="w-full h-2 bg-[#FBDE9B] rounded-full {% if request.path != '/about/'%} ut-2 {% endif %}">
                         </div>
                     </li>
                     <li class="p-2 text-xl font-medium block ut-1">
-                        <button id="dropdownDefaultButton1" data-dropdown-toggle="dropdown1" class="flex" type="button">
+                        <button id="dropdownDefaultButton1" data-dropdown-toggle="dropdown1" class="flex" type="button" tabindex="-1">
                             <div class="flex"><span class="home">Facilities</span>
                                 <svg id="arrow1" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -382,13 +383,13 @@
                             <ul class="py-2 text-sm text-gray-700 text-center overflow-y-auto max-h-max"
                                 aria-labelledby="dropdownDefaultButton1">
                                 <li>
-                                    <a href="/Infrastructure/" class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
+                                    <a href="/Infrastructure/" tabindex="-1" class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
                                         <div class="text-center text-xl text-violet-800"> Infrastructure</div>
                                     </a>
                                 </li>
                                 <hr class="w-[90%] mx-auto my-2">
                                 <li>
-                                    <a href="/Club/" class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
+                                    <a href="/Club/" tabindex="-1" class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
                                         <div class="text-center text-xl text-violet-800 "> Club</div>
                                     </a>
                                 </li>
@@ -396,7 +397,7 @@
                         </div>
                     </li>
                     <li class="p-2 text-xl font-medium block ut-1">
-                        <button id="dropdownDefaultButton2" data-dropdown-toggle="dropdown2" class="flex" type="button">
+                        <button id="dropdownDefaultButton2" data-dropdown-toggle="dropdown2" class="flex" type="button" tabindex="-1">
                             <div class="flex"><span class="home">Academics</span>
                                 <svg id="arrow3" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -413,13 +414,13 @@
                             <ul class="py-2 text-sm text-gray-700 text-center overflow-y-auto max-h-max"
                                 aria-labelledby="dropdownDefaultButton1">
                                 <li>
-                                    <a href="/Cbse/" class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
+                                    <a href="/Cbse/" tabindex="-1" class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
                                         <div class="text-center text-xl text-violet-800"> CBSE</div>
                                     </a>
                                 </li>
                                 <hr class="w-[90%] mx-auto my-2">
                                 <li>
-                                    <a href="/Tc/" class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
+                                    <a href="/Tc/" tabindex="-1" class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
                                         <div class="text-center text-xl text-violet-800 "> Tc</div>
                                     </a>
                                 </li>
@@ -427,7 +428,7 @@
                         </div>
                     </li>
                     <li class="p-2 text-xl font-medium block ut-1 z-50">
-                        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="flex" type="button">
+                        <button id="dropdownDefaultButton" data-dropdown-toggle="dropdown" class="flex" type="button" tabindex="-1">
                             <div class="flex"><span class="home">Programs</span>
                                 <svg id="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -446,7 +447,7 @@
                                 <h6 class="text-xl font-bold text-red-500 py-2">8 POINT EDUCATIONAL PROGRAM</h6>
                                 <hr class="w-[90%] mx-auto my-2">
                                 <li>
-                                    <a href="/PersonalGrowthandDevelopment/"
+                                    <a href="/PersonalGrowthandDevelopment/" tabindex="-1"
                                         class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
                                         <div class="text-left text-xl text-violet-800"> Personal Growth and
                                             Development</div>
@@ -454,7 +455,7 @@
                                 </li>
                                 <hr class="w-[90%] mx-auto my-2">
                                 <li>
-                                    <a href="/EffectiveInterpersonalSkills/"
+                                    <a href="/EffectiveInterpersonalSkills/" tabindex="-1"
                                         class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
                                         <div class="text-left text-xl text-violet-800 "> Effective Interpersonal
                                             Skills</div>
@@ -462,7 +463,7 @@
                                 </li>
                                 <hr class="w-[90%] mx-auto my-2">
                                 <li>
-                                    <a href="/EffectiveCommunicationSkills/"
+                                    <a href="/EffectiveCommunicationSkills/" tabindex="-1"
                                         class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
                                         <div class="text-left text-xl text-violet-800 "> Effective Communication
                                             Skills</div>
@@ -470,7 +471,7 @@
                                 </li>
                                 <hr class="w-[90%] mx-auto my-2">
                                 <li>
-                                    <a href="/DeepenedSpiritualValues/"
+                                    <a href="/DeepenedSpiritualValues/" tabindex="-1"
                                         class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
                                         <div class="text-left text-xl text-violet-800">Deepened Spiritual Values
                                         </div>
@@ -478,28 +479,28 @@
                                 </li>
                                 <hr class="w-[90%] mx-auto my-2">
                                 <li>
-                                    <a href="/IntellectualGrowth/"
+                                    <a href="/IntellectualGrowth/" tabindex="-1"
                                         class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
                                         <div class="text-left text-xl text-violet-800">Intellectual Growth</div>
                                     </a>
                                 </li>
                                 <hr class="w-[90%] mx-auto my-2">
                                 <li>
-                                    <a href="/RespondAesthetically/"
+                                    <a href="/RespondAesthetically/" tabindex="-1"
                                         class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
                                         <div class="text-left text-xl text-violet-800">Respond Aesthetically</div>
                                     </a>
                                 </li>
                                 <hr class="w-[90%] mx-auto my-2">
                                 <li>
-                                    <a href="/PrepareforOccupation/"
+                                    <a href="/PrepareforOccupation/" tabindex="-1"
                                         class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
                                         <div class="text-left text-xl text-violet-800">Prepare for Occupation</div>
                                     </a>
                                 </li>
                                 <hr class="w-[90%] mx-auto my-2">
                                 <li>
-                                    <a href="/SocialResponsibility/"
+                                    <a href="/SocialResponsibility/" tabindex="-1"
                                         class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
                                         <div class="text-left text-xl text-violet-800">Social Responsibility</div>
                                     </a>
@@ -510,26 +511,26 @@
 
 
                     <li class="p-2 text-xl font-medium block ut-1">
-                        <a href="/gallery/" class="text-decoration-none"><span class="home">Gallery</span></a>
+                        <a href="/gallery/" tabindex="-1" class="text-decoration-none"><span class="home">Gallery</span></a>
                         <div
                             class="w-full h-2 bg-[#FBDE9B] rounded-full {% if request.path != '/gallery/'%} ut-2 {% endif %}">
                         </div>
                     </li>
                     <li class="p-2 text-xl font-medium block ut-1">
-                        <a href="/parent/" class="text-decoration-none"><span class="home">Parents</span></a>
+                        <a href="/parent/" tabindex="-1" class="text-decoration-none"><span class="home">Parents</span></a>
                         <div
                             class="w-full h-2 bg-[#FBDE9B] rounded-full {% if request.path != '/parent/'%} ut-2 {% endif %}">
                         </div>
                     </li>
                     <li class="p-2 text-xl font-medium block ut-1">
-                        <a href="/contact/" class="text-decoration-none"><span class="home">Contact</span></a>
+                        <a href="/contact/" tabindex="-1" class="text-decoration-none"><span class="home">Contact</span></a>
                         <div
                             class="w-full h-2 bg-[#FBDE9B] rounded-full {% if request.path != '/contact/'%} ut-2 {% endif %}">
                         </div>
                     </li>
                 </ul>
                 <!-- <a href="http://registration.divinewisdom.edu.in/"> -->
-                <a href="/admissions/">
+                <a href="/admissions/" tabindex="-1">
                     <div
                         class=" mx-auto lg:p-8 md:p-4 lg:py-4 md:py-2 w-fit text-center bg-[#F6C663] rounded-full text-lg font-medium my-auto hover:bg-[#F9BC3E]">
                         Admissions
