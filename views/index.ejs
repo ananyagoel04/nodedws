@@ -341,7 +341,7 @@
             <div class="md:flex md:p-4 block">
                 <div data-aos="fade-up" class=" mx-auto my-auto max-w-lg md:px-6 px-10 md:w-1/2 flex-shrink-0">
                     <!-- <img src="/icons//Group 1.svg" class="mx-auto my-auto" alt="students"> -->
-                    <div class="mx-auto w-full lg:pl-4">
+                    <div class="mx-auto w-full lg:pl-4 hidden sm:block">
                         <% if (visionMissionData && visionMissionData.length > 0) { %>
                             <!-- First Vision & Mission Image -->
                             <img src="data:image/jpeg;base64,<%= visionMissionData[0].image.toString('base64') %>" 
@@ -355,6 +355,21 @@
                                  alt="<%= visionMissionData[1].image_title %>" 
                                  class="w-[200px] h-[200px] rounded-2xl -mt-[100px]">
                           <% } %>                     
+                    </div>
+                    <div class="mx-auto w-full lg:pl-4 sm:hidden">
+                        <% if (visionMissionData && visionMissionData.length > 0) { %>
+                            <!-- First Vision & Mission Image -->
+                            <img src="data:image/jpeg;base64,<%= visionMissionData[0].image.toString('base64') %>" 
+                                 alt="<%= visionMissionData[0].image_title %>" 
+                                 class="w-[300px] h-[300px] rounded-2xl mb-4 mx-auto">
+                        <% } %>
+                    
+                        <% if (visionMissionData && visionMissionData.length > 1) { %>
+                            <!-- Second Vision & Mission Image -->
+                            <img src="data:image/jpeg;base64,<%= visionMissionData[1].image.toString('base64') %>" 
+                                 alt="<%= visionMissionData[1].image_title %>" 
+                                 class="w-[300px] h-[300px] rounded-2xl mx-auto">
+                        <% } %>                     
                     </div>
                 </div>
                 <div data-aos="fade-up" class="block p-6 mx-auto my-auto md:w-1/2">
@@ -401,7 +416,7 @@
 
             <div class="md:flex p-4 block my-12">
                 <div data-aos="fade-up" class=" mx-auto my-auto md:w-1/2 max-w-lg md:hidden">
-                    <div class="mx-auto w-full p-8">
+                    <div class="mx-auto w-full p-8 hidden sm:block">
                         <% if (environmentData && environmentData.length > 0) { %>
                             <img src="data:image/jpeg;base64,<%= environmentData[0].image.toString('base64') %>" 
                                  alt="<%= environmentData[0].image_title %>" 
@@ -412,6 +427,21 @@
                                  alt="<%= environmentData[1].image_title %>" 
                                  class="w-[200px] h-[200px] rounded-2xl -mt-[100px]">
                           <% } %>
+                    </div>
+                    <div class="mx-auto w-full lg:pl-4 sm:hidden">
+                        <% if (environmentData && environmentData.length > 0) { %>
+                            <!-- First Vision & Mission Image -->
+                            <img src="data:image/jpeg;base64,<%= environmentData[0].image.toString('base64') %>" 
+                                 alt="<%= environmentData[0].image_title %>" 
+                                 class="w-[300px] h-[300px] rounded-2xl mb-4 mx-auto">
+                        <% } %>
+                    
+                        <% if (environmentData && environmentData.length > 1) { %>
+                            <!-- Second Vision & Mission Image -->
+                            <img src="data:image/jpeg;base64,<%= environmentData[1].image.toString('base64') %>" 
+                                 alt="<%= environmentData[1].image_title %>" 
+                                 class="w-[300px] h-[300px] rounded-2xl mx-auto">
+                        <% } %>                     
                     </div>
                 </div>
 
