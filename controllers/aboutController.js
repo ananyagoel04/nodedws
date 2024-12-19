@@ -9,7 +9,7 @@ module.exports = {
             const aboutImages = await AboutImage.find();
             const messages = await Message.find();
 
-            res.render('Admin/aboutadmin', { aboutImages, messages });
+            res.render('admin/aboutadmin', { aboutImages, messages });
         } catch (err) {
             console.error('Error loading About data:', err);
             res.status(500).send('Error loading About data');

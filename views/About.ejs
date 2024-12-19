@@ -459,18 +459,12 @@
                                                     growth opportunities.
                                                 </p>
                                                 <div class="md:px-40 px-8 my-4">
-                                                    <form action="" method="post" enctype="multipart/form-data"
-                                                        onsubmit="return checkForm()"
+                                                    <form action="/send-resume" method="POST"
+                                                        enctype="multipart/form-data" onsubmit="return checkForm()"
                                                         class="bg-white shadow-2xl w-full z-10 p-10 md:px-14 border-2 rounded-2xl">
                                                         <div class="text-3xl font-bold text-center md:text-left">Send us
                                                             your
                                                             Resume</div>
-                                                        <div class="text-red-500 text-center mt-4 ">Currently
-                                                            Unavailable <br>
-                                                            Please contact us
-                                                            on <a class="underline" href="tel:1704298187">91+
-                                                                17042-98187 </a>
-                                                        </div>
                                                         <br>
                                                         <label for="">Name*</label>
                                                         <br>
@@ -504,15 +498,27 @@
                                                                 Send
                                                             </div>
                                                         </button>
-                                                        <div id="success-message"
-                                                            class="text-green-500 text-center mt-4 {% if not success_message %}hidden{% endif %}">
-                                                            {% if success_message %}Resume sent successfully!{% endif %}
-                                                        </div>
-                                                        <div id="error-message"
-                                                            class="text-red-500 text-center mt-4 hidden">
-                                                        </div>
                                                     </form>
+                                                    <% if (errorMessage) { %>
+                                                        <div id="error-message" class="text-red-500 text-center mt-4">
+                                                            <p>
+                                                                <%= errorMessage %>
+                                                            </p>
+                                                        </div>
+                                                        <% } %>
+
+                                                            <!-- Success Message Block -->
+                                                            <% if (successMessage) { %>
+                                                                <div id="success-message"
+                                                                    class="text-green-500 text-center mt-4">
+                                                                    <p>
+                                                                        <%= successMessage %>
+                                                                    </p>
+                                                                </div>
+                                                                <% } %>
+
                                                 </div>
+
 
                                                 <script>
                                                     function checkForm() {

@@ -39,7 +39,7 @@
                 <img class="md:w-32 w-16 relative md:-bottom-24 -bottom-12  md:left-14 left-60"
                     src="/static/icons/dots1.svg" alt="">
                 <div class="flex justify-center w-full relative h-fit ">
-                    <form action="" method="post" enctype="multipart/form-data" onsubmit="return checkForm()"
+                    <form action="/contact" method="POST" onsubmit="return checkForm()"
                         class=" bg-white shadow-2xl w-full z-10 p-10 md:px-14 border-2 rounded-2xl">
                         <div class="text-3xl font-bold text-center md:text-left">Send us a message</div>
                         <br>
@@ -69,7 +69,23 @@
                                 Send Message
                             </div>
                         </button>
-                        <div id="error-message" class="text-red-500 text-center mt-4 hidden"></div>
+                        <% if (errorMessage) { %>
+                            <div id="error-message" class="text-red-500 text-center mt-4">
+                                <p>
+                                    <%= errorMessage %>
+                                </p>
+                            </div>
+                            <% } %>
+
+                                <!-- Success Message Block -->
+                                <% if (successMessage) { %>
+                                    <div id="success-message"
+                                        class="text-green-500 text-center mt-4">
+                                        <p>
+                                            <%= successMessage %>
+                                        </p>
+                                    </div>
+                                    <% } %>
                         <script>
                             function checkForm() {
                                 // Check if all required fields are filled
