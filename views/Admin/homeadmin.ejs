@@ -1,0 +1,529 @@
+<%- include("header.ejs") %>
+
+<body class="bg-gray-100 font-sans text-gray-900">
+    <!-- Main container -->
+    <div class="container mx-auto p-8">
+        <!-- Header Section -->
+        <header class="mb-8">
+            <h1 class="text-3xl font-bold text-center text-blue-600">HomePage</h1>
+        </header>
+        <section class="my-4">
+            <!-- Home Images Section -->
+            <% if (images && images.length> 0) { %>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">only one image can be upload</h2>
+                <% } else { %>
+                    <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Home Images</h2>
+                        <form action="/admin/home" method="POST" enctype="multipart/form-data" class="space-y-4">
+                            <div>
+                                <label for="image_title" class="block text-sm font-medium text-gray-700">Image
+                                    Title:</label>
+                                <input type="text" id="image_title" name="image_title" placeholder="Enter Image Title"
+                                    required
+                                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label for="image" class="block text-sm font-medium text-gray-700">Upload Image:</label>
+                                <input type="file" id="image" name="image" accept="image/*" required
+                                    class="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:rounded-lg file:border file:border-gray-300 file:bg-gray-50 hover:file:bg-blue-100">
+                            </div>
+                            <div>
+                                <button type="submit"
+                                    class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Add
+                                    Image</button>
+                            </div>
+                        </form>
+                    </section>
+                    <% } %>
+                        <section>
+                            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Existing Home Images</h2>
+                            <table class="min-w-full bg-white rounded-lg shadow-md">
+                                <thead>
+                                    <tr class="bg-gray-200">
+                                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Title</th>
+                                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Image</th>
+                                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if (images && images.length> 0) { %>
+                                        <% images.forEach(image=> { %>
+                                            <tr class="border-b hover:bg-gray-50">
+                                                <td class="px-4 py-2 text-sm text-gray-700">
+                                                    <%= image.image_title %>
+                                                </td>
+                                                <td class="px-4 py-2 text-sm text-gray-700">
+                                                    <img src="data:image/png;base64,<%= image.image.toString('base64') %>"
+                                                        alt="<%= image.image_title %>" width="100" class="rounded-md">
+                                                </td>
+                                                <td class="px-4 py-2 space-x-2">
+                                                    <!-- Update Image Form -->
+                                                    <form action="/admin/home/<%= image._id %>?_method=PUT"
+                                                        method="POST" enctype="multipart/form-data"
+                                                        style="display:inline-block;">
+                                                        <input type="text" name="image_title"
+                                                            value="<%= image.image_title %>" required
+                                                            class="p-1 border border-gray-300 rounded-md">
+                                                        <input type="file" name="image" accept="image/*"
+                                                            class="p-1 text-sm border border-gray-300 rounded-md">
+                                                        <button type="submit"
+                                                            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Update</button>
+                                                    </form>
+
+                                                    <!-- Delete Image Form -->
+                                                    <form action="/admin/home/<%= image._id %>?_method=DELETE"
+                                                        method="POST" style="display:inline-block;">
+                                                        <button type="submit"
+                                                            onclick="return confirm('Are you sure you want to delete this image?')"
+                                                            class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                                <% } else { %>
+                                                    <tr>
+                                                        <td colspan="3" class="text-center text-sm text-gray-500 py-4">
+                                                            No images found.</td>
+                                                    </tr>
+                                                    <% } %>
+                                </tbody>
+                            </table>
+                        </section>
+        </section>
+        <section class="my-4">
+            <!-- Vision Mission Section -->
+            <% if (visionMissions && visionMissions.length> 1) { %>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">only one image can be upload</h2>
+                <% } else { %>
+                    <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Vision & Mission</h2>
+                        <form action="/admin/vision" method="POST" enctype="multipart/form-data" class="space-y-4">
+                            <div>
+                                <label for="image_title" class="block text-sm font-medium text-gray-700">Image
+                                    Title:</label>
+                                <input type="text" id="image_title" name="image_title" placeholder="Enter Image Title"
+                                    required
+                                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label for="image" class="block text-sm font-medium text-gray-700">Upload Image:</label>
+                                <input type="file" id="image" name="image" accept="image/*" required
+                                    class="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:rounded-lg file:border file:border-gray-300 file:bg-gray-50 hover:file:bg-blue-100">
+                            </div>
+                            <div>
+                                <button type="submit"
+                                    class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Add
+                                    Vision & Mission</button>
+                            </div>
+                        </form>
+                    </section>
+                    <% } %>
+                        <!-- Vision Mission List Section -->
+                        <section>
+                            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Existing Vision & Mission Items</h2>
+                            <table class="min-w-full bg-white rounded-lg shadow-md">
+                                <thead>
+                                    <tr class="bg-gray-200">
+                                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Title</th>
+                                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Image</th>
+                                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if (visionMissions && visionMissions.length> 0) { %>
+                                        <% visionMissions.forEach(item=> { %>
+                                            <tr class="border-b hover:bg-gray-50">
+                                                <td class="px-4 py-2 text-sm text-gray-700">
+                                                    <%= item.image_title %>
+                                                </td>
+                                                <td class="px-4 py-2 text-sm text-gray-700">
+                                                    <img src="data:image/png;base64,<%= item.image.toString('base64') %>"
+                                                        alt="<%= item.image_title %>" width="100" class="rounded-md">
+                                                </td>
+                                                <td class="px-4 py-2 space-x-2">
+                                                    <!-- Update Vision Mission Form -->
+                                                    <form action="/admin/vision/<%= item._id %>?_method=PUT"
+                                                        method="POST" enctype="multipart/form-data"
+                                                        style="display:inline-block;">
+                                                        <input type="text" name="image_title"
+                                                            value="<%= item.image_title %>" required
+                                                            class="p-1 border border-gray-300 rounded-md">
+                                                        <input type="file" name="image" accept="image/*"
+                                                            class="p-1 text-sm border border-gray-300 rounded-md">
+                                                        <button type="submit"
+                                                            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Update</button>
+                                                    </form>
+
+                                                    <!-- Delete Vision Mission Form -->
+                                                    <form action="/admin/vision/<%= item._id %>?_method=DELETE"
+                                                        method="POST" style="display:inline-block;">
+                                                        <button type="submit"
+                                                            onclick="return confirm('Are you sure you want to delete this item?')"
+                                                            class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                                <% } else { %>
+                                                    <tr>
+                                                        <td colspan="3" class="text-center text-sm text-gray-500 py-4">
+                                                            No Vision & Mission items found.</td>
+                                                    </tr>
+                                                    <% } %>
+                                </tbody>
+                            </table>
+                        </section>
+        </section>
+        <section class="my-4">
+            <!-- Environment Section -->
+            <% if (environments && environments.length> 1) { %>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">only one image can be upload</h2>
+                <% } else { %>
+                    <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Environment</h2>
+                        <form action="/admin/environment" method="POST" enctype="multipart/form-data" class="space-y-4">
+                            <div>
+                                <label for="image_title" class="block text-sm font-medium text-gray-700">Image
+                                    Title:</label>
+                                <input type="text" id="image_title" name="image_title" placeholder="Enter Image Title"
+                                    required
+                                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+                            <div>
+                                <label for="image" class="block text-sm font-medium text-gray-700">Upload Image:</label>
+                                <input type="file" id="image" name="image" accept="image/*" required
+                                    class="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:rounded-lg file:border file:border-gray-300 file:bg-gray-50 hover:file:bg-blue-100">
+                            </div>
+                            <div>
+                                <button type="submit"
+                                    class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Add
+                                    Environment Image</button>
+                            </div>
+                        </form>
+                    </section>
+                    <% } %>
+                        <!-- Environment List Section -->
+                        <section>
+                            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Existing Environment Images</h2>
+                            <table class="min-w-full bg-white rounded-lg shadow-md">
+                                <thead>
+                                    <tr class="bg-gray-200">
+                                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Title</th>
+                                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Image</th>
+                                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if (environments && environments.length> 0) { %>
+                                        <% environments.forEach(item=> { %>
+                                            <tr class="border-b hover:bg-gray-50">
+                                                <td class="px-4 py-2 text-sm text-gray-700">
+                                                    <%= item.image_title %>
+                                                </td>
+                                                <td class="px-4 py-2 text-sm text-gray-700">
+                                                    <img src="data:image/png;base64,<%= item.image.toString('base64') %>"
+                                                        alt="<%= item.image_title %>" width="100" class="rounded-md">
+                                                </td>
+                                                <td class="px-4 py-2 space-x-2">
+                                                    <!-- Update Environment Form -->
+                                                    <form action="/admin/environment/<%= item._id %>?_method=PUT"
+                                                        method="POST" enctype="multipart/form-data"
+                                                        style="display:inline-block;">
+                                                        <input type="text" name="image_title"
+                                                            value="<%= item.image_title %>" required
+                                                            class="p-1 border border-gray-300 rounded-md">
+                                                        <input type="file" name="image" accept="image/*"
+                                                            class="p-1 text-sm border border-gray-300 rounded-md">
+                                                        <button type="submit"
+                                                            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Update</button>
+                                                    </form>
+
+                                                    <!-- Delete Environment Form -->
+                                                    <form action="/admin/environment/<%= item._id %>?_method=DELETE"
+                                                        method="POST" style="display:inline-block;">
+                                                        <button type="submit"
+                                                            onclick="return confirm('Are you sure you want to delete this image?')"
+                                                            class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                                <% } else { %>
+                                                    <tr>
+                                                        <td colspan="3" class="text-center text-sm text-gray-500 py-4">
+                                                            No environment images found.</td>
+                                                    </tr>
+                                                    <% } %>
+                                </tbody>
+                            </table>
+                        </section>
+        </section>
+        <section class="my-4">
+            <!-- Teacher Section -->
+            <% if (teachers && teachers.length> 3) { %>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">only one image can be upload</h2>
+                <% } else { %>
+                    <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+                        <h2 class="text-2xl font-semibold text-gray-800 mb-4">Add Teacher</h2>
+                        <form action="/admin/teacher" method="POST" enctype="multipart/form-data" class="space-y-4">
+                            <!-- Teacher Name -->
+                            <div>
+                                <label for="name" class="block text-sm font-medium text-gray-700">Teacher Name:</label>
+                                <input type="text" id="name" name="name" placeholder="Enter Teacher's Name" required
+                                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+
+                            <!-- Teacher Designation -->
+                            <div>
+                                <label for="designation"
+                                    class="block text-sm font-medium text-gray-700">Designation:</label>
+                                <input type="text" id="designation" name="designation"
+                                    placeholder="Enter Teacher's Designation" required
+                                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+
+                            <!-- Image Title -->
+                            <div>
+                                <label for="image_title" class="block text-sm font-medium text-gray-700">Image
+                                    Title:</label>
+                                <input type="text" id="image_title" name="image_title" placeholder="Enter Image Title"
+                                    required
+                                    class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            </div>
+
+                            <!-- Teacher Image Upload -->
+                            <div>
+                                <label for="image" class="block text-sm font-medium text-gray-700">Upload Image:</label>
+                                <input type="file" id="image" name="image" accept="image/*" required
+                                    class="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:rounded-lg file:border file:border-gray-300 file:bg-gray-50 hover:file:bg-blue-100">
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div>
+                                <button type="submit"
+                                    class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Add
+                                    Teacher</button>
+                            </div>
+                        </form>
+                    </section>
+                    <% } %>
+                        <!-- Teacher List Section -->
+                        <section>
+                            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Existing Teacher Images</h2>
+                            <table class="min-w-full bg-white rounded-lg shadow-md">
+                                <thead>
+                                    <tr class="bg-gray-200">
+                                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Name</th>
+                                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Image</th>
+                                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% if (teachers && teachers.length> 0) { %>
+                                        <% teachers.forEach(item=> { %>
+                                            <tr class="border-b hover:bg-gray-50">
+                                                <td class="px-4 py-2 text-sm text-gray-700">
+                                                    <%= item.name %>
+                                                </td>
+                                                <td class="px-4 py-2 text-sm text-gray-700">
+                                                    <img src="data:image/png;base64,<%= item.image.toString('base64') %>"
+                                                        alt="<%= item.image_title %>" width="100" class="rounded-md">
+                                                </td>
+                                                <td class="px-4 py-2 space-x-2">
+                                                    <!-- Update Teacher Form -->
+                                                    <form action="/admin/teacher/<%= item._id %>?_method=PUT"
+                                                        method="POST" enctype="multipart/form-data"
+                                                        style="display:inline-block;">
+                                                        <input type="text" name="name" value="<%= item.name %>" required
+                                                            class="p-1 border border-gray-300 rounded-md"
+                                                            placeholder="Teacher's Name">
+                                                        <input type="text" name="designation"
+                                                            value="<%= item.designation %>" required
+                                                            class="p-1 border border-gray-300 rounded-md"
+                                                            placeholder="Teacher's Designation">
+                                                        <input type="text" name="image_title"
+                                                            value="<%= item.image_title %>" required
+                                                            class="p-1 border border-gray-300 rounded-md"
+                                                            placeholder="Image Title">
+                                                        <input type="file" name="image" accept="image/*"
+                                                            class="p-1 text-sm border border-gray-300 rounded-md">
+                                                        <button type="submit"
+                                                            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Update</button>
+                                                    </form>
+
+                                                    <!-- Delete Teacher Form -->
+                                                    <form action="/admin/teacher/<%= item._id %>?_method=DELETE"
+                                                        method="POST" style="display:inline-block;">
+                                                        <button type="submit"
+                                                            onclick="return confirm('Are you sure you want to delete this teacher?')"
+                                                            class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Delete</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                                <% } else { %>
+                                                    <tr>
+                                                        <td colspan="5" class="text-center text-sm text-gray-500 py-4">
+                                                            No teacher
+                                                            images found.</td>
+                                                    </tr>
+                                                    <% } %>
+                                </tbody>
+                            </table>
+                        </section>
+        </section>
+        <!-- Program Section -->
+        <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Program</h2>
+            <form action="/admin/program" method="POST" enctype="multipart/form-data" class="space-y-4">
+                <div>
+                    <label for="image_title" class="block text-sm font-medium text-gray-700">Image Title:</label>
+                    <input type="text" id="image_title" name="image_title" placeholder="Enter Image Title" required
+                        class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label for="image" class="block text-sm font-medium text-gray-700">Upload Image:</label>
+                    <input type="file" id="image" name="image" accept="image/*" required
+                        class="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:rounded-lg file:border file:border-gray-300 file:bg-gray-50 hover:file:bg-blue-100">
+                </div>
+                <div>
+                    <button type="submit"
+                        class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Add
+                        Program Image</button>
+                </div>
+            </form>
+        </section>
+        <!-- Program List Section -->
+        <section>
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4">Existing Program Images</h2>
+            <table class="min-w-full bg-white rounded-lg shadow-md">
+                <thead>
+                    <tr class="bg-gray-200">
+                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Title</th>
+                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Image</th>
+                        <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% if (programs && programs.length> 0) { %>
+                        <% programs.forEach(item=> { %>
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-4 py-2 text-sm text-gray-700">
+                                    <%= item.image_title %>
+                                </td>
+                                <td class="px-4 py-2 text-sm text-gray-700">
+                                    <img src="data:image/png;base64,<%= item.image.toString('base64') %>"
+                                        alt="<%= item.image_title %>" width="100" class="rounded-md">
+                                </td>
+                                <td class="px-4 py-2 space-x-2">
+                                    <!-- Update Program Form -->
+                                    <form action="/admin/program/<%= item._id %>?_method=PUT" method="POST"
+                                        enctype="multipart/form-data" style="display:inline-block;">
+                                        <input type="text" name="image_title" value="<%= item.image_title %>" required
+                                            class="p-1 border border-gray-300 rounded-md">
+                                        <input type="file" name="image" accept="image/*"
+                                            class="p-1 text-sm border border-gray-300 rounded-md">
+                                        <button type="submit"
+                                            class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Update</button>
+                                    </form>
+
+                                    <!-- Delete Program Form -->
+                                    <form action="/admin/program/<%= item._id %>?_method=DELETE" method="POST"
+                                        style="display:inline-block;">
+                                        <button type="submit"
+                                            onclick="return confirm('Are you sure you want to delete this image?')"
+                                            class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <% }); %>
+                                <% } else { %>
+                                    <tr>
+                                        <td colspan="3" class="text-center text-sm text-gray-500 py-4">No program images
+                                            found.</td>
+                                    </tr>
+                                    <% } %>
+                </tbody>
+            </table>
+        </section>
+        </section>
+        <section class="my-4">
+            <!-- Review Section -->
+            <section class="bg-white p-6 rounded-lg shadow-md mb-8">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Review</h2>
+                <form action="/admin/review" method="POST" enctype="multipart/form-data" class="space-y-4">
+                    <div>
+                        <label for="image_title" class="block text-sm font-medium text-gray-700">Image Title:</label>
+                        <input type="text" id="image_title" name="image_title" placeholder="Enter Image Title" required
+                            class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    </div>
+                    <div>
+                        <label for="image" class="block text-sm font-medium text-gray-700">Upload Image:</label>
+                        <input type="file" id="image" name="image" accept="image/*" required
+                            class="mt-1 block w-full text-sm text-gray-500 file:py-2 file:px-4 file:rounded-lg file:border file:border-gray-300 file:bg-gray-50 hover:file:bg-blue-100">
+                    </div>
+                    <div>
+                        <button type="submit"
+                            class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500">Add
+                            Review Image</button>
+                    </div>
+                </form>
+            </section>
+            <!-- Review List Section -->
+            <section>
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Existing Review Images</h2>
+                <table class="min-w-full bg-white rounded-lg shadow-md">
+                    <thead>
+                        <tr class="bg-gray-200">
+                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Title</th>
+                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Image</th>
+                            <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% if (reviews && reviews.length> 0) { %>
+                            <% reviews.forEach(item=> { %>
+                                <tr class="border-b hover:bg-gray-50">
+                                    <td class="px-4 py-2 text-sm text-gray-700">
+                                        <%= item.image_title %>
+                                    </td>
+                                    <td class="px-4 py-2 text-sm text-gray-700">
+                                        <img src="data:image/png;base64,<%= item.image.toString('base64') %>"
+                                            alt="<%= item.image_title %>" width="100" class="rounded-md">
+                                    </td>
+                                    <td class="px-4 py-2 space-x-2">
+                                        <!-- Update Review Form -->
+                                        <form action="/admin/review/<%= item._id %>?_method=PUT" method="POST"
+                                            enctype="multipart/form-data" style="display:inline-block;">
+                                            <input type="text" name="image_title" value="<%= item.image_title %>"
+                                                required class="p-1 border border-gray-300 rounded-md">
+                                            <input type="file" name="image" accept="image/*"
+                                                class="p-1 text-sm border border-gray-300 rounded-md">
+                                            <button type="submit"
+                                                class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700">Update</button>
+                                        </form>
+
+                                        <!-- Delete Review Form -->
+                                        <form action="/admin/review/<%= item._id %>?_method=DELETE" method="POST"
+                                            style="display:inline-block;">
+                                            <button type="submit"
+                                                onclick="return confirm('Are you sure you want to delete this image?')"
+                                                class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700">Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                <% }); %>
+                                    <% } else { %>
+                                        <tr>
+                                            <td colspan="3" class="text-center text-sm text-gray-500 py-4">No review
+                                                images found.</td>
+                                        </tr>
+                                        <% } %>
+                    </tbody>
+                </table>
+            </section>
+        </section>
+    </div>
+</body>
+
+</html>
