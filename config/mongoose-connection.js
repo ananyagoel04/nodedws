@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
-
-const config = require('config');
-
 const dbgr = require('debug')('development:mongoose');
 
+// Directly adding MongoDB URI
+const mongoURI = 'mongodb+srv://ananyagoelps:Goel%402004@vehicle.l6zrk.mongodb.net/DWSWEB?retryWrites=true&w=majority&appName=VEHICLE';
 
 mongoose
-.connect(`${config.get('MONGODB_URI')}`)
-.then(function(){
+  .connect(mongoURI)
+  .then(function() {
     dbgr("connected");
-})
-.catch(function(err){
+  })
+  .catch(function(err) {
     dbgr(err);
-})
+  });
+
 module.exports = mongoose.connection;
