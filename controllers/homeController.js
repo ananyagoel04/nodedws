@@ -19,7 +19,7 @@ module.exports = {
             const programs = await Program.find();
             const reviews = await Review.find();
             // Pass all the data to the view
-            res.render('admin/homeadmin', {
+            res.render('Admin/homeadmin', {
                 images: homeImages,
                 visionMissions,
                 environments,
