@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 const dbgr = require('debug')('development:mongoose');
 
-// Directly adding MongoDB URI
 const mongoURI = 'mongodb+srv://ananyagoelps:Goel%402004@vehicle.l6zrk.mongodb.net/DWSWEB?retryWrites=true&w=majority&appName=VEHICLE';
 
 mongoose
