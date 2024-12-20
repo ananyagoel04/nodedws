@@ -108,9 +108,9 @@ module.exports = {
             const { id } = req.params;
             const { name, message } = req.body;
             const updates = { name, message };
-            if (req.file) updates.image = req.file.buffer; // If a new image is uploaded
+            if (req.file) updates.image = req.file.buffer;
             await Message.findByIdAndUpdate(id, updates, { new: true });
-            res.redirect('/admin/about'); // Redirect after updating
+            res.redirect('/admin/about');
         } catch (err) {
             console.error('Error updating message:', err);
             res.status(500).send('Error updating message');
@@ -122,7 +122,7 @@ module.exports = {
         try {
             const { id } = req.params;
             await Message.findByIdAndDelete(id);
-            res.redirect('/admin/messages'); // Redirect after deleting
+            res.redirect('/admin/about');
         } catch (err) {
             console.error('Error deleting message:', err);
             res.status(500).send('Error deleting message');

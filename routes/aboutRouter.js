@@ -6,16 +6,16 @@ const aboutController = require('../controllers/aboutController');
 // ---------------------- About Image Routes ----------------------
 
 // Get all About images
-router.get('/about', aboutController.getAllAboutData);
+router.get('/', aboutController.getAllAboutData);
 
 // Create About image
-router.post('/about', upload.single('image'), aboutController.createAboutImage);
+router.post('/', upload.single('image'), aboutController.createAboutImage);
 
 // Update About image
-router.put('/about/:id', upload.single('image'), aboutController.updateAboutImage);
+router.put('/:id', upload.single('image'), aboutController.updateAboutImage);
 
 // Delete About image
-router.delete('/about/:id', aboutController.deleteAboutImage);
+router.delete('/:id', aboutController.deleteAboutImage);
 
 // ---------------------- Message Routes ----------------------
 
