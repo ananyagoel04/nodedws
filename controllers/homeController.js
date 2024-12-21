@@ -6,8 +6,43 @@ const {
     Program,
     Review
 } = require('../models/home');
+const userModel = require("../models/user");
+
+
+const jwt = require('jsonwebtoken');
 
 module.exports = {
+    async getAllUsersData(req, res) {
+        try {
+            // Decode the JWT token from the cookies
+            const decoded = jwt.verify(req.cookies.token, process.env.JWT_KEY);
+    
+            // Get the email from the decoded token
+            const email = decoded.email; 
+            
+            // Check if the email matches the allowed email
+            if (email !== "ananyagoelps@gmail.com") {
+                // If the email doesn't match, send a 403 Forbidden response
+                return res.status(403).json({ message: "You are not authorized to access this data." });
+            }
+    
+            // Retrieve all users, excluding the password field using .select("-password")
+            const users = await userModel.find().select("-password");
+    
+            // If no users are found, send a message
+            if (users.length === 0) {
+                return res.status(404).json({ message: "No users found." });
+            }
+    
+            // Render the view with the users data
+            res.render('Admin/owner-login', { users });
+        } catch (err) {
+            console.error(err); // Log the error for debugging
+            return res.status(500).json({ message: "An error occurred while fetching user data. Please try again." });
+        }
+    },
+
+
     // Homeimg CRUD Operations
     async getAllHomeData(req, res) {
         try {

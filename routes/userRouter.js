@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
-const { registerUser, loginUser, logoutUser } = require("../controllers/authController");
+const { registerUser, loginUser, logoutUser, changePassword } = require("../controllers/authController");
+const isLoggedin = require('../middlewares/isLoggedin');
 
 // Simple GET route
 router.get("/", (req, res) => {
@@ -36,4 +37,14 @@ router.get("/logout", async (req, res) => {
     }
 });
 
+
+router.post("/change-password/", isLoggedin, async (req, res) => {
+    try {
+
+        await changePassword(req, res);
+    } catch (error) {
+        console.error(error);  // Log the error for debugging
+        return res.status(500).json({ message: "Internal Server Error", error: error.message });
+    }
+});
 module.exports = router;
