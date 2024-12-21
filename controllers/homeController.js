@@ -23,7 +23,7 @@ module.exports = {
             // Check if the email matches the allowed email
             if (email !== "ananyagoelps@gmail.com") {
                 // If the email doesn't match, send a 403 Forbidden response
-                return res.status(403).json({ message: "You are not authorized to access this data." });
+                return res.status(403).json({ message: "You are not authorized to access this page. Please go back to admin page" });
             }
     
             // Retrieve all users, excluding the password field using .select("-password")

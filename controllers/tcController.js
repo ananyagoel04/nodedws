@@ -10,7 +10,7 @@ async function getAllClassesSessionsStudents(req, res) {
         const sessions = await Session.find();
         const students = await Student.find().populate('classId').exec();
         // Render the view and pass the data
-        res.render('admin/tcadmin', { classes, sessions, students });
+        res.render('Admin/tcadmin', { classes, sessions, students });
     } catch (err) {
         console.error('Error loading Classes, Sessions, and Students data:', err);
         res.status(500).send('Error loading Classes, Sessions, and Students data');
@@ -32,7 +32,7 @@ async function createClass(req, res) {
         });
 
         await newClass.save();
-        res.redirect('/admin/tc');
+        res.redirect('/Admin/tc');
     } catch (error) {
         res.status(500).json({ message: error.message });
     }
