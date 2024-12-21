@@ -3,8 +3,6 @@ const router = express.Router();
 const upload = require('../config/multer'); // Multer for handling file uploads
 const homeController = require('../controllers/homeController');
 
-router.get('/users', homeController.getAllUsersData);
-
 // Homeimg Routes
 router.get('/', homeController.getAllHomeData);
 router.post('/home', upload.single('image'), homeController.createHomeImage); // Create home image

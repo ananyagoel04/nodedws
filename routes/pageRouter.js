@@ -1,14 +1,9 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const { Homeimg, VisionMission, Environment, Teacher, Program, Review } = require('../models/home');
 const { AboutImage, Message } = require('../models/about');
-const Student = require('../models/tc/student');
-const Class = require('../models/tc/class');
-const Session = require('../models/tc/session');
 const router = express.Router();
-const tcController = require('../controllers/tcController');
-
-
+const upload = require('../config/multer');
+const transporter = require('../config/mailService');
 
 
 router.get("/login", (req, res) => {
@@ -46,67 +41,58 @@ router.get('/about', async (req, res) => {
   try {
     const aboutImages = await AboutImage.find({});
     const messages = await Message.find({});
-    res.render('about', {
+    const { successMessage, errorMessage } = req.query;
+    res.render('About', {
       aboutImages,
-      messages
+      messages,
+      successMessage,
+      errorMessage,
     });
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
   }
 });
+router.post('/send-resume', upload.single('Resume'), async (req, res) => {
+  const { Name, Email, Phone, Message } = req.body;
+  const resumeFile = req.file; // This contains the uploaded file
 
-router.get('/tc', async (req, res) => {
+  // Check if all required fields are filled
+  if (!Name || !Email || !resumeFile) {
+    return res.redirect('/about?errorMessage=Please fill in all required fields.');
+  }
+
+  // Prepare email content
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: 'info@divinewisdom.edu.in',
+    cc: `${Email}`,
+    subject: 'Resume Submission',
+    html: `
+      <h3>New Resume Submission</h3><br>
+      <p><strong>Name:</strong> ${Name}</p><br>
+      <p><strong>Email:</strong> ${Email}</p><br>
+      <p><strong>Phone:</strong> ${Phone}</p><br>
+      <p><strong>Message:</strong> ${Message}</p>
+    `,
+    attachments: [
+      {
+        filename: resumeFile.originalname,  // Use the original file name
+        content: resumeFile.buffer,  // Use the file buffer from Multer
+        encoding: 'base64',  // Ensure the file is encoded properly
+      },
+    ],
+  };
+
+  // Send the email with the resume attached
   try {
-    // Fetch all data from MongoDB collections
-    const students = await Student.find().populate('classId').exec();
-    const sessions = await Session.find();
-    const classes = await Class.find().populate('sessionId').exec();
-    // Render the 'tc' view and pass the data
-    res.render('tc', {
-      students,   // Pass student data
-      sessions,   // Pass session data
-      classes     // Pass class data
-    });
+    await transporter.sendMail(mailOptions);
+    return res.redirect('/about?successMessage=Your resume has been sent successfully!');
   } catch (err) {
-    console.error('Error fetching data for TC:', err);
-    res.status(500).send('Internal Server Error');
+    console.error(err);
+    return res.redirect('/about?errorMessage=There was an error sending your resume. Please try again later.');
   }
 });
-
-router.get('/student/:studentId/view', tcController.viewStudentTC);
-
-router.get('/class_students/:id', async (req, res) => {
-  try {
-    // Get the class ID from the request params
-    const classId = req.params.id;
-
-    // Fetch the class details using the classId
-    const cls = await Class.findById(classId).populate('sessionId').exec();
-    
-    if (!cls) {
-      return res.status(404).send('Class not found');
-    }
-
-    // Fetch all students that belong to this class (using classId)
-    const students = await Student.find({ classId: classId }).exec();
-    
-    // Fetch all sessions (optional, if needed in the view)
-    const sessions = await Session.find();
-    
-    // Render the 'class_students' view and pass the data
-    res.render('class_students', {
-      students,  // Pass the students data
-      sessions,  // Pass session data (optional)
-      cls        // Pass the class details
-    });
-  } catch (err) {
-    console.error('Error fetching data for class students:', err);
-    res.status(500).send('Internal Server Error');
-  }
-});
-
-
 
 router.get('/admissions', async (req, res) => {
   try {
@@ -149,13 +135,55 @@ router.get('/parent', async (req, res) => {
   }
 });
 router.get('/contact', async (req, res) => {
+  const { successMessage, errorMessage } = req.query;
   try {
-    res.render('contactus');
+    res.render('contactus', {
+      successMessage,
+      errorMessage,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
   }
 });
+
+router.post('/contact', async (req, res) => {
+  const { Name, Email, Phone, Message } = req.body;
+
+  // Check if all required fields are filled
+  // if (!Name || !Email || !Phone || !Message) {
+  //   return res.redirect('/contact?errorMessage=Please fill in all required fields.');
+  // }
+
+  // Check if phone number is valid (exactly 10 digits)
+  if (Phone.length !== 10) {
+    return res.redirect('/contact?errorMessage=Phone number must be exactly 10 digits.');
+  }
+
+  // Prepare email content
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: 'info@divinewisdom.edu.in',
+    subject: 'Contact Us Message',
+    html: `
+      <h3>New Contact Us Message</h3><br>
+      <p><strong>Name:</strong> ${Name}</p><br>
+      <p><strong>Email:</strong> ${Email}</p><br>
+      <p><strong>Phone:</strong> ${Phone}</p><br>
+      <p><strong>Message:</strong> ${Message}</p>
+    `,
+  };
+
+  // Send the email
+  try {
+    await transporter.sendMail(mailOptions);
+    return res.redirect('/contact?successMessage=Your message has been sent successfully!');
+  } catch (err) {
+    console.error(err);
+    return res.redirect('/contact?errorMessage=There was an error sending your message. Please try again later.');
+  }
+});
+
 
 
 

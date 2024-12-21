@@ -1,0 +1,62 @@
+<%- include("header.ejs") %>
+
+<head>
+    <style>
+        .background {
+            background-color: #f3f0fc;
+        }
+    </style>
+</head>
+
+<!-- Gradient -->
+<div class="bg-gradient-to-b from-[#f3f0fc] from-0% to-[#ffffff] to-100% h-8"></div>
+<!-- Gradient End -->
+
+<body>
+    <h1 class="text-center font-bold text-yellow-500 text-3xl">
+        Transfer Certificates of <%= cls.className %> (<%= cls.sessionId.year %>)
+    </h1>
+    <h1 class="text-center font-medium text-xl w-full">
+        <a href="/Tc/"> 
+            <i class="fa fa-angle-left my-auto" style="font-size:24px"></i>&nbsp;Back
+        </a>
+    </h1>
+
+    <div class="flex justify-center mt-10 px-10 my-10">
+        <table class="min-w-full shadow-md">
+            <thead>
+                <tr class="bg-[#FFEBEC]">
+                    <th class="px-4 py-2 text-center">Student Name</th>
+                    <th class="px-4 py-2 text-center">PDF</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% if (students.length > 0) { %>
+                    <% students.forEach(student => { %>
+                        <tr class="even:bg-[#FFEBEC] odd:bg-[#EAFDF7]">
+                            <td class="px-4 py-2 text-center"><%= student.student_name %></td>
+                            <% if (student.TC) { %>
+                                <td class="px-4 py-2 text-center">
+                                    <a href="/student/<%= student._id %>/view" target="_blank"> 
+                                        <span class="px-2">View</span>
+                                        <i class="fa fa-file-pdf-o" style="font-size:24px;color:red"></i>
+                                    </a>
+                                </td>
+                            <% } else { %>
+                                <td class="px-4 py-2 text-center">--</td>
+                            <% } %>
+                        </tr>
+                    <% }); %>
+                <% } else { %>
+                    <tr class="even:bg-[#FFEBEC] odd:bg-[#EAFDF7]">
+                        <td class="px-4 py-2 text-center">No students available</td>
+                        <td class="px-4 py-2 text-center">--</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+<%- include("footer.ejs") %>
