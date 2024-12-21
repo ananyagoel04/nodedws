@@ -38,19 +38,22 @@
                             </svg>
                         </div>
                     </a>
-                    <div
-                        class=" bg-[#D2C6FA] rounded-full flex mx-2 text-center text-xl px-4 py-2 grouping hover:text-white transition ease-in duration-300">
-                        <div class="text-[#4F49A5] hover:text-white transition ease-in duration-300  my-auto childgrp">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                stroke-linejoin="round" class="mx-auto my-auto ">
-                                <path
-                                    d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z"
-                                    fill="currentColor" stroke-width="0"></path>
-                            </svg>
+                    <a href="https://www.facebook.com/dwsmajra/videos/1588649295303958/" target="_blank" class="hover:cursor-pointer">
+                        <div
+                            class=" bg-[#D2C6FA] rounded-full flex mx-2 text-center text-xl px-4 py-2 grouping hover:text-white transition ease-in duration-300">
+                            <div
+                                class="text-[#4F49A5] hover:text-white transition ease-in duration-300  my-auto childgrp">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                    stroke-linejoin="round" class="mx-auto my-auto ">
+                                    <path
+                                        d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z"
+                                        fill="currentColor" stroke-width="0"></path>
+                                </svg>
+                            </div>
+                            Watch video
                         </div>
-                        Watch video
-                    </div>
+                    </a>
                 </div>
                 <div class="md:block mt-4 uppercase hidden">
                     <div class="font-semibold my-4">Rated 5 stars by over <span class="text-purple-900 ">Thousand of
@@ -153,14 +156,13 @@
 
             <div class="mx-auto my-auto md:w-2/4" data-aos="fade-up">
                 <!-- <img src="/icons/home-blocks-01.jpg" class="w-fit mx-auto max-h-96 rounded-xl" alt=""> -->
-                <% if (homeimgData && homeimgData.length > 0) { %>
-                    <img src="data:image/jpeg;base64,<%= homeimgData[0].image.toString('base64') %>" 
-                         alt="<%= homeimgData[0].image_title %>" 
-                         class="w-fit mx-auto aspect-auto rounded-xl">
-                  <% } else { %>
-                    <!-- Fallback Image if homeimgData is empty -->
-                    No image
-                  <% } %>
+                <% if (homeimgData && homeimgData.length> 0) { %>
+                    <img src="data:image/jpeg;base64,<%= homeimgData[0].image.toString('base64') %>"
+                        alt="<%= homeimgData[0].image_title %>" class="w-fit mx-auto aspect-auto rounded-xl">
+                    <% } else { %>
+                        <!-- Fallback Image if homeimgData is empty -->
+                        No image
+                        <% } %>
             </div>
 
             <div class="block mt-4 uppercase md:hidden w-fit mx-auto" data-aos="fade-up">
@@ -341,34 +343,34 @@
             <div class="md:flex md:p-4 block">
                 <div data-aos="fade-up" class=" mx-auto my-auto max-w-lg md:px-6 px-10 md:w-1/2 flex-shrink-0">
                     <div class="mx-auto w-full lg:pl-4 hidden sm:block">
-                        <% if (visionMissionData && visionMissionData.length > 0) { %>
+                        <% if (visionMissionData && visionMissionData.length> 0) { %>
                             <!-- First Vision & Mission Image -->
-                            <img src="data:image/jpeg;base64,<%= visionMissionData[0].image.toString('base64') %>" 
-                                 alt="<%= visionMissionData[0].image_title %>" 
-                                 class="w-[300px] h-[400px] ml-[100px] rounded-2xl">
-                          <% } %>
-                        
-                          <% if (visionMissionData && visionMissionData.length > 1) { %>
-                            <!-- Second Vision & Mission Image -->
-                            <img src="data:image/jpeg;base64,<%= visionMissionData[1].image.toString('base64') %>" 
-                                 alt="<%= visionMissionData[1].image_title %>" 
-                                 class="w-[200px] h-[200px] rounded-2xl -mt-[100px]">
-                          <% } %>                     
+                            <img src="data:image/jpeg;base64,<%= visionMissionData[0].image.toString('base64') %>"
+                                alt="<%= visionMissionData[0].image_title %>"
+                                class="w-[300px] h-[400px] ml-[100px] rounded-2xl">
+                            <% } %>
+
+                                <% if (visionMissionData && visionMissionData.length> 1) { %>
+                                    <!-- Second Vision & Mission Image -->
+                                    <img src="data:image/jpeg;base64,<%= visionMissionData[1].image.toString('base64') %>"
+                                        alt="<%= visionMissionData[1].image_title %>"
+                                        class="w-[200px] h-[200px] rounded-2xl -mt-[100px]">
+                                    <% } %>
                     </div>
                     <div class="mx-auto w-full lg:pl-4 sm:hidden">
-                        <% if (visionMissionData && visionMissionData.length > 0) { %>
+                        <% if (visionMissionData && visionMissionData.length> 0) { %>
                             <!-- First Vision & Mission Image -->
-                            <img src="data:image/jpeg;base64,<%= visionMissionData[0].image.toString('base64') %>" 
-                                 alt="<%= visionMissionData[0].image_title %>" 
-                                 class="w-[300px] h-[300px] rounded-2xl mb-4 mx-auto">
-                        <% } %>
-                    
-                        <% if (visionMissionData && visionMissionData.length > 1) { %>
-                            <!-- Second Vision & Mission Image -->
-                            <img src="data:image/jpeg;base64,<%= visionMissionData[1].image.toString('base64') %>" 
-                                 alt="<%= visionMissionData[1].image_title %>" 
-                                 class="w-[300px] h-[300px] rounded-2xl mx-auto">
-                        <% } %>                     
+                            <img src="data:image/jpeg;base64,<%= visionMissionData[0].image.toString('base64') %>"
+                                alt="<%= visionMissionData[0].image_title %>"
+                                class="w-[300px] h-[300px] rounded-2xl mb-4 mx-auto">
+                            <% } %>
+
+                                <% if (visionMissionData && visionMissionData.length> 1) { %>
+                                    <!-- Second Vision & Mission Image -->
+                                    <img src="data:image/jpeg;base64,<%= visionMissionData[1].image.toString('base64') %>"
+                                        alt="<%= visionMissionData[1].image_title %>"
+                                        class="w-[300px] h-[300px] rounded-2xl mx-auto">
+                                    <% } %>
                     </div>
                 </div>
                 <div data-aos="fade-up" class="block p-6 mx-auto my-auto md:w-1/2">
@@ -416,29 +418,29 @@
             <div class="md:flex p-4 block my-12">
                 <div data-aos="fade-up" class=" mx-auto my-auto md:w-1/2 max-w-lg md:hidden">
                     <div class="mx-auto w-full p-8 hidden sm:block">
-                        <% if (environmentData && environmentData.length > 0) { %>
-                            <img src="data:image/jpeg;base64,<%= environmentData[0].image.toString('base64') %>" 
-                                 alt="<%= environmentData[0].image_title %>" 
-                                 class="w-[300px] h-[400px] ml-[100px] rounded-2xl">
-                          <% } %>
-                          <% if (environmentData && environmentData.length > 1) { %>
-                            <img src="data:image/jpeg;base64,<%= environmentData[1].image.toString('base64') %>" 
-                                 alt="<%= environmentData[1].image_title %>" 
-                                 class="w-[200px] h-[200px] rounded-2xl -mt-[100px]">
-                          <% } %>
+                        <% if (environmentData && environmentData.length> 0) { %>
+                            <img src="data:image/jpeg;base64,<%= environmentData[0].image.toString('base64') %>"
+                                alt="<%= environmentData[0].image_title %>"
+                                class="w-[300px] h-[400px] ml-[100px] rounded-2xl">
+                            <% } %>
+                                <% if (environmentData && environmentData.length> 1) { %>
+                                    <img src="data:image/jpeg;base64,<%= environmentData[1].image.toString('base64') %>"
+                                        alt="<%= environmentData[1].image_title %>"
+                                        class="w-[200px] h-[200px] rounded-2xl -mt-[100px]">
+                                    <% } %>
                     </div>
                     <div class="mx-auto w-full lg:pl-4 sm:hidden">
-                        <% if (environmentData && environmentData.length > 0) { %>
-                            <img src="data:image/jpeg;base64,<%= environmentData[0].image.toString('base64') %>" 
-                                 alt="<%= environmentData[0].image_title %>" 
-                                 class="w-[300px] h-[300px] rounded-2xl mb-4 mx-auto">
-                        <% } %>
-                    
-                        <% if (environmentData && environmentData.length > 1) { %>
-                            <img src="data:image/jpeg;base64,<%= environmentData[1].image.toString('base64') %>" 
-                                 alt="<%= environmentData[1].image_title %>" 
-                                 class="w-[300px] h-[300px] rounded-2xl mx-auto">
-                        <% } %>                     
+                        <% if (environmentData && environmentData.length> 0) { %>
+                            <img src="data:image/jpeg;base64,<%= environmentData[0].image.toString('base64') %>"
+                                alt="<%= environmentData[0].image_title %>"
+                                class="w-[300px] h-[300px] rounded-2xl mb-4 mx-auto">
+                            <% } %>
+
+                                <% if (environmentData && environmentData.length> 1) { %>
+                                    <img src="data:image/jpeg;base64,<%= environmentData[1].image.toString('base64') %>"
+                                        alt="<%= environmentData[1].image_title %>"
+                                        class="w-[300px] h-[300px] rounded-2xl mx-auto">
+                                    <% } %>
                     </div>
                 </div>
 
@@ -528,16 +530,16 @@
 
                 <div data-aos="fade-up" class="mx-auto my-auto md:w-1/2 max-w-lg flex-shrink-0 hidden md:flex">
                     <div class="mx-auto w-full ml-12">
-                        <% if (environmentData && environmentData.length > 0) { %>
-                            <img src="data:image/jpeg;base64,<%= environmentData[0].image.toString('base64') %>" 
-                                 alt="<%= environmentData[0].image_title %>" 
-                                 class="w-[300px] h-[400px] ml-[100px] rounded-2xl">
-                          <% } %>
-                          <% if (environmentData && environmentData.length > 1) { %>
-                            <img src="data:image/jpeg;base64,<%= environmentData[1].image.toString('base64') %>" 
-                                 alt="<%= environmentData[1].image_title %>" 
-                                 class="w-[200px] h-[200px] rounded-2xl -mt-[100px]">
-                          <% } %>
+                        <% if (environmentData && environmentData.length> 0) { %>
+                            <img src="data:image/jpeg;base64,<%= environmentData[0].image.toString('base64') %>"
+                                alt="<%= environmentData[0].image_title %>"
+                                class="w-[300px] h-[400px] ml-[100px] rounded-2xl">
+                            <% } %>
+                                <% if (environmentData && environmentData.length> 1) { %>
+                                    <img src="data:image/jpeg;base64,<%= environmentData[1].image.toString('base64') %>"
+                                        alt="<%= environmentData[1].image_title %>"
+                                        class="w-[200px] h-[200px] rounded-2xl -mt-[100px]">
+                                    <% } %>
                     </div>
                 </div>
             </div>
@@ -611,23 +613,27 @@
 
         <div class="lg:flex p-4 block mt-16">
             <div data-aos="fade-up" class="mx-auto my-auto lg:w-1/2 sm:grid grid-cols-2 block">
-                <% if (teacherData && teacherData.length > 0) { %>
+                <% if (teacherData && teacherData.length> 0) { %>
                     <% teacherData.forEach(function(teacher, index) { %>
                         <div class="flex-row">
                             <div>
-                                <img src="data:image/jpeg;base64,<%= teacher.image.toString('base64') %>" 
-                                     alt="<%= teacher.image_title %>" 
-                                     class="mx-auto my-auto rounded-2xl h-80 xl:h-96 xl:w-72 lg:w-56 md:w-72 w-full sm:w-64 <%= (index % 2 === 1) ? 'sm:mt-12' : '' %>">
+                                <img src="data:image/jpeg;base64,<%= teacher.image.toString('base64') %>"
+                                    alt="<%= teacher.image_title %>"
+                                    class="mx-auto my-auto rounded-2xl h-80 xl:h-96 xl:w-72 lg:w-56 md:w-72 w-full sm:w-64 <%= (index % 2 === 1) ? 'sm:mt-12' : '' %>">
                             </div>
                             <div class="text-center">
-                                <div><%= teacher.name %></div>
-                                <div><%= teacher.designation %></div>
+                                <div>
+                                    <%= teacher.name %>
+                                </div>
+                                <div>
+                                    <%= teacher.designation %>
+                                </div>
                             </div>
                         </div>
-                    <% }); %>
-                <% } %>
+                        <% }); %>
+                            <% } %>
             </div>
-                          
+
             <div data-aos="fade-up" class="block md:p-6 mx-auto my-auto lg:w-1/2">
                 <div
                     class="bg-[#D2C6FA] rounded-3xl w-fit my-4 p-2 text-center text-[#201042] font-semibold rotate-[-1deg]">

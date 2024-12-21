@@ -860,9 +860,6 @@ video {
 .h-full {
   height: 100%;
 }
-.h-screen {
-  height: 100vh;
-}
 .max-h-96 {
   max-height: 24rem;
 }
@@ -878,9 +875,6 @@ video {
 }
 .w-1\/12 {
   width: 8.333333%;
-}
-.w-1\/2 {
-  width: 50%;
 }
 .w-12 {
   width: 3rem;
@@ -1496,17 +1490,9 @@ video {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
 }
-.px-20 {
-  padding-left: 5rem;
-  padding-right: 5rem;
-}
 .px-3 {
   padding-left: 0.75rem;
   padding-right: 0.75rem;
-}
-.px-32 {
-  padding-left: 8rem;
-  padding-right: 8rem;
 }
 .px-4 {
   padding-left: 1rem;
@@ -1729,10 +1715,6 @@ video {
   --tw-text-opacity: 1;
   color: rgb(74 222 128 / var(--tw-text-opacity, 1));
 }
-.text-green-500 {
-  --tw-text-opacity: 1;
-  color: rgb(34 197 94 / var(--tw-text-opacity, 1));
-}
 .text-green-800 {
   --tw-text-opacity: 1;
   color: rgb(22 101 52 / var(--tw-text-opacity, 1));
@@ -1839,6 +1821,9 @@ video {
 .even\:bg-\[\#FFEBEC\]:nth-child(even) {
   --tw-bg-opacity: 1;
   background-color: rgb(255 235 236 / var(--tw-bg-opacity, 1));
+}
+.hover\:cursor-pointer:hover {
+  cursor: pointer;
 }
 .hover\:bg-\[\#F9BC3E\]:hover {
   --tw-bg-opacity: 1;
