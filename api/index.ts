@@ -8,6 +8,7 @@ const adminRouter = require('../routes/adminRouter');
 const pageRouter = require('../routes/pageRouter');
 const aboutRoutes = require('../routes/aboutRouter');
 const userRouter = require("../routes/userRouter");
+const studentRoutes = require('../routes/studentRouter');
 
 const app = express();
 
@@ -35,6 +36,7 @@ app.use('/admin', isLoggedin, adminRouter);
 app.use('/', pageRouter);
 app.use('/admin', isLoggedin, aboutRoutes);
 app.use("/users", userRouter);
+app.use('/admin/tc',isLoggedin, studentRoutes);
 
 
 const PORT = process.env.PORT || 3000;
