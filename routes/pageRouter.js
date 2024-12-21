@@ -66,7 +66,7 @@ router.get('/tc', async (req, res) => {
     const sessions = await Session.find();
     const classes = await Class.find().populate('sessionId').exec();
     // Render the 'tc' view and pass the data
-    res.render('tc', {
+    res.render('Tc', {
       students,   // Pass student data
       sessions,   // Pass session data
       classes     // Pass class data
