@@ -5,6 +5,7 @@ const { AboutImage, Message } = require('../models/about');
 const Student = require('../models/tc/student');
 const Class = require('../models/tc/class');
 const Session = require('../models/tc/session');
+const { Gallery, Maingallery } = require('../models/gallery');
 const router = express.Router();
 const tcController = require('../controllers/tcController');
 
@@ -73,6 +74,21 @@ router.get('/tc', async (req, res) => {
     });
   } catch (err) {
     console.error('Error fetching data for TC:', err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+router.get('/gallery', async (req, res) => {
+  try {
+    // Fetch all data from MongoDB collections
+    const galleryItems = await Gallery.find({});
+    const maingalleryItems = await Maingallery.find({});
+    res.render('gallery', {
+      galleryItems,
+      maingalleryItems,
+    });
+  } catch (err) {
+    console.error('Error fetching data for Gallery', err);
     res.status(500).send('Internal Server Error');
   }
 });

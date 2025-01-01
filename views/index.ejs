@@ -38,22 +38,19 @@
                             </svg>
                         </div>
                     </a>
-                    <a href="https://www.facebook.com/dwsmajra/videos/1588649295303958/" target="_blank" class="hover:cursor-pointer">
-                        <div
-                            class=" bg-[#D2C6FA] rounded-full flex mx-2 text-center text-xl px-4 py-2 grouping hover:text-white transition ease-in duration-300">
-                            <div
-                                class="text-[#4F49A5] hover:text-white transition ease-in duration-300  my-auto childgrp">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                    stroke-linejoin="round" class="mx-auto my-auto ">
-                                    <path
-                                        d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z"
-                                        fill="currentColor" stroke-width="0"></path>
-                                </svg>
-                            </div>
-                            Watch video
+                    <div
+                        class=" bg-[#D2C6FA] rounded-full flex mx-2 text-center text-xl px-4 py-2 grouping hover:text-white transition ease-in duration-300">
+                        <div class="text-[#4F49A5] hover:text-white transition ease-in duration-300  my-auto childgrp">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                stroke-linejoin="round" class="mx-auto my-auto ">
+                                <path
+                                    d="M6 4v16a1 1 0 0 0 1.524 .852l13 -8a1 1 0 0 0 0 -1.704l-13 -8a1 1 0 0 0 -1.524 .852z"
+                                    fill="currentColor" stroke-width="0"></path>
+                            </svg>
                         </div>
-                    </a>
+                        Watch video
+                    </div>
                 </div>
                 <div class="md:block mt-4 uppercase hidden">
                     <div class="font-semibold my-4">Rated 5 stars by over <span class="text-purple-900 ">Thousand of
@@ -342,6 +339,7 @@
         <div class="bg-[#fef7e7] pb-10 pt-6">
             <div class="md:flex md:p-4 block">
                 <div data-aos="fade-up" class=" mx-auto my-auto max-w-lg md:px-6 px-10 md:w-1/2 flex-shrink-0">
+                    <!-- <img src="/icons//Group 1.svg" class="mx-auto my-auto" alt="students"> -->
                     <div class="mx-auto w-full lg:pl-4 hidden sm:block">
                         <% if (visionMissionData && visionMissionData.length> 0) { %>
                             <!-- First Vision & Mission Image -->
@@ -431,12 +429,14 @@
                     </div>
                     <div class="mx-auto w-full lg:pl-4 sm:hidden">
                         <% if (environmentData && environmentData.length> 0) { %>
+                            <!-- First Vision & Mission Image -->
                             <img src="data:image/jpeg;base64,<%= environmentData[0].image.toString('base64') %>"
                                 alt="<%= environmentData[0].image_title %>"
                                 class="w-[300px] h-[300px] rounded-2xl mb-4 mx-auto">
                             <% } %>
 
                                 <% if (environmentData && environmentData.length> 1) { %>
+                                    <!-- Second Vision & Mission Image -->
                                     <img src="data:image/jpeg;base64,<%= environmentData[1].image.toString('base64') %>"
                                         alt="<%= environmentData[1].image_title %>"
                                         class="w-[300px] h-[300px] rounded-2xl mx-auto">
@@ -528,7 +528,7 @@
                 </div> -->
                 </div>
 
-                <div data-aos="fade-up" class="mx-auto my-auto md:w-1/2 max-w-lg flex-shrink-0 hidden md:flex">
+                <div data-aos="fade-up" class=" mx-auto my-auto md:w-1/2 max-w-lg flex-shrink-0 hidden md:flex">
                     <div class="mx-auto w-full ml-12">
                         <% if (environmentData && environmentData.length> 0) { %>
                             <img src="data:image/jpeg;base64,<%= environmentData[0].image.toString('base64') %>"
@@ -758,7 +758,7 @@
                             continuous to next year also provided that girl full fils desired conditions for the
                             scholarship
                         </p>
-                        <img class="rounded-xl" src="/icons/pic.webp" alt="student">
+                        <img class="rounded-xl" src="/icons/kunjana.png" alt="student">
                         <div class="flex py-4 animation-arrow">
                             <div class="bg-[#4F49A5] flex rounded-full text-center text-xl px-4 py-2 text-white">
                                 <div>Learn more</div>
@@ -827,15 +827,12 @@
                 <div class="p-4">
                     <div class=" bg-[#EFF6FF] rounded-xl h-fit p-6">
                         <h6 class="text-3xl font-bold p-4 ">Quality Policy</h6>
-                        <p class="p-4 pt-0 leading-7">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi odit
-                            quaerat culpa temporibus quia
-                            nulla adipisci porro earum ipsum quis! Doloribus fuga voluptate obcaecati consectetur odio
-                            voluptas
-                            accusantium. Aut et corporis repellendus deleniti quaerat iste, animi odio odit impedit a
-                            incidunt
-                            eius, est sequi quod dolorum perferendis alias molestiae ex asperiores nesciunt ad veniam!
+                        <p class="p-4 pt-0 leading-7">
+                            We, at DWS, aim for inculcating the value based quality education for its students in
+                            co-ordination with the teachers and parents.
+                            This will enable the students to become responsible citizens of the Global Society.
                         </p>
-                        <img class="rounded-xl" src="/icons/pic.webp" alt="students">
+                        <img class="rounded-xl" src="/icons/quality policy 1.png" alt="students">
                         <div class="flex py-4 animation-arrow">
                             <div class="bg-[#4F49A5] flex rounded-full text-center text-xl px-4 py-2 text-white">
                                 <div>Learn more</div>
@@ -859,17 +856,21 @@
         <div data-aos="fade-up" class="bg-[#49469F] md:p-20 p-6">
             <div>
                 <h6 class="text-white text-center text-4xl font-bold p-4">See what parents are saying about us</h6>
-                <p class="text-white text-center lg:px-56 md:px-36">Vestibulum ac diam sit amet quam vehicula elementum
-                    sed
-                    sit amet dui. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem.</p>
+                <p class="text-white text-center lg:px-56 md:px-36">Parents praise our school's supportive atmosphere,
+                    outstanding educators, and commitment to fostering each child's growth and success.</p>
             </div>
             <div class="lg:flex md:grid grid-row-2 gap-4 block">
 
                 <div class="bg-[#FEF3D2] block w-full mt-4 rounded-xl p-8">
                     <div>
-                        <img src="/icons/pic.webp" class="w-20 rounded-full border-2 border-yellow-500" alt="students">
+                        <!-- <img src="https://lh3.googleusercontent.com/a-/ALV-UjX5uPdPhKibjoYPJrPfE8qG-sx9wPhAVSUb2rkZqSKBRsNPTL2_XQ=s72-c-rp-mo-ba4-br100"
+                            class="w-20 h-20 rounded-full border-2 border-yellow-500" alt="students"> -->
+                        <div
+                            class="w-20 h-20 rounded-full border-2 border-yellow-500 bg-blue-600 flex items-center justify-center">
+                            <h1 class="text-2xl font-medium text-center text-white">A</h1>
+                        </div>
                     </div>
-                    <div class="py-2">Alexa Grasso</div>
+                    <div class="py-2">Ankit Sharma</div>
                     <div class="flex py-1">
                         <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 22 20">
@@ -898,17 +899,19 @@
                         </svg>
                     </div>
                     <div class="py-2">
-                        "Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada. Vivamus magna
-                        justo,
-                        lacinia eget consectetur sed, convallis at tellus."
+                        "Located at very nice location"
                     </div>
                 </div>
 
                 <div class="bg-[#F0EBFC] block w-full mt-4 rounded-xl p-8">
                     <div>
-                        <img src="/icons/pic.webp" class="w-20 rounded-full border-2 border-yellow-500" alt="students">
+                        <!-- <img src="https://lh3.googleusercontent.com/a-/ALV-UjVAY_xQY4wzlROWWLLGzN5s7AEmIJb3tIdQPUz5P8wTO1RsltDO=s72-c-rp-mo-br100"
+                            class="w-20 h-20 rounded-full border-2 border-yellow-500" alt="students"> -->
+                        <div class="w-20 h-20 rounded-full border-2 border-yellow-500 bg-violet-600 flex items-center justify-center">
+                            <h1 class="text-2xl font-medium text-center text-white">N</h1>
+                        </div>   
                     </div>
-                    <div class="py-2">Alexa Grasso</div>
+                    <div class="py-2">Nagi Seishiro</div>
                     <div class="flex py-1">
                         <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 22 20">
@@ -930,23 +933,28 @@
                             <path
                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
                         </svg>
-                        <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                        <svg class="w-4 h-4 text-white ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 22 20">
                             <path
                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
                         </svg>
                     </div>
                     <div class="py-2">
-                        "Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada. Vivamus magna
+                        <!-- "Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada. Vivamus magna
                         justo,
-                        lacinia eget consectetur sed, convallis at tellus."
+                        lacinia eget consectetur sed, convallis at tellus." -->
                     </div>
                 </div>
                 <div class="bg-[#FFEDEE] block w-full mt-4 rounded-xl p-8">
                     <div>
-                        <img src="/icons/pic.webp" class="w-20 rounded-full border-2 border-yellow-500" alt="students">
+                        <!-- <img src="https://lh3.googleusercontent.com/a-/ALV-UjXK9Y0SpPmUwlZ1bf_ZhviR5k40_tOg1hYuvDgaA5HdiZur0Iqz=s72-c-rp-mo-br100"
+                            class="w-20 h-20 rounded-full border-2 border-yellow-500" alt="students"> -->
+                        <div
+                            class="w-20 h-20 rounded-full border-2 border-yellow-500 bg-red-600 flex items-center justify-center">
+                            <h1 class="text-2xl font-medium text-center text-white">A</h1>
+                        </div>
                     </div>
-                    <div class="py-2">Alexa Grasso</div>
+                    <div class="py-2">Âryàñ Kåshyâp</div>
                     <div class="flex py-1">
                         <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 22 20">
@@ -975,16 +983,20 @@
                         </svg>
                     </div>
                     <div class="py-2">
-                        "Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada. Vivamus magna
+                        <!-- "Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada. Vivamus magna
                         justo,
-                        lacinia eget consectetur sed, convallis at tellus."
+                        lacinia eget consectetur sed, convallis at tellus." -->
                     </div>
                 </div>
                 <div class="bg-[#EBF4FF] block w-full mt-4 rounded-xl p-8">
                     <div>
-                        <img src="/icons/pic.webp" class="w-20 rounded-full border-2 border-yellow-500" alt="students">
+                        <!-- <img src="/icons/pic.webp" class="w-20 h-20 rounded-full border-2 border-yellow-500" alt="students"> -->
+                        <div
+                            class="w-20 h-20 rounded-full border-2 border-yellow-500 bg-green-600 flex items-center justify-center">
+                            <h1 class="text-2xl font-medium text-center text-white">S</h1>
+                        </div>
                     </div>
-                    <div class="py-2">Alexa Grasso</div>
+                    <div class="py-2">Sohaib ansari</div>
                     <div class="flex py-1">
                         <svg class="w-4 h-4 text-yellow-300 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                             fill="currentColor" viewBox="0 0 22 20">
@@ -1013,10 +1025,7 @@
                         </svg>
                     </div>
                     <div class="py-2">
-                        <p> "Donec sollicitudin molestie malesuada. Donec rutrum congue leo eget malesuada. Vivamus
-                            magna
-                            justo,
-                            lacinia eget consectetur sed, convallis at tellus."
+                        <p> "Exellent"
                         </p>
                     </div>
                 </div>
