@@ -1,4 +1,17 @@
-const { Gallery, Maingallery } = require('../models/');
+const { Gallery, Maingallery } = require('../models/gallery');
+
+
+const getAllGalleryItem = async (req, res) => {
+  try {
+      const galleryItems = await Gallery.find();
+      const maingalleryItems = await Maingallery.find();
+
+      res.render('admin/galleryadmin', { galleryItems, maingalleryItems });
+  } catch (err) {
+      console.error('Error loading About data:', err);
+      res.status(500).send('Error loading About data');
+  }
+};
 
 // Create a new Gallery or Maingallery item
 const createGalleryItem = async (req, res) => {
@@ -33,7 +46,7 @@ const createGalleryItem = async (req, res) => {
     }
 
     await newItem.save();  // Save the new item in the database
-    res.status(201).json(newItem);  // Respond with the created item
+    res.status(201).redirect("/admin/gallery");
   } catch (error) {
     console.error(error);
     res.status(500).send('Error uploading file');
@@ -130,6 +143,7 @@ const deleteGalleryItem = async (req, res) => {
 
 // Export all the controller methods
 module.exports = {
+  getAllGalleryItem,
   createGalleryItem,
   getGalleryItemById,
   updateGalleryItem,

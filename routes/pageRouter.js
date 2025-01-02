@@ -102,17 +102,17 @@ router.get('/class_students/:id', async (req, res) => {
 
     // Fetch the class details using the classId
     const cls = await Class.findById(classId).populate('sessionId').exec();
-    
+
     if (!cls) {
       return res.status(404).send('Class not found');
     }
 
     // Fetch all students that belong to this class (using classId)
     const students = await Student.find({ classId: classId }).exec();
-    
+
     // Fetch all sessions (optional, if needed in the view)
     const sessions = await Session.find();
-    
+
     // Render the 'class_students' view and pass the data
     res.render('class_students', {
       students,  // Pass the students data
@@ -169,7 +169,7 @@ router.get('/parent', async (req, res) => {
 });
 router.get('/contact', async (req, res) => {
   try {
-    res.render('contactus');
+    res.render('Contactus');
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');

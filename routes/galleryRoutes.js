@@ -1,12 +1,10 @@
 const express = require('express');
-const multer = require('multer');
+const upload = require('../config/multer');
 const galleryController = require('../controllers/galleryController');  // Import controller
 
 const router = express.Router();
 
-// Configure multer to store files in memory (as buffers)
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage, limits: { fileSize: 5 * 1024 * 1024 } }); // 5MB limit
+router.get('/', galleryController.getAllGalleryItem);
 
 // Create Gallery or Maingallery Item
 router.post('/upload', upload.single('image'), galleryController.createGalleryItem);
