@@ -6,7 +6,7 @@ const getAllGalleryItem = async (req, res) => {
       const galleryItems = await Gallery.find();
       const maingalleryItems = await Maingallery.find();
 
-      res.render('admin/galleryadmin', { galleryItems, maingalleryItems });
+      res.render('Admin/galleryadmin', { galleryItems, maingalleryItems });
   } catch (err) {
       console.error('Error loading About data:', err);
       res.status(500).send('Error loading About data');
@@ -26,7 +26,7 @@ const createGalleryItem = async (req, res) => {
   }
 
   try {
-    const imageBuffer = req.file.buffer;  // Image as Buffer
+    const imageBuffer = req.file.buffer;
 
     let newItem;
 

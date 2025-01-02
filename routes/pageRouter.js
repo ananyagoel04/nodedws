@@ -9,9 +9,6 @@ const { Gallery, Maingallery } = require('../models/gallery');
 const router = express.Router();
 const tcController = require('../controllers/tcController');
 
-
-
-
 router.get("/login", (req, res) => {
   const { errorMessage } = req.query;
   res.render("login", { errorMessage });
@@ -172,11 +169,9 @@ router.get('/contact', async (req, res) => {
     res.render('Contactus');
   } catch (err) {
     console.error(err);
-    res.status(500).send('Internal Server Error');
+    res.status(500).send('Internal Server Error contact us not found');
   }
 });
-
-
 
 
 
