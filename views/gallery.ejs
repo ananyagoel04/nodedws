@@ -19,9 +19,10 @@
             <div class="text-center md:text-6xl text-5xl xl:px-80 lg:px-48 md:px-52 px-5 font-bold my-4">
                 See what the DWS experience looks like
             </div>
-            <div class="text-center xl:px-96 lg:px-72 md:px-36 px-4 my-4">Lorem ipsum dolor sit amet, consectetur
-                adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Aenean et tortor at
-                risus viverra adipiscing at in.
+            <div class="text-center xl:px-96 lg:px-72 md:px-36 px-4 my-4">
+                At DWS, we create unforgettable experiences that shape lifelong memories. Our vibrant school community
+                fosters growth, creativity, and lasting friendships, all while providing students with opportunities to
+                explore, learn, and excel.
             </div>
             <div class=" w-fit overflow-hidden relative">
                 <div class="md:flex flex-wrap h-full w-full justify-center hidden p-6 ml-3 mb-10 relative z-10">
@@ -35,7 +36,8 @@
                         <% } %>
                             <div class="w-3/12 block">
                                 <% if (galleryItems && galleryItems.length> 1) { %>
-                                    <img loading="lazy" onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[1].image.toString('base64')%>')"
+                                    <img loading="lazy"
+                                        onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[1].image.toString('base64')%>')"
                                         class=" aspect-square rounded-3xl shadow-2xl -rotate-6 z-10 relative w-3/4 mx-auto transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
                                         src="data:image/jpeg;base64,<%= galleryItems[1].image.toString('base64') %>"
                                         alt="<%= galleryItems[1].image_title %>">
@@ -50,7 +52,8 @@
                             </div>
                             <% if (galleryItems && galleryItems.length> 3) { %>
                                 <div class="w-3/12 my-auto ">
-                                    <img loading="lazy" onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[3].image.toString('base64')%>')"
+                                    <img loading="lazy"
+                                        onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[3].image.toString('base64')%>')"
                                         class=" aspect-square rounded-3xl shadow-2xl rotate-6 w-11/12 mx-auto mb-6 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
                                         src="data:image/jpeg;base64,<%= galleryItems[3].image.toString('base64') %>"
                                         alt="<%= galleryItems[3].image_title %>">
@@ -76,7 +79,8 @@
                 <div class="grid grid-cols-3 gap-4 px-4 md:hidden mt-4 mb-12">
                     <% if (galleryItems && galleryItems.length> 0) { %>
                         <div class=" w-full h-full">
-                            <img loading="lazy" onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[0].image.toString('base64')%>')"
+                            <img loading="lazy"
+                                onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[0].image.toString('base64')%>')"
                                 class=" aspect-square rounded-xl shadow-2xl rotate-6 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
                                 src="data:image/jpeg;base64,<%= galleryItems[0].image.toString('base64')%>"
                                 alt="<%= galleryItems[0].image_title %>">
@@ -84,7 +88,8 @@
                         <% } %>
                             <% if (galleryItems && galleryItems.length> 1) { %>
                                 <div class="w-full h-full">
-                                    <img loading="lazy" onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[1].image.toString('base64')%>')"
+                                    <img loading="lazy"
+                                        onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[1].image.toString('base64')%>')"
                                         class=" aspect-square rounded-xl shadow-2xl -rotate-6 z-10 relative mx-auto transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
                                         src="data:image/jpeg;base64,<%= galleryItems[1].image.toString('base64')%>"
                                         alt="<%= galleryItems[1].image_title %>">
@@ -241,7 +246,7 @@
                 showImage();
             }
         </script>
-<!-- 
+        <!-- 
         <div class="mb-4 flex justify-center">
             <button class=" rounded-full px-4 bg-[#D2C6FA] mr-2" onclick="filterGallery('all')">All</button>
             <button class=" rounded-full px-4 bg-[#D2C6FA] mr-2" onclick="filterGallery('Nature')">Nature</button>
