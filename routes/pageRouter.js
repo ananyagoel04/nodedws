@@ -166,7 +166,7 @@ router.get('/parent', async (req, res) => {
 });
 router.get('/contact', async (req, res) => {
   try {
-    res.render('Contactus');
+    res.render('contactus');
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error contact us not found');
