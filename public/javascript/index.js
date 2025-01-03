@@ -52,7 +52,6 @@ function toggleDropdownAndRotate(buttonId, arrowId, dropdownId) {
 toggleDropdownAndRotate('dropdownDefaultButton', 'arrow', 'dropdown');
 toggleDropdownAndRotate('dropdownDefaultButton1', 'arrow1', 'dropdown1');
 toggleDropdownAndRotate('dropdownDefaultButton2', 'arrow3', 'dropdown2');
-toggleDropdownAndRotate('dropdownDefaultButton3', 'arrow4', 'dropdown3');
 
 
 
@@ -65,7 +64,8 @@ toggleDropdownAndRotate('dropdownDefaultButton3', 'arrow4', 'dropdown3');
 
 
 
-///////script for dropdown menu button in mobile screens
+
+//script for dropdown menu button in mobile screens
 // Get the button and dropdown content elements
 const dropdownButton1 = document.getElementById('dropdownButton1');
 const dropdownContent = document.getElementById('dropdownContent');
