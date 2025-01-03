@@ -8,8 +8,6 @@ button1.addEventListener("click", function () {
 
 
 
-
-
 // Function to toggle dropdown visibility and rotate arrow
 function toggleDropdownAndRotate(buttonId, arrowId, dropdownId) {
     const dropdownButton = document.getElementById(buttonId);
@@ -54,17 +52,6 @@ toggleDropdownAndRotate('dropdownDefaultButton1', 'arrow1', 'dropdown1');
 toggleDropdownAndRotate('dropdownDefaultButton2', 'arrow3', 'dropdown2');
 
 
-
-
-
-
-
-
-
-
-
-
-
 //script for dropdown menu button in mobile screens
 // Get the button and dropdown content elements
 const dropdownButton1 = document.getElementById('dropdownButton1');
@@ -102,7 +89,3 @@ if (dropdownButton1 && dropdownContent) {
 } else {
     console.error("Dropdown button or content element not found!");
 }
-
-
-
-
