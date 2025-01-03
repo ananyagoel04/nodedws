@@ -1,0 +1,12 @@
+<%- include("header.ejs") %>
+  <!-- Add Schema Markup -->
+  <script type="application/ld+json">
+    <%= JSON.stringify(schemaMarkup) %>
+  </script>
+</head>
+<body>
+  <h1><%= schemaMarkup.headline %></h1>
+  <p><%= schemaMarkup.description %></p>
+  <p>By <%= schemaMarkup.author.name %></p>
+</body>
+</html>

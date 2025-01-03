@@ -356,4 +356,41 @@ router.get('/SocialResponsibility', async (req, res) => {
   }
 });
 
+
+
+
+
+app.get('/article', (req, res) => {
+  const schemaMarkup = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "DWS - COMMITTED TO EXCELLENCE IN EDUCATION",
+    "description": "DWS - A School Committed to Excellence in Education. Offering a comprehensive curriculum and nurturing environment for students.",
+    "author": {
+      "@type": "Organization",
+      "name": "Divine Wisdom School",
+      "url": "https://www.divinewisdom.edu.in", // Link to your school's website
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://divinewisdom.edu.in/icons/logo.png"
+      }
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Divine Wisdom School",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://divinewisdom.edu.in/icons/logo.png" // Your logo URL
+      }
+    },
+    "datePublished": "2025-01-01T08:00:00+00:00", // Replace with actual publication date
+    "dateModified": "2023-01-03T08:00:00+00:00", // Optionally, add modified date if applicable
+    "image": "https://scontent.fixc1-8.fna.fbcdn.net/v/t39.30808-6/335423691_113245308318791_8986967528729299943_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=hsmgv4EW8UkQ7kNvgHsXxuK&_nc_zt=23&_nc_ht=scontent.fixc1-8.fna&_nc_gid=AX2kpa_WCN_yfVEUxV29LTm&oh=00_AYDgD1xrnnMdJdcRU9_tehXUS-33s6AvcCLEeIH2gWZE1w&oe=677DB5FF" // Image URL for the article
+  };
+
+  res.render('article', { schemaMarkup });
+});
+
+
+
 module.exports = router;
