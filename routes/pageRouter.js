@@ -365,7 +365,7 @@ router.get('/article', (req, res) => {
     "author": {
       "@type": "Organization",
       "name": "Divine Wisdom School",
-      "url": "https://www.divinewisdom.edu.in", // Link to your school's website
+      "url": "https://www.divinewisdom.edu.in",
       "logo": {
         "@type": "ImageObject",
         "url": "https://divinewisdom.edu.in/icons/logo.png"
@@ -376,17 +376,17 @@ router.get('/article', (req, res) => {
       "name": "Divine Wisdom School",
       "logo": {
         "@type": "ImageObject",
-        "url": "https://divinewisdom.edu.in/icons/logo.png" // Your logo URL
+        "url": "https://divinewisdom.edu.in/icons/logo.png"
       }
     },
-    "datePublished": "2025-01-01T08:00:00+00:00", // Replace with actual publication date
-    "dateModified": "2023-01-03T08:00:00+00:00", // Optionally, add modified date if applicable
-    "image": "https://scontent.fixc1-8.fna.fbcdn.net/v/t39.30808-6/335423691_113245308318791_8986967528729299943_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=cc71e4&_nc_ohc=hsmgv4EW8UkQ7kNvgHsXxuK&_nc_zt=23&_nc_ht=scontent.fixc1-8.fna&_nc_gid=AX2kpa_WCN_yfVEUxV29LTm&oh=00_AYDgD1xrnnMdJdcRU9_tehXUS-33s6AvcCLEeIH2gWZE1w&oe=677DB5FF" // Image URL for the article
+    "datePublished": "2025-01-01T08:00:00+00:00", // Ensure correct date
+    "dateModified": "2023-01-03T08:00:00+00:00", // Optional, only include if modified
+    "image": "https://divinewisdom.edu.in/path/to/article-image.jpg", // Ideally, host image on your own domain
+    "mainEntityOfPage": "https://www.divinewisdom.edu.in/article/dws-committed-to-excellence", // Link to the article's page
+    "keywords": "education, school, excellence, curriculum, DWS, Divine Wisdom School" // Optional but useful for SEO
   };
 
   res.render('article', { schemaMarkup });
 });
-
-
 
 module.exports = router;
