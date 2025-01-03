@@ -76,7 +76,7 @@
                                 <textarea name="Message" placeholder='Message' required id="" rows="4"
                                     class=" w-full border-1 rounded-xl p-2 border-2"></textarea>
                                 <br>
-                                <button type="submit">
+                                <button type="submit" tabindex="-1">
                                     <div
                                         class="p-2 lg:p-8 md:p-4 lg:py-4 md:py-2 w-fit text-center bg-[#F6C663] rounded-full text-lg font-medium my-auto hover:bg-[#F9BC3E]">
                                         Send Message
@@ -156,7 +156,8 @@
                                 </svg></span>
                             <div class="flex-1 px-4">
                                 <div class="font-bold text-center">Email</div>
-                                <a href="mailto:info@divinewisdom.edu.in" tabindex="-1" class="text-center hover:text-red-500">info@divinewisdom.edu.in</a>
+                                <a href="mailto:info@divinewisdom.edu.in" tabindex="-1"
+                                    class="text-center hover:text-red-500">info@divinewisdom.edu.in</a>
                             </div>
                         </div>
                     </div>
@@ -172,9 +173,9 @@
                                 </svg></span>
                             <div class="flex-1 px-4">
                                 <div class="font-bold text-center">Phone</div>
-                                <div class="text-center"><a href=""
-                                        class="hover:text-red-600"><span>9805347187</span></a><span>,</span>&nbsp;<a
-                                        href="" class="hover:text-red-600"><span>1704298187</span></a></div>
+                                <div class="text-center"><a href="" class="hover:text-red-600"
+                                        tabindex="-1"><span>9805347187</span></a><span>,</span>&nbsp;<a href=""
+                                        class="hover:text-red-600" tabindex="-1"><span>1704298187</span></a></div>
                             </div>
                         </div>
 
@@ -182,7 +183,7 @@
                 </div>
 
 
-                <div class="p-10 pt-0">
+                <div class="p-10 pt-0" tabindex="-1">
                     <div class="mapouter mx-auto">
                         <div class="gmap_canvas rounded-3xl">
                             <iframe
@@ -211,14 +212,7 @@
                         </div>
                     </div>
                 </div>
-
-
-
-
                 <div><%- include("logo.ejs") %></div>
-
-
-
                 <div>
                     <%- include("Footer.ejs") %>
                 </div>

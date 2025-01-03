@@ -1,6 +1,4 @@
 <%- include("header.ejs") %>
-
-
     <head>
         <link href="https://fonts.googleapis.com/css?family=Gochi Hand" rel="stylesheet">
 
@@ -8,7 +6,6 @@
             .background {
                 background-color: #f3f0fc;
             }
-
             input[type="number"]::-webkit-inner-spin-button,
             input[type="number"]::-webkit-outer-spin-button {
                 -webkit-appearance: none;
@@ -18,7 +15,6 @@
     </head>
 
     <body>
-
         <div class="bg-[#f3f0fc]">
             <!-- {% for img in objects %}
         <div class="w-full h-96">
@@ -61,8 +57,6 @@
             <% } else { %>
                 <p class="text-center text-gray-500 text-4xl w-full py-20 bg-[#f3f0fc]">No images found.</p>
                 <% } %>
-
-
                     <div class="bg-[#f3f0fc] xl:px-64 px-10 justify-start text-2xl">
                         <p class="p-4 text-justify">
                             Among prominent schools of the region Divine Wisdom School occupies a place of pride. It was
@@ -128,7 +122,6 @@
                                 <img src="data:image/jpeg;base64,<%= messages[0].image.toString('base64') %>"
                                     alt="<%= messages[0].name %>" class="relative z-10 mx-auto rounded-lg" />
                             </div>
-
                             <div class="block mx-auto my-auto z-50 md:w-1/2 p-8">
                                 <div
                                     class="bg-[#D2C6FA] rounded-3xl w-fit my-4 p-2 text-center text-[#4F49A5] font-semibold rotate-[-1deg]">
@@ -141,7 +134,6 @@
                                     <%= messages[0].message %>
                                 </div>
                             </div>
-
                             <div class="mx-auto my-auto md:w-1/2 max-w-lg z-10 md:relative hidden md:block">
                                 <!-- <img src="/icons/dots.svg" alt="" class="w-48 top-16 relative z-40" /> -->
                                 <img src="/icons/circle.svg" alt="" class="absolute inset-0 w-full h-full scale-125" />
@@ -190,7 +182,6 @@
                                                     alt="<%= messages[2].name %>"
                                                     class="relative z-10 mx-auto rounded-lg" />
                                             </div>
-
                                             <div class="block mx-auto my-auto md:w-1/2 z-50 p-8">
                                                 <div
                                                     class="bg-[#D2C6FA] rounded-3xl w-fit my-4 p-2 text-center text-[#4F49A5] font-semibold rotate-[-1deg]">
@@ -203,7 +194,6 @@
                                                     <%= messages[2].message %>
                                                 </div>
                                             </div>
-
                                             <div class="mx-auto my-auto md:w-1/2 max-w-lg md:relative hidden md:block">
                                                 <!-- <img src="/icons/dots.svg" alt="" class="w-48 top-16 relative z-40" /> -->
                                                 <img src="/icons/lightpink.svg" alt=""
@@ -214,7 +204,6 @@
                                             </div>
                                         </div>
                                         <% } %>
-
                                             <div class="block bg-[#4F49A5] text-white p-4 pt-16 pb-56">
                                                 <div class="text-center text-5xl font-bold xl:px-64">
                                                     Giving your child the best possible start to their education
@@ -292,7 +281,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div
                                                 class="block sm:grid grid-cols-2 md:grid-cols-3 gap-4 p-6 relative top-0 -mt-48">
                                                 <div class="block">
@@ -332,7 +320,6 @@
                                                     <!-- <div>Teacher Name and photo will be placed or else</div> -->
                                                 </div>
                                             </div>
-
                                             <div class="md:flex p-4 block my-12">
                                                 <div class="mx-auto my-auto md:w-1/2 max-w-lg md:hidden relative">
                                                     <img src="/icons/dotedlines.svg"
@@ -341,7 +328,6 @@
                                                     <img src="/icons/home-blocks-02.jpg" alt="Second Image"
                                                         class="relative z-10" />
                                                 </div>
-
                                                 <div
                                                     class="block mx-auto my-auto md:w-1/2 p-8 relative md:mt-0 mt-10 z-50">
                                                     <div class="font-extrabold md:text-6xl text-4xl">
@@ -444,7 +430,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div
                                                     class="mx-auto my-auto md:w-1/2 max-w-lg md:relative hidden md:block">
                                                     <img src="/icons/dots.svg" alt=""
@@ -456,7 +441,6 @@
                                                         alt="" />
                                                 </div>
                                             </div>
-
                                             <div class="" id="resume">
                                                 <h3 class="text-5xl text-center font-bold -mt-10">Explore yourself with
                                                     us</h3>
@@ -515,7 +499,7 @@
                                                         <textarea name="Message" placeholder='Message' id="" rows="4"
                                                             class="w-full border-1 rounded-xl p-2 border-2"></textarea>
                                                         <br>
-                                                        <button type="submit">
+                                                        <button type="submit" tabindex="-1">
                                                             <div
                                                                 class="p-2 px-4 lg:p-8 md:p-4 lg:py-2 md:py-2 w-fit text-center bg-[#F6C663] rounded-full text-lg font-medium my-auto hover:bg-[#F9BC3E]">
                                                                 Send
@@ -526,7 +510,6 @@
                                                                 <%= successMessage %>
                                                             </div>
                                                             <% } %>
-
                                                                 <!-- Display Error Message -->
                                                                 <% if (errorMessage && errorMessage.length> 0) { %>
                                                                     <div class="text-center text-red-400">
@@ -536,8 +519,6 @@
 
                                                     </form>
                                                 </div>
-
-
                                                 <script>
                                                     function checkForm() {
                                                         // Check if all required fields are filled
@@ -545,7 +526,6 @@
                                                         var email = document.getElementsByName("Email")[0].value;
                                                         var phone = document.getElementsByName("Phone")[0].value;
                                                         var resume = document.getElementsByName("Resume")[0].files[0];
-
                                                         var errorMessage = document.getElementById("error-message");
                                                         var successMessage = document.getElementById("success-message");
 
@@ -569,12 +549,7 @@
                                                     }
                                                 </script>
                                             </div>
-
-
-
                                             <%- include("logo.ejs") %>
-
-
                                                 <%- include("Footer.ejs") %>
 
                                                     </html>

@@ -280,6 +280,25 @@ router.get('/PersonalGrowthandDevelopment', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
+router.get('/privacypolicy', async (req, res) => {
+  try {
+    res.render('privacypolicy');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+router.get('/faqs', async (req, res) => {
+  try {
+    res.render('faqs');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
 router.get('/PrepareforOccupation', async (req, res) => {
   try {
     res.render('Programs/PrepareforOccupation');

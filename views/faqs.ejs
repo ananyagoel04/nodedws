@@ -1,0 +1,135 @@
+<%- include("header.ejs") %>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.8.2/dist/alpine.js" defer></script>
+    <style>
+        .background {
+            background-color: #f3f0fc;
+        }
+    </style>
+</head>
+<div class="bg-gradient-to-b from-[#f3f0fc] from-0% to-[#ffffff] to-100% md:h-18 h-12"></div>
+
+<div class="p-10 max-w-7xl mx-auto">
+    <h1 class="text-3xl font-bold text-center text-primary mb-6">Frequently Asked Questions (FAQs)</h1>
+    <p class="text-center text-lg text-gray-600 mb-12">
+        Welcome to the FAQ page of DIVINE WISDOM SCHOOL! Here you'll find answers to the most common questions. If you have additional queries, feel free to <a href="/contact" class="text-red-600">contact us</a>.
+    </p>
+
+    <div class="space-y-6">
+        <!-- General Questions Section -->
+        <div class="space-y-4">
+            <h3 class="text-2xl font-semibold text-primary">General Questions</h3>
+            <div x-data="{ open: false }">
+                <button @click="open = !open" class="w-full text-left px-6 py-4 bg-[#fbf0f2] rounded-lg shadow hover:bg-[#f2effb] transition duration-300">
+                    <span class="text-lg font-medium text-gray-700">1. What is the school’s admission process?</span>
+                </button>
+                <div x-show="open" x-transition class="px-6 py-4 mt-2 bg-gray-50 border-l-4 border-[#faf2db] rounded-lg text-gray-600">
+                    The admission process for DIVINE WISDOM SCHOOL involves submitting an application form, followed by an interview and assessment. For more details, please visit our <a href="/admissions" class="text-blue-600">Admissions</a> page.
+                </div>
+            </div>
+            <div x-data="{ open: false }">
+                <button @click="open = !open" class="w-full text-left px-6 py-4 bg-[#f3fefa] rounded-lg shadow hover:bg-[#f2effb] transition duration-300">
+                    <span class="text-lg font-medium text-gray-700">2. What are the school hours?</span>
+                </button>
+                <div x-show="open" x-transition class="px-6 py-4 mt-2 bg-gray-50 border-l-4 border-[#faf2db] rounded-lg text-gray-600">
+                    Our school operates from Monday to Friday. The school day starts at 8:00 AM and ends at 3:00 PM. Specific hours may vary for extracurricular activities or special events.
+                </div>
+            </div>
+            <div x-data="{ open: false }">
+                <button @click="open = !open" class="w-full text-left px-6 py-4 bg-[#fbf0f2] rounded-lg shadow hover:bg-[#f2effb] transition duration-300">
+                    <span class="text-lg font-medium text-gray-700">3. Is there a school uniform?</span>
+                </button>
+                <div x-show="open" x-transition class="px-6 py-4 mt-2 bg-gray-50 border-l-4 border-[#faf2db] rounded-lg text-gray-600">
+                    Yes, students are required to wear the school uniform. Please refer to our <a href="/uniforms" class="text-blue-600">Uniform Policy</a> for details on the dress code and required attire.
+                </div>
+            </div>
+        </div>
+
+        <!-- Academic Questions Section -->
+        <div class="space-y-4">
+            <h3 class="text-2xl font-semibold text-primary">Academic Questions</h3>
+            <div x-data="{ open: false }">
+                <button @click="open = !open" class="w-full text-left px-6 py-4 bg-[#f3fefa] rounded-lg shadow hover:bg-[#f2effb] transition duration-300">
+                    <span class="text-lg font-medium text-gray-700">4. What subjects are taught at DIVINE WISDOM SCHOOL?</span>
+                </button>
+                <div x-show="open" x-transition class="px-6 py-4 mt-2 bg-gray-50 border-l-4 border-[#faf2db] rounded-lg text-gray-600">
+                    We offer a wide range of subjects including Math, Science, English, Social Studies, Arts, Physical Education, and Religious Studies. Please refer to our <a href="/curriculum" class="text-blue-600">Curriculum</a> page for a complete list of subjects and grade-level offerings.
+                </div>
+            </div>
+            <div x-data="{ open: false }">
+                <button @click="open = !open" class="w-full text-left px-6 py-4 bg-[#fbf0f2] rounded-lg shadow hover:bg-[#f2effb] transition duration-300">
+                    <span class="text-lg font-medium text-gray-700">5. Does the school offer extracurricular activities?</span>
+                </button>
+                <div x-show="open" x-transition class="px-6 py-4 mt-2 bg-gray-50 border-l-4 border-[#faf2db] rounded-lg text-gray-600">
+                    Yes, we offer a variety of extracurricular activities, including sports, music, drama, and clubs. For more information, visit our <a href="/activities" class="text-blue-600">Extracurricular Activities</a> page.
+                </div>
+            </div>
+            <div x-data="{ open: false }">
+                <button @click="open = !open" class="w-full text-left px-6 py-4 bg-[#f3fefa] rounded-lg shadow hover:bg-[#f2effb] transition duration-300">
+                    <span class="text-lg font-medium text-gray-700">6. Are there resources for students with special needs?</span>
+                </button>
+                <div x-show="open" x-transition class="px-6 py-4 mt-2 bg-gray-50 border-l-4 border-[#faf2db] rounded-lg text-gray-600">
+                    Yes, DIVINE WISDOM SCHOOL provides support for students with special needs. We have specialized educators and a learning support team to ensure all students receive the care and resources they need. Please contact our <a href="/contact" class="text-blue-600">Learning Support</a> team for more information.
+                </div>
+            </div>
+        </div>
+
+        <!-- Fees and Financial Questions Section -->
+        <div class="space-y-4">
+            <h3 class="text-2xl font-semibold text-primary">Fees and Financial Questions</h3>
+            <div x-data="{ open: false }">
+                <button @click="open = !open" class="w-full text-left px-6 py-4 bg-[#fbf0f2] rounded-lg shadow hover:bg-[#f2effb] transition duration-300">
+                    <span class="text-lg font-medium text-gray-700">7. What are the tuition fees for the school year?</span>
+                </button>
+                <div x-show="open" x-transition class="px-6 py-4 mt-2 bg-gray-50 border-l-4 border-[#faf2db] rounded-lg text-gray-600">
+                    Tuition fees vary depending on the grade level. For detailed information about tuition fees, please visit our <a href="/fees" class="text-blue-600">Fees</a> page.
+                </div>
+            </div>
+            <div x-data="{ open: false }">
+                <button @click="open = !open" class="w-full text-left px-6 py-4 bg-[#f3fefa] rounded-lg shadow hover:bg-[#f2effb] transition duration-300">
+                    <span class="text-lg font-medium text-gray-700">8. Are there scholarships or financial aid options available?</span>
+                </button>
+                <div x-show="open" x-transition class="px-6 py-4 mt-2 bg-gray-50 border-l-4 border-[#faf2db] rounded-lg text-gray-600">
+                    Yes, DIVINE WISDOM SCHOOL offers scholarships and financial aid based on need and merit. For more information, please visit our <a href="/scholarships" class="text-blue-600">Scholarships</a> page.
+                </div>
+            </div>
+            <div x-data="{ open: false }">
+                <button @click="open = !open" class="w-full text-left px-6 py-4 bg-[#fbf0f2] rounded-lg shadow hover:bg-[#f2effb] transition duration-300">
+                    <span class="text-lg font-medium text-gray-700">9. How can I make a payment for tuition and other fees?</span>
+                </button>
+                <div x-show="open" x-transition class="px-6 py-4 mt-2 bg-gray-50 border-l-4 border-[#faf2db] rounded-lg text-gray-600">
+                    Payments can be made online through our secure payment portal or via bank transfer. Please refer to our <a href="/payments" class="text-blue-600">Payment Information</a> page for more details.
+                </div>
+            </div>
+        </div>
+
+        <!-- School Events Section -->
+        <div class="space-y-4">
+            <h3 class="text-2xl font-semibold text-primary">School Events and Updates</h3>
+            <div x-data="{ open: false }">
+                <button @click="open = !open" class="w-full text-left px-6 py-4 bg-[#f3fefa] rounded-lg shadow hover:bg-[#f2effb] transition duration-300">
+                    <span class="text-lg font-medium text-gray-700">10. How can I stay updated on school events?</span>
+                </button>
+                <div x-show="open" x-transition class="px-6 py-4 mt-2 bg-gray-50 border-l-4 border-[#faf2db] rounded-lg text-gray-600">
+                    You can stay updated on school events by visiting our <a href="/parent/#events" class="text-blue-600">Events</a> page or by subscribing to our school newsletter. We also post updates on our official social media channels.
+                </div>
+            </div>
+            <div x-data="{ open: false }">
+                <button @click="open = !open" class="w-full text-left px-6 py-4 bg-[#fbf0f2] rounded-lg shadow hover:bg-[#f2effb] transition duration-300">
+                    <span class="text-lg font-medium text-gray-700">11. Can parents volunteer at school events?</span>
+                </button>
+                <div x-show="open" x-transition class="px-6 py-4 mt-2 bg-gray-50 border-l-4 border-[#faf2db] rounded-lg text-gray-600">
+                    Yes, we encourage parents to get involved! You can sign up to volunteer for school events through the volunteer section on our <a href="/volunteer" class="text-blue-600">Volunteer</a> page.
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="mt-12 text-center">
+            <p class="text-xl font-medium text-gray-800">Need More Help?</p>
+            <p class="text-lg text-gray-600">If your question was not answered here, or if you need further clarification, please feel free to reach out to us through our <a href="/contact" class="text-red-600">Contact Page</a>. We are happy to assist you!</p>
+        </div>
+    </div>
+</div>
+
+<%- include("Footer.ejs") %>
