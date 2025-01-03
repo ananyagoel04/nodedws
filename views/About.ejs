@@ -26,26 +26,28 @@
             </object>
         </div>
         {% endfor %} -->
-        <% if ((successMessage && successMessage.length > 0) || (errorMessage && errorMessage.length > 0)) { %>
-            <div class="text-center text-white <%= successMessage ? 'bg-green-700' : 'bg-red-700' %> rounded-full p-2 w-fit mx-auto">
-              <%= successMessage || errorMessage %>
-            </div>
-            
-            <script>
-              // Redirect to the same URL for both success and error messages
-              setTimeout(function() {
-                window.location.href = '/about'; 
-              }, 5000);
-            </script>
-          <% } %>          
-            <div class="text-center text-6xl font-bold">Why DWS ?</div>
-            <div class="text-center xl:px-96 lg:px-60 md:px-44 px-8 text-xl leading-9 mt-2">
-                Choose us for our holistic education approach, experienced faculty, personalized learning,
-                state-of-the-art
-                facilities, and commitment to nurturing well-rounded, future-ready individuals from nursery through
-                grade
-                12.
-            </div>
+            <% if ((successMessage && successMessage.length> 0) || (errorMessage && errorMessage.length > 0)) { %>
+                <div
+                    class="text-center text-white <%= successMessage ? 'bg-green-700' : 'bg-red-700' %> rounded-full p-2 w-fit mx-auto">
+                    <%= successMessage || errorMessage %>
+                </div>
+
+                <script>
+                    // Redirect to the same URL for both success and error messages
+                    setTimeout(function () {
+                        window.location.href = '/about';
+                    }, 5000);
+                </script>
+                <% } %>
+                    <div class="text-center text-6xl font-bold">Why DWS ?</div>
+                    <div class="text-center xl:px-96 lg:px-60 md:px-44 px-8 text-xl leading-9 mt-2">
+                        Choose us for our holistic education approach, experienced faculty, personalized learning,
+                        state-of-the-art
+                        facilities, and commitment to nurturing well-rounded, future-ready individuals from nursery
+                        through
+                        grade
+                        12.
+                    </div>
         </div>
         <% if (aboutImages && aboutImages.length> 0) { %>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-6 gap-4 bg-[#f3f0fc]">
@@ -469,8 +471,9 @@
                                                     professional
                                                     growth opportunities.
                                                 </p>
-                                                <div class="md:px-40 px-8 my-4" >
-                                                    <form action="/send-resume" method="POST" enctype="multipart/form-data" onsubmit="return checkForm()"
+                                                <div class="md:px-40 px-8 my-4">
+                                                    <form action="/send-resume" method="POST"
+                                                        enctype="multipart/form-data" onsubmit="return checkForm()"
                                                         class="bg-white shadow-2xl w-full z-10 p-10 md:px-14 border-2 rounded-2xl">
                                                         <div class="text-3xl font-bold text-center md:text-left">Send us
                                                             your
@@ -497,6 +500,16 @@
                                                         <input type="file" placeholder='Your Resume' name="Resume"
                                                             class="border-2 p-2 rounded-xl w-full h-14">
                                                         <br>
+                                                        <div
+                                                            class="bg-yellow-100 p-4 rounded-md border-l-4 border-yellow-500 my-2">
+                                                            <h1 class="text-sm text-red-600 font-semibold">
+                                                                <span class="text-red-500">NOTE:</span> File size must
+                                                                be less than 3MB. If you encounter a
+                                                                <span class="font-bold text-red-700">"Payload Too
+                                                                    Large"</span> error, please reload the page,
+                                                                compress your file, and then upload your resume again.
+                                                            </h1>
+                                                        </div>
                                                         <label for="">Message</label>
                                                         <br>
                                                         <textarea name="Message" placeholder='Message' id="" rows="4"
@@ -508,19 +521,19 @@
                                                                 Send
                                                             </div>
                                                         </button>
-                                                        <% if (successMessage && successMessage.length > 0) { %>
+                                                        <% if (successMessage && successMessage.length> 0) { %>
                                                             <div class="text-center text-green-400">
-                                                              <%= successMessage %>
+                                                                <%= successMessage %>
                                                             </div>
-                                                          <% } %>
-                                                        
-                                                          <!-- Display Error Message -->
-                                                          <% if (errorMessage && errorMessage.length > 0) { %>
-                                                            <div class="text-center text-red-400">
-                                                              <%= errorMessage %>
-                                                            </div>
-                                                          <% } %>                                                     
-    
+                                                            <% } %>
+
+                                                                <!-- Display Error Message -->
+                                                                <% if (errorMessage && errorMessage.length> 0) { %>
+                                                                    <div class="text-center text-red-400">
+                                                                        <%= errorMessage %>
+                                                                    </div>
+                                                                    <% } %>
+
                                                     </form>
                                                 </div>
 
