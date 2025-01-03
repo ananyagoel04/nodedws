@@ -356,11 +356,7 @@ router.get('/SocialResponsibility', async (req, res) => {
   }
 });
 
-
-
-
-
-app.get('/article', (req, res) => {
+router.get('/article', (req, res) => {
   const schemaMarkup = {
     "@context": "https://schema.org",
     "@type": "Article",
