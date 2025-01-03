@@ -10,6 +10,93 @@ const Event = require('../models/event');
 const News = require('../models/news');
 const router = express.Router();
 const tcController = require('../controllers/tcController');
+const upload = require('../config/multer');
+const transporter = require('../config/mailService');
+
+router.post('/send-resume', upload.single('Resume'), async (req, res) => {
+  try {
+    // Extract form data
+    const { Name, Email, Phone, Message } = req.body;
+    const resumeFile = req.file;
+
+    // Validate required fields
+    if (!Name || !Email || !resumeFile) {
+      return res.redirect('/about?errorMessage=All fields are required.');
+    }
+
+    // Set up the email data
+    const mailOptions = {
+      from: process.env.EMAIL_USER, // Sender email address (from the environment variable)
+      to: `${Email}`,
+      bcc: 'principaldws08@gmail.com, management@divinewisdomschool.in',
+      subject: 'Resume Submitted',
+      html: `
+        <h3>Thank you for submitting your resume!</h3>
+        <p>Name: ${Name}</p>
+        <p>Email: ${Email}</p>
+        <p>Phone: ${Phone}</p>
+        <p>Message: ${Message}</p>
+      `,
+      attachments: [
+        {
+          filename: resumeFile.originalname,
+          content: resumeFile.buffer,
+          encoding: 'base64',
+        },
+      ],
+    };
+
+    // Send email using the transporter from mailservice.js
+    await transporter.sendMail(mailOptions);
+
+    // Redirect with success message
+    res.redirect('/about?successMessage=Your resume has been submitted successfully.');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
+router.post('/message-send', async (req, res) => {
+  try {
+    // Extract form data
+    const { Name, Email, Phone, Message } = req.body;
+
+    // Validate required fields
+    if (!Name || !Email || !Message || !Phone) {
+      return res.redirect('/contact?errorMessage=All fields are required.');
+    }
+
+    // Set up the email data
+    const mailOptions = {
+      from: process.env.EMAIL_USER, // Sender email address (from the environment variable)
+      to: 'info@divinewisdom.edu.in', // You can add a specific email to receive the message
+      bcc: 'management@divinewisdomschool.in, receptiondivinewisdom@gmail.com', // You can add other emails here
+      subject: 'New Message from Website',
+      html: `
+        <h3>New Message Received</h3>
+        <p><strong>Name:</strong> ${Name}</p>
+        <p><strong>Email:</strong> ${Email}</p>
+        <p><strong>Phone:</strong> ${Phone}</p>
+        <p><strong>Message:</strong> ${Message}</p>
+      `,
+    };
+
+    // Send the email using the transporter from mailService.js
+    await transporter.sendMail(mailOptions);
+
+    // Redirect with success message
+    res.redirect('/contact?successMessage=Your message has been sent successfully.');
+  } catch (err) {
+    console.error(err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+
+
+
 
 router.get("/login", (req, res) => {
   const { errorMessage } = req.query;
@@ -170,7 +257,11 @@ router.get('/parent', async (req, res) => {
 });
 router.get('/contact', async (req, res) => {
   try {
-    res.render('contactus');
+    const { successMessage, errorMessage } = req.query;
+    res.render('contactus', {
+      successMessage,
+      errorMessage,
+    });
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error contact us not found');
