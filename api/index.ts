@@ -10,6 +10,7 @@ const aboutRoutes = require('../routes/aboutRouter');
 const userRouter = require("../routes/userRouter");
 const studentRoutes = require('../routes/studentRouter');
 const galleryRoutes = require('../routes/galleryRoutes');
+const parentRoutes = require('../routes/parentRoutes');
 
 const app = express();
 
@@ -38,6 +39,7 @@ app.use('/', pageRouter);
 app.use('/admin', isLoggedin, aboutRoutes);
 app.use("/users", userRouter);
 app.use('/admin/tc',isLoggedin, studentRoutes);
+app.use('/admin/parent',isLoggedin, parentRoutes);
 
 app.use('/admin/gallery', galleryRoutes);
 

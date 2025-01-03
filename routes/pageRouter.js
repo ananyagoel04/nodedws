@@ -6,6 +6,8 @@ const Student = require('../models/tc/student');
 const Class = require('../models/tc/class');
 const Session = require('../models/tc/session');
 const { Gallery, Maingallery } = require('../models/gallery');
+const Event = require('../models/event');
+const News = require('../models/news');
 const router = express.Router();
 const tcController = require('../controllers/tcController');
 
@@ -158,7 +160,9 @@ router.get('/Cbse', async (req, res) => {
 });
 router.get('/parent', async (req, res) => {
   try {
-    res.render('parent');
+    const events = await Event.find();
+    const news = await News.find();
+    res.render('parent', { events, news });
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
