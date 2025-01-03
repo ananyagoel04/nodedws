@@ -19,11 +19,11 @@
                 </div>
                 <h1 class="font-extrabold text-6xl md:text-left text-center">Creating a brighter future for your child
                 </h1>
-                <p class="font-medium leading-8 md:text-left text-center">At <span class="font-extrabold">DIVINE WISDOM
+                <h2 class="font-medium leading-8 md:text-left text-center">At <span class="font-extrabold">DIVINE WISDOM
                         SCHOOL</span>, we believe in inculcating the value based quality education for its students in
                     co-ordination with the teachers and parents. This will enable every student to become a responsible
                     citizen of <span class="font-extrabold">BHARAT</span> to serve his motherland in a patriotic way.
-                </p>
+                </h2>
                 <div class="md:flex py-4 justify-center md:justify-start w-fit mx-auto md:mx-0">
                     <a href="/admissions/" tabindex="-1">
                         <div
@@ -152,12 +152,10 @@
             </div>
 
             <div class="mx-auto my-auto md:w-2/4" data-aos="fade-up">
-                <!-- <img src="/icons/home-blocks-01.jpg" class="w-fit mx-auto max-h-96 rounded-xl" alt=""> -->
                 <% if (homeimgData && homeimgData.length> 0) { %>
                     <img src="data:image/jpeg;base64,<%= homeimgData[0].image.toString('base64') %>"
                         alt="<%= homeimgData[0].image_title %>" class="w-fit mx-auto aspect-auto rounded-xl">
                     <% } else { %>
-                        <!-- Fallback Image if homeimgData is empty -->
                         No image
                         <% } %>
             </div>
