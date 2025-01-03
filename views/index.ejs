@@ -153,8 +153,9 @@
 
             <div class="mx-auto my-auto md:w-2/4" data-aos="fade-up">
                 <% if (homeimgData && homeimgData.length> 0) { %>
-                    <img src="data:image/jpeg;base64,<%= homeimgData[0].image.toString('base64') %>"
-                        alt="<%= homeimgData[0].image_title %>" class="w-fit mx-auto aspect-auto rounded-xl">
+                    <img alt="<%= homeimgData[0].image_title %>"
+                        src="data:image/jpeg;base64,<%= homeimgData[0].image.toString('base64') %>"
+                        class="w-fit mx-auto aspect-auto rounded-xl">
                     <% } else { %>
                         No image
                         <% } %>
@@ -905,9 +906,10 @@
                     <div>
                         <!-- <img src="https://lh3.googleusercontent.com/a-/ALV-UjVAY_xQY4wzlROWWLLGzN5s7AEmIJb3tIdQPUz5P8wTO1RsltDO=s72-c-rp-mo-br100"
                             class="w-20 h-20 rounded-full border-2 border-yellow-500" alt="students"> -->
-                        <div class="w-20 h-20 rounded-full border-2 border-yellow-500 bg-violet-600 flex items-center justify-center">
+                        <div
+                            class="w-20 h-20 rounded-full border-2 border-yellow-500 bg-violet-600 flex items-center justify-center">
                             <h1 class="text-2xl font-medium text-center text-white">N</h1>
-                        </div>   
+                        </div>
                     </div>
                     <div class="py-2">Nagi Seishiro</div>
                     <div class="flex py-1">
