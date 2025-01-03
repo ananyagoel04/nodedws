@@ -286,7 +286,7 @@
                 approach:
             </p>
             <div class="dHctbWF4LXctM3hs dHctbXgtYXV0bw dHctbXQtMTI px-4">
-                <ul
+                <ul id="myList"
                     class="dHctZmxleA dHctZmxleC13cmFw dHctaXRlbXMtY2VudGVy dHctanVzdGlmeS1jZW50ZXI LXR3LW14LTM LXR3LW15LTI dHctdGV4dC1sZw dHctdGV4dC1wdXJwbGUtODAw">
                     <li data-aos="fade-up-right" data-aos-delay="000"
                         class="dHctZmxleA dHctaXRlbXMtY2VudGVy dHctbXgtMw dHctbXktMg"><img alt="tick" width="500"
@@ -332,6 +332,108 @@
                     </li>
                 </ul>
             </div>
+            <script>
+                // Function to update data-aos based on screen width
+                function updateAOSBasedOnScreenSize() {
+                    // Select the specific <ul> by its ID and get all <li> elements inside it
+                    const listItems = document.querySelectorAll("#myList li");
+
+                    // Get the current screen width
+                    const screenWidth = window.innerWidth;
+
+                    // Loop through each list item and update the data-aos attribute
+                    listItems.forEach((item, index) => {
+                        let newAosValue = '';
+
+                        if (screenWidth >= 1024) {  // For desktop (Large screen)
+                            // Desktop view, use different data-aos for larger screens
+                            switch (index) {
+                                case 0:
+                                    newAosValue = 'fade-up-right';
+                                    break;
+                                case 1:
+                                    newAosValue = 'fade-up-right';
+                                    break;
+                                case 2:
+                                    newAosValue = 'fade-up-left';
+                                    break;
+                                case 3:
+                                    newAosValue = 'fade-up-left';
+                                    break;
+                                case 4:
+                                    newAosValue = 'fade-up-right';
+                                    break;
+                                case 5:
+                                    newAosValue = 'fade-up-left';
+                                    break;
+                                case 6:
+                                    newAosValue = 'fade-up-left';
+                                    break;
+                            }
+                        } else if (screenWidth >= 768) {  // For tablets (Medium screen)
+                            // Tablet view, adjust delay or use different animation
+                            switch (index) {
+                                case 0:
+                                    newAosValue = 'fade-up';
+                                    break;
+                                case 1:
+                                    newAosValue = 'fade-up';
+                                    break;
+                                case 2:
+                                    newAosValue = 'fade-up';
+                                    break;
+                                case 3:
+                                    newAosValue = 'fade-up';
+                                    break;
+                                case 4:
+                                    newAosValue = 'fade-up';
+                                    break;
+                                case 5:
+                                    newAosValue = 'fade-up';
+                                    break;
+                                case 6:
+                                    newAosValue = 'fade-up';
+                                    break;
+                            }
+                        } else {  // For mobile (Small screen)
+                            // Mobile view, adjust delay or use different animation
+                            switch (index) {
+                                case 0:
+                                    newAosValue = 'fade-up';
+                                    break;
+                                case 1:
+                                    newAosValue = 'fade-up';
+                                    break;
+                                case 2:
+                                    newAosValue = 'fade-up';
+                                    break;
+                                case 3:
+                                    newAosValue = 'fade-up';
+                                    break;
+                                case 4:
+                                    newAosValue = 'fade-up';
+                                    break;
+                                case 5:
+                                    newAosValue = 'fade-up';
+                                    break;
+                                case 6:
+                                    newAosValue = 'fade-up';
+                                    break;
+                            }
+                        }
+
+                        // Update the data-aos attribute for the list item
+                        item.setAttribute('data-aos', newAosValue);
+                    });
+                }
+
+                // Initial function call to update AOS on page load
+                updateAOSBasedOnScreenSize();
+
+                // Add an event listener to update data-aos when the window is resized
+                window.addEventListener('resize', updateAOSBasedOnScreenSize);
+            </script>
+
         </div>
 
 
@@ -339,7 +441,7 @@
             <div class="md:flex md:p-4 block">
                 <div data-aos="fade-up" class=" mx-auto my-auto max-w-lg md:px-6 px-10 md:w-1/2 flex-shrink-0">
                     <!-- <img src="/icons//Group 1.svg" class="mx-auto my-auto" alt="students"> -->
-                    <div class="mx-auto w-full lg:pl-4 hidden sm:block">
+                    <div class="mx-auto w-full lg:pl-4 hidden md:block">
                         <% if (visionMissionData && visionMissionData.length> 0) { %>
                             <!-- First Vision & Mission Image -->
                             <img src="data:image/jpeg;base64,<%= visionMissionData[0].image.toString('base64') %>"
@@ -354,7 +456,7 @@
                                         class="w-[200px] h-[200px] rounded-2xl -mt-[100px]">
                                     <% } %>
                     </div>
-                    <div class="mx-auto w-full lg:pl-4 sm:hidden">
+                    <div class="mx-auto w-full lg:pl-4 md:hidden">
                         <% if (visionMissionData && visionMissionData.length> 0) { %>
                             <!-- First Vision & Mission Image -->
                             <img src="data:image/jpeg;base64,<%= visionMissionData[0].image.toString('base64') %>"
@@ -414,7 +516,7 @@
 
             <div class="md:flex p-4 block my-12">
                 <div data-aos="fade-up" class=" mx-auto my-auto md:w-1/2 max-w-lg md:hidden">
-                    <div class="mx-auto w-full p-8 hidden sm:block">
+                    <div class="mx-auto w-full p-8 hidden md:block">
                         <% if (environmentData && environmentData.length> 0) { %>
                             <img src="data:image/jpeg;base64,<%= environmentData[0].image.toString('base64') %>"
                                 alt="<%= environmentData[0].image_title %>"
@@ -426,7 +528,7 @@
                                         class="w-[200px] h-[200px] rounded-2xl -mt-[100px]">
                                     <% } %>
                     </div>
-                    <div class="mx-auto w-full lg:pl-4 sm:hidden">
+                    <div class="mx-auto w-full lg:pl-4 md:hidden">
                         <% if (environmentData && environmentData.length> 0) { %>
                             <!-- First Vision & Mission Image -->
                             <img src="data:image/jpeg;base64,<%= environmentData[0].image.toString('base64') %>"
