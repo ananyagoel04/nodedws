@@ -24,9 +24,14 @@
                     today !</span></h1>
 
         </div>
+        <% if (homeimgData && homeimgData.length> 0) { %>
         <div class="md:w-2/4 h-96 flex items-center bg-cover mx-auto bg-no-repeat bg-center mdshadow-sm-edge mdshadow-md-edge"
-            style="background-image: url('https://divinewisdom.edu.in/images/dvn.jpg');">
+            style="background-image: url('data:image/jpeg;base64,<%= homeimgData[0].image.toString('base64') %>');">
         </div>
+        <% } else { %>
+            <!-- Fallback Image if homeimgData is empty -->
+            No image
+            <% } %>
     </div>
 
     <div class="p-10 bg-[#4F49A5] text-white mb-6 rounded-2xl m-4">

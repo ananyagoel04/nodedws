@@ -215,7 +215,8 @@ router.get('/class_students/:id', async (req, res) => {
 
 router.get('/admissions', async (req, res) => {
   try {
-    res.render('admissions');
+    const homeimgData = await Homeimg.find({});
+    res.render('admissions',{homeimgData});
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
