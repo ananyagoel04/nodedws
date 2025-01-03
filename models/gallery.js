@@ -24,7 +24,6 @@ const maingallerySchema = new mongoose.Schema({
   },
   imagefilter1: {
     type: String,
-    enum: ['Nature', 'Architect', 'Preprimary'],
     default: 'Nature',
   },
   image1: {

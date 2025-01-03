@@ -7,7 +7,6 @@ button1.addEventListener("click", function () {
 });
 
 
-
 // Function to toggle dropdown visibility and rotate arrow
 function toggleDropdownAndRotate(buttonId, arrowId, dropdownId) {
     const dropdownButton = document.getElementById(buttonId);

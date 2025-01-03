@@ -3,13 +3,13 @@ const { Gallery, Maingallery } = require('../models/gallery');
 
 const getAllGalleryItem = async (req, res) => {
   try {
-      const galleryItems = await Gallery.find();
-      const maingalleryItems = await Maingallery.find();
+    const galleryItems = await Gallery.find();
+    const maingalleryItems = await Maingallery.find();
 
-      res.render('Admin/galleryadmin', { galleryItems, maingalleryItems });
+    res.render('Admin/galleryadmin', { galleryItems, maingalleryItems });
   } catch (err) {
-      console.error('Error loading About data:', err);
-      res.status(500).send('Error loading About data');
+    console.error('Error loading About data:', err);
+    res.status(500).send('Error loading About data');
   }
 };
 
@@ -96,20 +96,23 @@ const updateGalleryItem = async (req, res) => {
     if (!itemToUpdate) {
       return res.status(404).send('Item not found');
     }
-
     // Update fields
-    itemToUpdate.image_title = image_title || itemToUpdate.image_title;
-    itemToUpdate.imagefilter = imagefilter || itemToUpdate.imagefilter;
-
+    if (galleryType === 'Gallery') {
+      itemToUpdate.image_title = image_title || itemToUpdate.image_title;
+      itemToUpdate.imagefilter = imagefilter || itemToUpdate.imagefilter;
+    } else if (galleryType === 'Maingallery') {
+      itemToUpdate.image_title1 = image_title || itemToUpdate.image_title;
+      itemToUpdate.imagefilter1 = imagefilter || itemToUpdate.imagefilter;
+    }
     // If there's a new file uploaded, update the image
     if (req.file) {
-      const imageBuffer = req.file.buffer;  // Get new image Buffer
+      const imageBuffer = req.file.buffer;
       itemToUpdate.image = imageBuffer || itemToUpdate.image;  // Update the image if new one provided
       itemToUpdate.image1 = imageBuffer || itemToUpdate.image1;
     }
 
     await itemToUpdate.save();
-    res.status(200).json(itemToUpdate);
+    res.status(200).redirect("/admin/gallery");
   } catch (error) {
     console.error(error);
     res.status(500).send('Error updating item');
@@ -132,9 +135,8 @@ const deleteGalleryItem = async (req, res) => {
     if (!itemToDelete) {
       return res.status(404).send('Item not found');
     }
-
-    await itemToDelete.remove();
-    res.status(200).send(`${galleryType} deleted successfully`);
+    await itemToDelete.constructor.deleteOne({ _id: id });
+    res.status(200).redirect("/admin/gallery");
   } catch (error) {
     console.error(error);
     res.status(500).send('Error deleting item');
