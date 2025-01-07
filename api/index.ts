@@ -31,7 +31,7 @@ app.set('view engine', 'ejs');
 
 // Serve static files (CSS, images, etc.) from the public directory
 // Update the static file path to reflect the new directory structure
-app.use(express.static(path.join(__dirname, '..', 'public')));
+app.use(express.static(path.join(__dirname, '..', 'public'), { maxAge: '1d' }));
 
 // Set up the route handlers
 app.use('/admin', isLoggedin, adminRouter);
