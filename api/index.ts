@@ -49,3 +49,5 @@ app.listen(PORT, () => {
 });
 
 module.exports = app;
+
+// <script src="https://cdn.vercel-insights.com/v1/speed-insights.min.js" data-api-key="<%= vercelApiKey %>"></script>
