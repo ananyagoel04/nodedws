@@ -7,7 +7,7 @@ exports.getAllParentItem = async (req, res) => {
         const EventItems = await Event.find();
         const NewsItems = await News.find();
   
-        res.render('admin/parentadmin', { EventItems, NewsItems });
+        res.render('Admin/parentadmin', { EventItems, NewsItems });
     } catch (err) {
         console.error('Error loading About data:', err);
         res.status(500).send('Error loading About data');
