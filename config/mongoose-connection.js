@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const dbgr = require('debug')('development:mongoose');
-const mongoURI = 'mongodb+srv://ananyagoelps:Goel%402004@vehicle.l6zrk.mongodb.net/DWSWEB?retryWrites=true&w=majority&appName=VEHICLE';
+require('dotenv').config();
+const mongoURI = process.env.DATA_BASE;
+
 
 // Reuse existing connection
 mongoose.connection.on('connected', () => {
