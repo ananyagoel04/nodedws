@@ -6,3 +6,6 @@ node_modules/
 
 # Ignore .env file
 .env
+
+# Ignore readme file
+README.md
