@@ -249,7 +249,7 @@ router.get('/Cbse', async (req, res) => {
 router.get('/parent', async (req, res) => {
   try {
     const events = await Event.find();
-    const news = await News.find();
+    const news = await News.find().sort({ createdAt: -1 });
     res.render('parent', { events, news });
   } catch (err) {
     console.error(err);

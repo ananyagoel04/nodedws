@@ -74,7 +74,7 @@ module.exports = {
             const image = req.file.buffer;
             const newImage = new Homeimg({ image_title, image });
             await newImage.save();
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error creating home image');
@@ -88,7 +88,7 @@ module.exports = {
             const updates = { image_title };
             if (req.file) updates.image = req.file.buffer;
             await Homeimg.findByIdAndUpdate(id, updates, { new: true });
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error updating home image');
@@ -99,7 +99,7 @@ module.exports = {
         try {
             const { id } = req.params;
             await Homeimg.findByIdAndDelete(id);
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error deleting home image');
@@ -113,7 +113,7 @@ module.exports = {
             const image = req.file.buffer;
             const newItem = new VisionMission({ image_title, image });
             await newItem.save();
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error creating VisionMission item');
@@ -127,7 +127,7 @@ module.exports = {
             const updates = { image_title };
             if (req.file) updates.image = req.file.buffer;
             await VisionMission.findByIdAndUpdate(id, updates, { new: true });
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error updating VisionMission item');
@@ -138,7 +138,7 @@ module.exports = {
         try {
             const { id } = req.params;
             await VisionMission.findByIdAndDelete(id);
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error deleting VisionMission item');
@@ -152,7 +152,7 @@ module.exports = {
             const image = req.file.buffer;
             const newItem = new Environment({ image_title, image });
             await newItem.save();
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error creating environment item');
@@ -166,7 +166,7 @@ module.exports = {
             const updates = { image_title };
             if (req.file) updates.image = req.file.buffer;
             await Environment.findByIdAndUpdate(id, updates, { new: true });
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error updating environment item');
@@ -177,7 +177,7 @@ module.exports = {
         try {
             const { id } = req.params;
             await Environment.findByIdAndDelete(id);
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error deleting environment item');
@@ -191,7 +191,7 @@ module.exports = {
             const image = req.file.buffer;
             const newTeacher = new Teacher({ name, designation, image_title, image });
             await newTeacher.save();
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error creating teacher');
@@ -205,7 +205,7 @@ module.exports = {
             const updates = { name, designation, image_title };
             if (req.file) updates.image = req.file.buffer;
             await Teacher.findByIdAndUpdate(id, updates, { new: true });
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error updating teacher');
@@ -216,7 +216,7 @@ module.exports = {
         try {
             const { id } = req.params;
             await Teacher.findByIdAndDelete(id);
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error deleting teacher');
@@ -230,7 +230,7 @@ module.exports = {
             const image = req.file.buffer;
             const newProgram = new Program({ image_title, image });
             await newProgram.save();
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error creating program');
@@ -244,7 +244,7 @@ module.exports = {
             const updates = { image_title };
             if (req.file) updates.image = req.file.buffer;
             await Program.findByIdAndUpdate(id, updates, { new: true });
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error updating program');
@@ -255,7 +255,7 @@ module.exports = {
         try {
             const { id } = req.params;
             await Program.findByIdAndDelete(id);
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error deleting program');
@@ -269,7 +269,7 @@ module.exports = {
             const image = req.file.buffer;
             const newReview = new Review({ name, stars, review, image_title, image });
             await newReview.save();
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error creating review');
@@ -283,7 +283,7 @@ module.exports = {
             const updates = { name, stars, review, image_title };
             if (req.file) updates.image = req.file.buffer;
             await Review.findByIdAndUpdate(id, updates, { new: true });
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error updating review');
@@ -294,7 +294,7 @@ module.exports = {
         try {
             const { id } = req.params;
             await Review.findByIdAndDelete(id);
-            res.redirect('/admin/home');
+            res.redirect('/admin/');
         } catch (err) {
             console.error(err);
             res.status(500).send('Error deleting review');
