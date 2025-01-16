@@ -232,6 +232,35 @@
             </div>
         </div>
 
+        <script>
+            window.onload = function() {
+                // Get the full URL including query parameters and hash
+                const currentUrl = window.location.href;
+        
+                // Decode the URL to handle encoded parts like "%23events", "%23news"
+                const decodedUrl = decodeURIComponent(currentUrl);
+        
+                // List of sections to scroll to if found in the URL
+                const sections = ['#events', '#news'];
+        
+                // Loop through each section and check if it's present in the URL (either encoded or decoded)
+                sections.forEach(function(section) {
+                    if (decodedUrl.includes(section) || currentUrl.includes(encodeURIComponent(section))) {
+                        // Poll every 100ms to check if the section becomes available
+                        const interval = setInterval(function() {
+                            const sectionElement = document.querySelector(section);  // Select by ID dynamically
+                            if (sectionElement) {
+                                // Scroll to the section once it's available
+                                sectionElement.scrollIntoView({ behavior: 'smooth' });
+                                clearInterval(interval); // Stop polling once section is found
+                            }
+                        }, 100); // Poll every 100ms
+                    }
+                });
+            };
+        </script>
+
+
         <%- include("logo.ejs") %>
             <%- include("Footer.ejs") %>
 

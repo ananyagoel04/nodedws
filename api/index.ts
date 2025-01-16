@@ -3,6 +3,7 @@ const path = require('path');
 const db = require("../config/mongoose-connection");
 const cookieParser = require('cookie-parser');
 const upload = require('../config/multer');
+const session = require('express-session');
 
 const adminRouter = require('../routes/adminRouter');
 const pageRouter = require('../routes/pageRouter');
@@ -11,6 +12,9 @@ const userRouter = require("../routes/userRouter");
 const studentRoutes = require('../routes/studentRouter');
 const galleryRoutes = require('../routes/galleryRoutes');
 const parentRoutes = require('../routes/parentRoutes');
+const adRouter = require('../routes/adRouter');
+
+const Ad = require('../models/ad');
 
 const app = express();
 
@@ -24,7 +28,15 @@ app.use(methodOverride('_method'));
 
 require('dotenv').config();
 
-// Set the views folder and view engine
+app.use(session({
+    secret: process.env.SESSION_KEY,
+    resave: false,             
+    saveUninitialized: true,   
+    cookie: { 
+      maxAge: 30 * 60 * 1000 
+    }
+  }));
+
 // Update the path to account for the 'api' directory
 app.set('views', path.join(__dirname, '..', 'views'));
 app.set('view engine', 'ejs');
@@ -40,6 +52,7 @@ app.use('/admin', isLoggedin, aboutRoutes);
 app.use("/users", userRouter);
 app.use('/admin/tc',isLoggedin, studentRoutes);
 app.use('/admin/parent',isLoggedin, parentRoutes);
+app.use('/admin/ads',isLoggedin, adRouter);
 
 app.use('/admin/gallery', galleryRoutes);
 

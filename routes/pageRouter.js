@@ -8,6 +8,7 @@ const Session = require('../models/tc/session');
 const { Gallery, Maingallery } = require('../models/gallery');
 const Event = require('../models/event');
 const News = require('../models/news');
+const Ad = require('../models/ad');
 const router = express.Router();
 const tcController = require('../controllers/tcController');
 const upload = require('../config/multer');
@@ -106,7 +107,11 @@ router.get("/login", (req, res) => {
 // Home route - render index.ejs and pass data
 router.get('/', async (req, res) => {
   try {
-    // Fetch data from MongoDB collections
+    if (!req.cookies.cookieConsent) {
+      res.cookie('cookieConsent', 'true', { maxAge: 365 * 24 * 60 * 60 * 1000 });
+    }
+
+    // Fetch data
     const homeimgData = await Homeimg.find({});
     const visionMissionData = await VisionMission.find({});
     const environmentData = await Environment.find({});
@@ -114,14 +119,28 @@ router.get('/', async (req, res) => {
     const programData = await Program.find({});
     const reviewData = await Review.find({});
 
-    // Render the index.ejs and pass the data
+    let randomAd = null;
+
+    // Fetch a random ad if not already seen
+    if (!req.session.adSeen) {
+      randomAd = await Ad.aggregate([{ $sample: { size: 1 } }]);
+      randomAd = randomAd[0] || null;
+
+      if (randomAd) {
+        req.session.adSeen = true;
+      }
+    }
+
+    // Render the index.ejs with the data
     res.render('index', {
       homeimgData,
       visionMissionData,
       environmentData,
       teacherData,
       programData,
-      reviewData
+      reviewData,
+      randomAd,
+      cookieConsent: req.cookies.cookieConsent,
     });
   } catch (err) {
     console.error(err);
