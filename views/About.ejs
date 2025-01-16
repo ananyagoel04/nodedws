@@ -520,12 +520,16 @@
                                                     </form>
                                                 </div>
 
-
                                                 <script>
-                                                    // This function will check if the URL contains "#resume" and scroll to that section
                                                     window.onload = function() {
-                                                        // Check if the URL contains "/#resume"
-                                                        if (window.location.hash === "#resume") {
+                                                        // Get the full URL including query parameters and hash
+                                                        const currentUrl = window.location.href;
+                                                
+                                                        // Decode the URL to handle encoded parts like "%23resume"
+                                                        const decodedUrl = decodeURIComponent(currentUrl);
+                                                
+                                                        // Check if either the decoded URL or the original URL contains "#resume"
+                                                        if (decodedUrl.includes("#resume") || currentUrl.includes("%23resume")) {
                                                             // Poll every 100ms to check if the resume section becomes available
                                                             const interval = setInterval(function() {
                                                                 const resumeSection = document.getElementById("resume");
@@ -534,10 +538,10 @@
                                                                     resumeSection.scrollIntoView({ behavior: 'smooth' });
                                                                     clearInterval(interval); // Stop polling once section is found
                                                                 }
-                                                            }, 10); // Polling every 100ms
+                                                            }, 100); // Polling every 100ms
                                                         }
                                                     };
-                                                </script>
+                                                </script>                                                                                                
                                                 <script>
                                                     function checkForm() {
                                                         // Check if all required fields are filled
