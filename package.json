@@ -35,6 +35,9 @@
 		"tailwindcss": "^3.4.17"
 	},
 	"devDependencies": {
-		"chokidar-cli": "^3.0.0"
+		"chokidar-cli": "^3.0.0",
+		"nodemon": "^3.1.9",
+		"ts-node": "^10.9.2",
+		"typescript": "^5.7.3"
 	}
 }

@@ -9,3 +9,5 @@ node_modules/
 
 # Ignore readme file
 README.md
+
+tsconfig.json

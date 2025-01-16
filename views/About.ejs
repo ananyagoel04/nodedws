@@ -519,6 +519,32 @@
 
                                                     </form>
                                                 </div>
+
+
+                                                <script>
+                                                    // Wait for the entire page (including backend data) to load
+                                                    window.onload = function() {
+                                                        // Check if the URL contains "/#resume"
+                                                        if (window.location.hash === "#resume") {
+                                                            // Check if the resume section exists, if not, wait for it
+                                                            const resumeSection = document.getElementById("resume");
+                                            
+                                                            // If the resume section is available immediately, scroll to it
+                                                            if (resumeSection) {
+                                                                resumeSection.scrollIntoView({ behavior: 'smooth' });
+                                                            } else {
+                                                                // Poll every 100ms to check if the resume section becomes available
+                                                                const interval = setInterval(function() {
+                                                                    const resumeSection = document.getElementById("resume");
+                                                                    if (resumeSection) {
+                                                                        resumeSection.scrollIntoView({ behavior: 'smooth' });
+                                                                        clearInterval(interval); // Stop polling once section is found
+                                                                    }
+                                                                }, 100);
+                                                            }
+                                                        }
+                                                    };
+                                                </script>
                                                 <script>
                                                     function checkForm() {
                                                         // Check if all required fields are filled

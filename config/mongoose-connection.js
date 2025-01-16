@@ -18,8 +18,6 @@ mongoose.connection.on('disconnected', () => {
 });
 
 mongoose.connect(mongoURI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
   connectTimeoutMS: 10000,
   socketTimeoutMS: 45000, 
   serverSelectionTimeoutMS: 5000,
