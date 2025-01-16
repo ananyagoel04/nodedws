@@ -522,26 +522,19 @@
 
 
                                                 <script>
-                                                    // Wait for the entire page (including backend data) to load
+                                                    // This function will check if the URL contains "#resume" and scroll to that section
                                                     window.onload = function() {
                                                         // Check if the URL contains "/#resume"
                                                         if (window.location.hash === "#resume") {
-                                                            // Check if the resume section exists, if not, wait for it
-                                                            const resumeSection = document.getElementById("resume");
-                                            
-                                                            // If the resume section is available immediately, scroll to it
-                                                            if (resumeSection) {
-                                                                resumeSection.scrollIntoView({ behavior: 'smooth' });
-                                                            } else {
-                                                                // Poll every 100ms to check if the resume section becomes available
-                                                                const interval = setInterval(function() {
-                                                                    const resumeSection = document.getElementById("resume");
-                                                                    if (resumeSection) {
-                                                                        resumeSection.scrollIntoView({ behavior: 'smooth' });
-                                                                        clearInterval(interval); // Stop polling once section is found
-                                                                    }
-                                                                }, 100);
-                                                            }
+                                                            // Poll every 100ms to check if the resume section becomes available
+                                                            const interval = setInterval(function() {
+                                                                const resumeSection = document.getElementById("resume");
+                                                                if (resumeSection) {
+                                                                    // Scroll to the resume section once it's available
+                                                                    resumeSection.scrollIntoView({ behavior: 'smooth' });
+                                                                    clearInterval(interval); // Stop polling once section is found
+                                                                }
+                                                            }, 10); // Polling every 100ms
                                                         }
                                                     };
                                                 </script>
