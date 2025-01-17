@@ -116,7 +116,6 @@ router.get('/', async (req, res) => {
     const visionMissionData = await VisionMission.find({}).select('-image');
     const environmentData = await Environment.find({}).select('-image');
     const teacherData = await Teacher.find({}).select('-image');
-    console.log(teacherData);
     // const programData = await Program.find({});
     // const reviewData = await Review.find({});
 
