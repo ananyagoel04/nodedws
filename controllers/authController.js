@@ -42,7 +42,7 @@ module.exports.loginUser = async function (req, res) {
             return res.render("login", { errorMessage: "Incorrect password. Please try again." });
         }
     } catch (err) {
-        return res.render("login", { errorMessage: "An error occurred. Please try again." });
+        return res.redirect("/login?errorMessage=An error occurred. Please try again.");
     }
 };
 
@@ -64,7 +64,6 @@ module.exports.changePassword = async function (req, res) {
     try {
         // Extract userId from URL parameters and password details from the body
         const { userId ,updatedPassword, confirmPassword } = req.body;
-        console.log(userId ,updatedPassword, confirmPassword);
 
         // Ensure all required fields are present
         if (!updatedPassword || !confirmPassword) {
