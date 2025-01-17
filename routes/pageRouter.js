@@ -231,7 +231,7 @@ router.get('/class_students/:id', async (req, res) => {
 
 router.get('/admissions', async (req, res) => {
   try {
-    const homeimgData = await Homeimg.find({});
+    const homeimgData = await Homeimg.find({}).select('_id');
     res.render('admissions',{homeimgData});
   } catch (err) {
     console.error(err);
