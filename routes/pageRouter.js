@@ -121,15 +121,15 @@ router.get('/', async (req, res) => {
 
     let randomAd = null;
 
-    // Fetch a random ad if not already seen
-    if (!req.session.adSeen) {
-      randomAd = await Ad.aggregate([{ $sample: { size: 1 } }]);
-      randomAd = randomAd[0] || null;
+    // // Fetch a random ad if not already seen
+    // if (!req.session.adSeen) {
+    //   randomAd = await Ad.aggregate([{ $sample: { size: 1 } }]);
+    //   randomAd = randomAd[0] || null;
 
-      if (randomAd) {
-        req.session.adSeen = true;
-      }
-    }
+    //   if (randomAd) {
+    //     req.session.adSeen = true;
+    //   }
+    // }
 
     res.render('index', {
       homeimgData,
