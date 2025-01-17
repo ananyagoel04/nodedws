@@ -147,12 +147,8 @@ router.get('/', async (req, res) => {
 
 router.get('/about', async (req, res) => {
   try {
-    const aboutImages = await AboutImage.find({});
-    const messages = await Message.find({});
     const { successMessage, errorMessage } = req.query;
     res.render('About', {
-      aboutImages,
-      messages,
       successMessage,
       errorMessage,
     });
