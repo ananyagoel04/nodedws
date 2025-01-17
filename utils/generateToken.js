@@ -5,7 +5,14 @@ const generateToken = (user) => {
     if (!secretKey) {
         throw new Error("JWT_KEY is not defined");
     }
-    return jwt.sign({ email: user.email, id: user._id }, secretKey);
+
+    const token = jwt.sign(
+        { email: user.email, id: user._id },
+        secretKey,
+        { expiresIn: '12h' }
+    );
+
+    return token;
 };
 
 module.exports.generateToken = generateToken;
