@@ -3,18 +3,16 @@ const dbgr = require('debug')('development:mongoose');
 require('dotenv').config();
 const mongoURI = process.env.DATA_BASE;
 
-
-// Reuse existing connection
 mongoose.connection.on('connected', () => {
-  dbgr('Mongoose connected to DB');
+  console.log('Mongoose connected to DB');
 });
 
 mongoose.connection.on('error', (err) => {
-  dbgr('Mongoose connection error:', err);
+  console.log('Mongoose connection error:', err);
 });
 
 mongoose.connection.on('disconnected', () => {
-  dbgr('Mongoose connection lost. Attempting to reconnect...');
+  console.log('Mongoose connection lost. Attempting to reconnect...');
 });
 
 mongoose.connect(mongoURI, {
@@ -22,7 +20,7 @@ mongoose.connect(mongoURI, {
   socketTimeoutMS: 45000, 
   serverSelectionTimeoutMS: 5000,
 }).catch((err) => {
-  dbgr('Error connecting to MongoDB', err);
+  console.log('Error connecting to MongoDB', err);
 });
 
 module.exports = mongoose.connection;
