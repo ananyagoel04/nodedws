@@ -18,7 +18,7 @@ mongoose.connection.on('disconnected', () => {
 });
 
 mongoose.connect(mongoURI, {
-  connectTimeoutMS: 10000,
+  connectTimeoutMS: 120000,
   socketTimeoutMS: 45000, 
   serverSelectionTimeoutMS: 5000,
 }).catch((err) => {

@@ -7,6 +7,8 @@
                 background-color: #f3f0fc;
             }
         </style>
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     </head>
 
     <body>
@@ -153,8 +155,7 @@
 
             <div class="mx-auto my-auto md:w-2/4" data-aos="fade-up">
                 <% if (homeimgData && homeimgData.length> 0) { %>
-                    <img alt="<%= homeimgData[0].image_title %>"
-                        src="data:image/jpeg;base64,<%= homeimgData[0].image.toString('base64') %>"
+                    <img alt="<%= homeimgData[0].image_title %>" src="/homeimg/<%= homeimgData[0]._id %>"
                         class="w-fit mx-auto aspect-auto rounded-xl">
                     <% } else { %>
                         No image
@@ -444,14 +445,14 @@
                     <div class="mx-auto w-full lg:pl-4 hidden md:block">
                         <% if (visionMissionData && visionMissionData.length> 0) { %>
                             <!-- First Vision & Mission Image -->
-                            <img src="data:image/jpeg;base64,<%= visionMissionData[0].image.toString('base64') %>"
+                            <img src="/visionmission/<%= visionMissionData[0]._id %>" loading="lazy"
                                 alt="<%= visionMissionData[0].image_title %>"
                                 class="w-[300px] h-[400px] ml-[100px] rounded-2xl">
                             <% } %>
 
                                 <% if (visionMissionData && visionMissionData.length> 1) { %>
                                     <!-- Second Vision & Mission Image -->
-                                    <img src="data:image/jpeg;base64,<%= visionMissionData[1].image.toString('base64') %>"
+                                    <img src="/visionmission/<%= visionMissionData[1]._id %>" loading="lazy"
                                         alt="<%= visionMissionData[1].image_title %>"
                                         class="w-[200px] h-[200px] rounded-2xl -mt-[100px]">
                                     <% } %>
@@ -459,14 +460,14 @@
                     <div class="mx-auto w-full lg:pl-4 md:hidden">
                         <% if (visionMissionData && visionMissionData.length> 0) { %>
                             <!-- First Vision & Mission Image -->
-                            <img src="data:image/jpeg;base64,<%= visionMissionData[0].image.toString('base64') %>"
+                            <img src="/visionmission/<%= visionMissionData[0]._id %>" loading="lazy"
                                 alt="<%= visionMissionData[0].image_title %>"
                                 class="w-[300px] h-[300px] rounded-2xl mb-4 mx-auto">
                             <% } %>
 
                                 <% if (visionMissionData && visionMissionData.length> 1) { %>
                                     <!-- Second Vision & Mission Image -->
-                                    <img src="data:image/jpeg;base64,<%= visionMissionData[1].image.toString('base64') %>"
+                                    <img src="/visionmission/<%= visionMissionData[1]._id %>" loading="lazy"
                                         alt="<%= visionMissionData[1].image_title %>"
                                         class="w-[300px] h-[300px] rounded-2xl mx-auto">
                                     <% } %>
@@ -518,12 +519,12 @@
                 <div data-aos="fade-up" class=" mx-auto my-auto md:w-1/2 max-w-lg md:hidden">
                     <div class="mx-auto w-full p-8 hidden md:block">
                         <% if (environmentData && environmentData.length> 0) { %>
-                            <img src="data:image/jpeg;base64,<%= environmentData[0].image.toString('base64') %>"
+                            <img src="/environment/<%= environmentData[0]._id %>" loading="lazy"
                                 alt="<%= environmentData[0].image_title %>"
                                 class="w-[300px] h-[400px] ml-[100px] rounded-2xl">
                             <% } %>
                                 <% if (environmentData && environmentData.length> 1) { %>
-                                    <img src="data:image/jpeg;base64,<%= environmentData[1].image.toString('base64') %>"
+                                    <img src="/environment/<%= environmentData[1]._id %>" loading="lazy"
                                         alt="<%= environmentData[1].image_title %>"
                                         class="w-[200px] h-[200px] rounded-2xl -mt-[100px]">
                                     <% } %>
@@ -531,14 +532,14 @@
                     <div class="mx-auto w-full lg:pl-4 md:hidden">
                         <% if (environmentData && environmentData.length> 0) { %>
                             <!-- First Vision & Mission Image -->
-                            <img src="data:image/jpeg;base64,<%= environmentData[0].image.toString('base64') %>"
+                            <img src="/environment/<%= environmentData[0]._id %>" loading="lazy"
                                 alt="<%= environmentData[0].image_title %>"
                                 class="w-[300px] h-[300px] rounded-2xl mb-4 mx-auto">
                             <% } %>
 
                                 <% if (environmentData && environmentData.length> 1) { %>
                                     <!-- Second Vision & Mission Image -->
-                                    <img src="data:image/jpeg;base64,<%= environmentData[1].image.toString('base64') %>"
+                                    <img src="/environment/<%= environmentData[1]._id %>" loading="lazy"
                                         alt="<%= environmentData[1].image_title %>"
                                         class="w-[300px] h-[300px] rounded-2xl mx-auto">
                                     <% } %>
@@ -632,12 +633,12 @@
                 <div data-aos="fade-up" class=" mx-auto my-auto md:w-1/2 max-w-lg flex-shrink-0 hidden md:flex">
                     <div class="mx-auto w-full ml-12">
                         <% if (environmentData && environmentData.length> 0) { %>
-                            <img src="data:image/jpeg;base64,<%= environmentData[0].image.toString('base64') %>"
+                            <img src="/environment/<%= environmentData[0]._id %>" loading="lazy"
                                 alt="<%= environmentData[0].image_title %>"
                                 class="w-[300px] h-[400px] ml-[100px] rounded-2xl">
                             <% } %>
                                 <% if (environmentData && environmentData.length> 1) { %>
-                                    <img src="data:image/jpeg;base64,<%= environmentData[1].image.toString('base64') %>"
+                                    <img src="/environment/<%= environmentData[1]._id %>" loading="lazy"
                                         alt="<%= environmentData[1].image_title %>"
                                         class="w-[200px] h-[200px] rounded-2xl -mt-[100px]">
                                     <% } %>
@@ -653,8 +654,7 @@
                     <% teacherData.forEach(function(teacher, index) { %>
                         <div class="flex-row mb-4 sm:mb-0">
                             <div>
-                                <img src="data:image/jpeg;base64,<%= teacher.image.toString('base64') %>"
-                                    alt="<%= teacher.image_title %>"
+                                <img src="/teacher/<%= teacher._id %>" alt="<%= teacher.image_title %>" loading="lazy"
                                     class="mx-auto my-auto rounded-2xl h-80 xl:h-96 xl:w-72 lg:w-56 md:w-72 w-full sm:w-64 <%= (index % 2 === 1) ? 'sm:mt-12' : '' %>">
                             </div>
                             <div class="text-center my-2">
@@ -1089,45 +1089,26 @@
             <%- include("logo.ejs") %>
         </div>
 
-
-
-        <!-- <div class="w-auto mx-auto mb-0 justify-center max-w-screen-xl p-5 mt-1">
-        <span class="text-sm text-gray-500 text-center dark:text-gray-400">© 2023 <a href=""
-                class="hover:underline">DIVINE WISDOM SCHOOL</a>. All Rights Reserved.
-        </span>
-    </div> -->
         <% if (randomAd) { %>
             <!-- Modal Backdrop with Blur and Transition -->
             <div id="modal1"
                 class="modal fixed inset-0 bg-opacity-50 w-full h-full flex justify-center z-50 items-center scale-100 opacity-100 transition-all duration-500 ease-out">
-                <!-- Modal Header -->
                 <div class="absolute top-0 p-2 z-50 bg-opacity-50 w-full">
                     <h2 class="text-xl text-whit absolute left-0 px-4 py-4 font-semibold text-center w-full "
                         id="imageSlideshowTitle">
                     </h2>
-                    <!-- <button class="absolute top-0 z-50 right-0 p-2 px-4 text-white" onclick="closeModal('modal1')">
-              <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g id="SVGRepo_iconCarrier">
-                  <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="#ffffff" stroke-width="0.72" stroke-linecap="round"></path>
-                  <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="#ffffff" stroke-width="0.72" stroke-linecap="round"></path>
-                </g>
-              </svg>
-            </button> -->
                 </div>
-
-                <!-- Modal Content -->
                 <div
                     class="modal-content px-4 py-10 pt-12 shadow-md flex flex-col items-center relative bg-black bg-opacity-50 w-full h-full overflow-hidden">
                     <div class="relative w-full h-full flex-grow overflow-hidden">
                         <!-- Ad Image -->
-                        <img src="data:image/png;base64,<%= randomAd.image.toString('base64') %>"
+                        <img src="data:image/png;base64,<%= randomAd.image.toString('base64') %>" loading="lazy"
                             alt="<%= randomAd.title %>" class="w-full h-full object-contain rounded-md -top-2">
                     </div>
                 </div>
 
-                <!-- Modal Footer -->
                 <div class="absolute bottom-0 p-4 w-full">
-                    <p class="text-2xl font-medium text-white text-center" id="imageFooter">
+                    <p class="text-2xl font-medium text-white text-center">
                     </p>
                 </div>
             </div>
@@ -1139,30 +1120,23 @@
                     modal.classList.add('hidden');
                     enableScrolling();
                 }
-            
-                // Disable scrolling when modal is shown
                 function disableScrolling() {
                     document.body.style.overflow = 'hidden';
                 }
-            
-                // Enable scrolling when modal is closed
                 function enableScrolling() {
                     document.body.style.overflow = '';
                 }
-            
-                // Automatically disable scrolling when the page is loaded
                 document.addEventListener('DOMContentLoaded', function () {
                     disableScrolling();
-            
+
                     // Automatically close the modal after 10 seconds
                     setTimeout(function () {
                         closeModal('modal1');
                     }, 10000); // Close modal after 10 seconds (10000 ms)
                 });
-            </script>            
+            </script>
 
             <style>
-                /* Modal Transition Styles */
                 .modal {
                     transition: opacity 0.5s ease-out, transform 0.5s ease-out;
                     transform: scale(0.9);
@@ -1176,7 +1150,6 @@
             </style>
             <% } %>
 
-                <!-- Cookie Consent -->
                 <% if (!cookieConsent) { %>
                     <div id="cookieConsent"
                         class="fixed bottom-0 left-0 right-0 bg-black bg-opacity-75 text-white p-2 text-center z-50">
@@ -1201,7 +1174,9 @@
                         });
                     </script>
                     <% } %>
-
+                        <script>
+                            AOS.init();
+                        </script>
                         <%- include("Footer.ejs") %>
     </body>
 

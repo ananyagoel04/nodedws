@@ -1,4 +1,5 @@
 <%- include("header.ejs") %>
+
     <head>
         <link href="https://fonts.googleapis.com/css?family=Gochi Hand" rel="stylesheet">
 
@@ -6,6 +7,7 @@
             .background {
                 background-color: #f3f0fc;
             }
+
             input[type="number"]::-webkit-inner-spin-button,
             input[type="number"]::-webkit-outer-spin-button {
                 -webkit-appearance: none;
@@ -49,8 +51,8 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-6 gap-4 bg-[#f3f0fc]">
                 <% aboutImages.forEach(img_data=> { %>
                     <div class="flex justify-center items-center">
-                        <img src="data:image/png;base64,<%= img_data.image.toString('base64') %>"
-                            alt="<%= img_data.image_title %>" class="w-full aspect-square h-auto rounded-md">
+                        <img src="/aboutimg/<%= img_data._id %>" loading="lazy" alt="<%= img_data.image_title %>"
+                            class="w-full aspect-square h-auto rounded-md">
                     </div>
                     <% }); %>
             </div>
@@ -325,8 +327,8 @@
                                                     <img src="/icons/dotedlines.svg"
                                                         class="mx-auto my-auto px-14 absolute inset-0 w-full h-96"
                                                         alt="" />
-                                                    <img src="https://storage.googleapis.com/a1aa/image/24105ed6-8884-4fd5-875d-2f7ef26a0baa.jpeg" alt="Second Image"
-                                                        class="relative z-10" />
+                                                    <img src="https://storage.googleapis.com/a1aa/image/24105ed6-8884-4fd5-875d-2f7ef26a0baa.jpeg"
+                                                        alt="Second Image" class="relative z-10" />
                                                 </div>
                                                 <div
                                                     class="block mx-auto my-auto md:w-1/2 p-8 relative md:mt-0 mt-10 z-50">
@@ -521,17 +523,17 @@
                                                 </div>
 
                                                 <script>
-                                                    window.onload = function() {
+                                                    window.onload = function () {
                                                         // Get the full URL including query parameters and hash
                                                         const currentUrl = window.location.href;
-                                                
+
                                                         // Decode the URL to handle encoded parts like "%23resume"
                                                         const decodedUrl = decodeURIComponent(currentUrl);
-                                                
+
                                                         // Check if either the decoded URL or the original URL contains "#resume"
                                                         if (decodedUrl.includes("#resume") || currentUrl.includes("%23resume")) {
                                                             // Poll every 100ms to check if the resume section becomes available
-                                                            const interval = setInterval(function() {
+                                                            const interval = setInterval(function () {
                                                                 const resumeSection = document.getElementById("resume");
                                                                 if (resumeSection) {
                                                                     // Scroll to the resume section once it's available
@@ -541,7 +543,7 @@
                                                             }, 100); // Polling every 100ms
                                                         }
                                                     };
-                                                </script>                                                                                                
+                                                </script>
                                                 <script>
                                                     function checkForm() {
                                                         // Check if all required fields are filled

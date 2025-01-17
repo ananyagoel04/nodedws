@@ -1039,9 +1039,6 @@ video {
 .max-w-lg {
   max-width: 32rem;
 }
-.max-w-screen-xl {
-  max-width: 1280px;
-}
 .flex-1 {
   flex: 1 1 0%;
 }
@@ -2728,10 +2725,5 @@ video {
 
   .dark\:hidden {
     display: none;
-  }
-
-  .dark\:text-gray-400 {
-    --tw-text-opacity: 1;
-    color: rgb(156 163 175 / var(--tw-text-opacity, 1));
   }
 }

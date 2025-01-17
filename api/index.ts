@@ -13,6 +13,7 @@ const studentRoutes = require('../routes/studentRouter');
 const galleryRoutes = require('../routes/galleryRoutes');
 const parentRoutes = require('../routes/parentRoutes');
 const adRouter = require('../routes/adRouter');
+const imghomeRouter = require('../routes/imagehomeRouter');
 
 const Ad = require('../models/ad');
 
@@ -48,6 +49,7 @@ app.use(express.static(path.join(__dirname, '..', 'public'), { maxAge: '1d' }));
 // Set up the route handlers
 app.use('/admin', isLoggedin, adminRouter);
 app.use('/', pageRouter);
+app.use('/', imghomeRouter);
 app.use('/admin', isLoggedin, aboutRoutes);
 app.use("/users", userRouter);
 app.use('/admin/tc',isLoggedin, studentRoutes);

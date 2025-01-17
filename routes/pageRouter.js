@@ -112,12 +112,13 @@ router.get('/', async (req, res) => {
     }
 
     // Fetch data
-    const homeimgData = await Homeimg.find({});
-    const visionMissionData = await VisionMission.find({});
-    const environmentData = await Environment.find({});
-    const teacherData = await Teacher.find({});
-    const programData = await Program.find({});
-    const reviewData = await Review.find({});
+    const homeimgData = await Homeimg.find({}).select('-image');
+    const visionMissionData = await VisionMission.find({}).select('-image');
+    const environmentData = await Environment.find({}).select('-image');
+    const teacherData = await Teacher.find({}).select('-image');
+    console.log(teacherData);
+    // const programData = await Program.find({});
+    // const reviewData = await Review.find({});
 
     let randomAd = null;
 
@@ -131,14 +132,11 @@ router.get('/', async (req, res) => {
       }
     }
 
-    // Render the index.ejs with the data
     res.render('index', {
       homeimgData,
       visionMissionData,
       environmentData,
       teacherData,
-      programData,
-      reviewData,
       randomAd,
       cookieConsent: req.cookies.cookieConsent,
     });

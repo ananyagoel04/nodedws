@@ -62,13 +62,14 @@ module.exports = {
         try {
             const { id } = req.params;
             const image = await AboutImage.findById(id);
+            const aboutImage = await AboutImage.findById(id).select('image');
             if (!image) {
                 return res.status(404).send('Image not found');
             }
-            res.send({
-                imageTitle: image.image_title,
-                imageData: image.image.toString('base64'),
-            });
+            const imageBuffer = aboutImage.image;
+            const mimeType = 'image/jpeg';
+            res.setHeader('Content-Type', mimeType);
+            res.send(imageBuffer);
         } catch (err) {
             console.error('Error fetching About image:', err);
             res.status(500).send('Error fetching About image');
