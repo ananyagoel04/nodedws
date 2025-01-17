@@ -29,14 +29,6 @@ app.use(methodOverride('_method'));
 
 require('dotenv').config();
 
-app.use(session({
-    secret: process.env.SESSION_KEY,
-    resave: false,             
-    saveUninitialized: true,   
-    cookie: { 
-      maxAge: 30 * 60 * 1000 
-    }
-  }));
 
 // Update the path to account for the 'api' directory
 app.set('views', path.join(__dirname, '..', 'views'));
