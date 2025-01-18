@@ -18,34 +18,15 @@
 
     <body>
         <div class="bg-[#f3f0fc]">
-            <!-- {% for img in objects %}
-        <div class="w-full h-96">
-            <object data="{{img}}" width="100%" height="100%">
-            </object>
-        </div>
-        {% endfor %} -->
-            <% if ((successMessage && successMessage.length> 0) || (errorMessage && errorMessage.length > 0)) { %>
-                <div
-                    class="text-center text-white <%= successMessage ? 'bg-green-700' : 'bg-red-700' %> rounded-full p-2 w-fit mx-auto">
-                    <%= successMessage || errorMessage %>
-                </div>
-
-                <script>
-                    // Redirect to the same URL for both success and error messages
-                    setTimeout(function () {
-                        window.location.href = '/about';
-                    }, 5000);
-                </script>
-                <% } %>
-                    <div class="text-center text-6xl font-bold">Why DWS ?</div>
-                    <div class="text-center xl:px-96 lg:px-60 md:px-44 px-8 text-xl leading-9 mt-2">
-                        Choose us for our holistic education approach, experienced faculty, personalized learning,
-                        state-of-the-art
-                        facilities, and commitment to nurturing well-rounded, future-ready individuals from nursery
-                        through
-                        grade
-                        12.
-                    </div>
+            <div class="text-center text-6xl font-bold">Why DWS ?</div>
+            <div class="text-center xl:px-96 lg:px-60 md:px-44 px-8 text-xl leading-9 mt-2">
+                Choose us for our holistic education approach, experienced faculty, personalized learning,
+                state-of-the-art
+                facilities, and commitment to nurturing well-rounded, future-ready individuals from nursery
+                through
+                grade
+                12.
+            </div>
         </div>
 
         <div class="bg-[#f3f0fc] xl:px-64 px-10 justify-start text-2xl">
@@ -328,13 +309,7 @@
 
             <h3 class="text-5xl text-center font-bold -mt-10">Explore yourself with
                 us</h3>
-            <H1 class="text-center md:px-56 my-4 px-10 bg-red-500 p-3 rounded w-fit mx-auto text-xl text-white">
-                Our server is under maintenance Please send us Your resume at
-                <a class="underline text-blue-500"
-                    href="mailto:info@divinewisdom.edu.in?cc=principal@divinewisdom.edu.in,management@divinewisdom.edu.in">
-                    info@divinewisdom.edu.in
-                </a>
-            </H1>
+
             <p class="text-center md:px-56 my-4 px-10">
                 Explore yourself with us at DIVINE WISDOM SCHOOL, where passionate
                 educators
@@ -349,6 +324,13 @@
             <div class="md:px-40 px-8 my-4">
                 <form action="/send-resume" method="POST" enctype="multipart/form-data" onsubmit="return checkForm()"
                     class="bg-white shadow-2xl w-full z-10 p-10 md:px-14 border-2 rounded-2xl">
+                    <H1 class="text-center my-4 px-10 bg-red-500 p-3 -mt-6 rounded-xl w-fit mx-auto text-xl text-white">
+                        Our server is under maintenance. Please send us Your resume at
+                        <a class="underline text-yellow-500"
+                            href="mailto:info@divinewisdom.edu.in?cc=principal@divinewisdom.edu.in,management@divinewisdom.edu.in">
+                            info@divinewisdom.edu.in
+                        </a>
+                    </H1>
                     <div class="text-3xl font-bold text-center md:text-left">Send us
                         your
                         Resume</div>
@@ -392,17 +374,6 @@
                             Send
                         </div>
                     </button>
-                    <% if (successMessage && successMessage.length> 0) { %>
-                        <div class="text-center text-green-400">
-                            <%= successMessage %>
-                        </div>
-                        <% } %>
-                            <!-- Display Error Message -->
-                            <% if (errorMessage && errorMessage.length> 0) { %>
-                                <div class="text-center text-red-400">
-                                    <%= errorMessage %>
-                                </div>
-                                <% } %>
 
                 </form>
             </div>
@@ -428,35 +399,6 @@
                         }, 100); // Polling every 100ms
                     }
                 };
-            </script>
-            <script>
-                function checkForm() {
-                    // Check if all required fields are filled
-                    var name = document.getElementsByName("Name")[0].value;
-                    var email = document.getElementsByName("Email")[0].value;
-                    var phone = document.getElementsByName("Phone")[0].value;
-                    var resume = document.getElementsByName("Resume")[0].files[0];
-                    var errorMessage = document.getElementById("error-message");
-                    var successMessage = document.getElementById("success-message");
-
-                    if (name === "" || email === "" || phone === "" || phone.length !== 10) {
-                        // Show the error message
-                        errorMessage.textContent = "Please fill out all the required fields.";
-                        errorMessage.style.display = "block";
-                        // Hide the success message
-                        successMessage.style.display = "none";
-                        // Prevent the form submission
-                        return false;
-                    } else if (phone.length !== 10) {
-                        // Show the error message
-                        errorMessage.textContent = "Phone number must be exactly 10 digits.";
-                        errorMessage.style.display = "block";
-                        // Hide the success message
-                        successMessage.style.display = "none";
-                        // Prevent the form submission
-                        return false;
-                    }
-                }
             </script>
         </div>
         <%- include("logo.ejs") %>
