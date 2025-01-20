@@ -104,28 +104,26 @@ router.get("/login", (req, res) => {
   res.render("login", { errorMessage });
 });
 
-// Home route - render index.ejs and pass data
 router.get('/', async (req, res) => {
   try {
+    // Set cookie consent if not already set
     if (!req.cookies.cookieConsent) {
       res.cookie('cookieConsent', 'true', { maxAge: 365 * 24 * 60 * 60 * 1000 });
     }
 
-    // Fetch data
-    const homeimgData = await Homeimg.find({}).select('-image');
-    const visionMissionData = await VisionMission.find({}).select('-image');
-    const environmentData = await Environment.find({}).select('-image');
-    const teacherData = await Teacher.find({}).select('-image');
-    // const programData = await Program.find({});
-    // const reviewData = await Review.find({});
+    // Fetch data in parallel
+    const [homeimgData, visionMissionData, environmentData, teacherData] = await Promise.all([
+      Homeimg.find({}),
+      VisionMission.find({}),
+      Environment.find({}),
+      Teacher.find({})
+    ]);
 
-    let randomAd = null;
-
-    // // Fetch a random ad if not already seen
+    // Optional: Fetch random ad if not already seen (if needed in the future)
+    // let randomAd = null;
     // if (!req.session.adSeen) {
     //   randomAd = await Ad.aggregate([{ $sample: { size: 1 } }]);
     //   randomAd = randomAd[0] || null;
-
     //   if (randomAd) {
     //     req.session.adSeen = true;
     //   }
@@ -136,14 +134,15 @@ router.get('/', async (req, res) => {
       visionMissionData,
       environmentData,
       teacherData,
-      randomAd,
+      randomAd: null, 
       cookieConsent: req.cookies.cookieConsent,
     });
   } catch (err) {
-    console.error(err);
+    console.error('Error fetching data:', err);
     res.status(500).send('Internal Server Error');
   }
 });
+
 
 router.get('/about', async (req, res) => {
   try {
@@ -228,7 +227,7 @@ router.get('/class_students/:id', async (req, res) => {
 router.get('/admissions', async (req, res) => {
   try {
     const homeimgData = await Homeimg.find({}).select('_id');
-    res.render('admissions',{homeimgData});
+    res.render('admissions', { homeimgData });
   } catch (err) {
     console.error(err);
     res.status(500).send('Internal Server Error');
