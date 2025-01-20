@@ -155,7 +155,7 @@
 
             <div class="mx-auto my-auto md:w-2/4" data-aos="fade-up">
                 <% if (homeimgData && homeimgData.length> 0) { %>
-                    <img alt="<%= homeimgData[0].image_title %>" src="/homeimg/<%= homeimgData[0]._id %>"
+                    <img alt="<%= homeimgData[0].image_title %>" src="<%= homeimgData[0].image_url %>" loading="lazy"
                         class="w-fit mx-auto aspect-auto rounded-xl">
                     <% } else { %>
                         No image
@@ -445,14 +445,14 @@
                     <div class="mx-auto w-full lg:pl-4 hidden md:block">
                         <% if (visionMissionData && visionMissionData.length> 0) { %>
                             <!-- First Vision & Mission Image -->
-                            <img src="/visionmission/<%= visionMissionData[0]._id %>" loading="lazy"
+                            <img src="<%= visionMissionData[0].image_url %>" loading="lazy"
                                 alt="<%= visionMissionData[0].image_title %>"
                                 class="w-[300px] h-[400px] ml-[100px] rounded-2xl">
                             <% } %>
 
                                 <% if (visionMissionData && visionMissionData.length> 1) { %>
                                     <!-- Second Vision & Mission Image -->
-                                    <img src="/visionmission/<%= visionMissionData[1]._id %>" loading="lazy"
+                                    <img src="<%= visionMissionData[1].image_url %>" loading="lazy"
                                         alt="<%= visionMissionData[1].image_title %>"
                                         class="w-[200px] h-[200px] rounded-2xl -mt-[100px]">
                                     <% } %>
@@ -460,14 +460,14 @@
                     <div class="mx-auto w-full lg:pl-4 md:hidden">
                         <% if (visionMissionData && visionMissionData.length> 0) { %>
                             <!-- First Vision & Mission Image -->
-                            <img src="/visionmission/<%= visionMissionData[0]._id %>" loading="lazy"
+                            <img src="<%= visionMissionData[0].image_url %>" loading="lazy"
                                 alt="<%= visionMissionData[0].image_title %>"
                                 class="w-[300px] h-[300px] rounded-2xl mb-4 mx-auto">
                             <% } %>
 
                                 <% if (visionMissionData && visionMissionData.length> 1) { %>
                                     <!-- Second Vision & Mission Image -->
-                                    <img src="/visionmission/<%= visionMissionData[1]._id %>" loading="lazy"
+                                    <img src="<%= visionMissionData[1].image_url %>" loading="lazy"
                                         alt="<%= visionMissionData[1].image_title %>"
                                         class="w-[300px] h-[300px] rounded-2xl mx-auto">
                                     <% } %>
@@ -519,12 +519,12 @@
                 <div data-aos="fade-up" class=" mx-auto my-auto md:w-1/2 max-w-lg md:hidden">
                     <div class="mx-auto w-full p-8 hidden md:block">
                         <% if (environmentData && environmentData.length> 0) { %>
-                            <img src="/environment/<%= environmentData[0]._id %>" loading="lazy"
+                            <img src="<%= environmentData[0].image_url %>" loading="lazy"
                                 alt="<%= environmentData[0].image_title %>"
                                 class="w-[300px] h-[400px] ml-[100px] rounded-2xl">
                             <% } %>
                                 <% if (environmentData && environmentData.length> 1) { %>
-                                    <img src="/environment/<%= environmentData[1]._id %>" loading="lazy"
+                                    <img src="<%= environmentData[1].image_url %>" loading="lazy"
                                         alt="<%= environmentData[1].image_title %>"
                                         class="w-[200px] h-[200px] rounded-2xl -mt-[100px]">
                                     <% } %>
@@ -532,14 +532,14 @@
                     <div class="mx-auto w-full lg:pl-4 md:hidden">
                         <% if (environmentData && environmentData.length> 0) { %>
                             <!-- First Vision & Mission Image -->
-                            <img src="/environment/<%= environmentData[0]._id %>" loading="lazy"
+                            <img src="<%= environmentData[0].image_url %>" loading="lazy"
                                 alt="<%= environmentData[0].image_title %>"
                                 class="w-[300px] h-[300px] rounded-2xl mb-4 mx-auto">
                             <% } %>
 
                                 <% if (environmentData && environmentData.length> 1) { %>
                                     <!-- Second Vision & Mission Image -->
-                                    <img src="/environment/<%= environmentData[1]._id %>" loading="lazy"
+                                    <img src="<%= environmentData[1].image_url %>" loading="lazy"
                                         alt="<%= environmentData[1].image_title %>"
                                         class="w-[300px] h-[300px] rounded-2xl mx-auto">
                                     <% } %>
@@ -633,12 +633,12 @@
                 <div data-aos="fade-up" class=" mx-auto my-auto md:w-1/2 max-w-lg flex-shrink-0 hidden md:flex">
                     <div class="mx-auto w-full ml-12">
                         <% if (environmentData && environmentData.length> 0) { %>
-                            <img src="/environment/<%= environmentData[0]._id %>" loading="lazy"
+                            <img src="<%= environmentData[0].image_url %>" loading="lazy"
                                 alt="<%= environmentData[0].image_title %>"
                                 class="w-[300px] h-[400px] ml-[100px] rounded-2xl">
                             <% } %>
                                 <% if (environmentData && environmentData.length> 1) { %>
-                                    <img src="/environment/<%= environmentData[1]._id %>" loading="lazy"
+                                    <img src="<%= environmentData[1].image_url %>" loading="lazy"
                                         alt="<%= environmentData[1].image_title %>"
                                         class="w-[200px] h-[200px] rounded-2xl -mt-[100px]">
                                     <% } %>
@@ -654,7 +654,7 @@
                     <% teacherData.forEach(function(teacher, index) { %>
                         <div class="flex-row mb-4 sm:mb-0">
                             <div>
-                                <img src="/teacher/<%= teacher._id %>" alt="<%= teacher.image_title %>" loading="lazy"
+                                <img src="<%= teacher.image_url %>" alt="<%= teacher.image_title %>" loading="lazy"
                                     class="mx-auto my-auto rounded-2xl h-80 xl:h-96 xl:w-72 lg:w-56 md:w-72 w-full sm:w-64 <%= (index % 2 === 1) ? 'sm:mt-12' : '' %>">
                             </div>
                             <div class="text-center my-2">

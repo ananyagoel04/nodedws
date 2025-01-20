@@ -39,7 +39,7 @@ app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, '..', 'public'), { maxAge: '1d' }));
 
 // Set up the route handlers
-app.use('/admin', isLoggedin, adminRouter);
+app.use('/admin', adminRouter);
 app.use('/', pageRouter);
 app.use('/', imghomeRouter);
 app.use('/admin', isLoggedin, aboutRoutes);

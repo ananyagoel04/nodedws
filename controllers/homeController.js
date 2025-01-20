@@ -1,3 +1,6 @@
+const cloudinary = require('../config/cloudinaryConfig');
+const https = require('https');
+const path = require('path');
 const {
     Homeimg,
     VisionMission,
@@ -7,8 +10,6 @@ const {
     Review
 } = require('../models/home');
 const userModel = require("../models/user");
-
-
 const jwt = require('jsonwebtoken');
 
 module.exports = {
@@ -71,9 +72,40 @@ module.exports = {
     async createHomeImage(req, res) {
         try {
             const { image_title } = req.body;
-            const image = req.file.buffer;
-            const newImage = new Homeimg({ image_title, image });
+
+            if (!req.file) {
+                return res.status(400).send('No file uploaded');
+            }
+
+            const streamifier = require('streamifier');
+            const bufferStream = streamifier.createReadStream(req.file.buffer);
+
+            const uploadResult = await new Promise((resolve, reject) => {
+                const uploadStream = cloudinary.uploader.upload_stream(
+                    {
+                        folder: 'home_images',
+                        public_id: image_title,
+                        resource_type: 'image',
+                    },
+                    (error, result) => {
+                        if (error) {
+                            reject(error);
+                        }
+                        resolve(result);
+                    }
+                );
+
+                bufferStream.pipe(uploadStream);
+            });
+
+            const newImage = new Homeimg({
+                image_title,
+                image_url: uploadResult.secure_url,
+                public_id: uploadResult.public_id,
+            });
+
             await newImage.save();
+
             res.redirect('/admin/');
         } catch (err) {
             console.error(err);
@@ -85,20 +117,59 @@ module.exports = {
         try {
             const { id } = req.params;
             const { image_title } = req.body;
+
             const updates = { image_title };
-            if (req.file) updates.image = req.file.buffer;
-            await Homeimg.findByIdAndUpdate(id, updates, { new: true });
-            res.redirect('/admin/');
+
+            if (req.file) {
+                const streamifier = require('streamifier');
+                const bufferStream = streamifier.createReadStream(req.file.buffer);
+
+                const uploadResult = await new Promise((resolve, reject) => {
+                    const uploadStream = cloudinary.uploader.upload_stream(
+                        {
+                            folder: 'home_images',
+                            public_id: image_title,
+                        },
+                        (error, result) => {
+                            if (error) {
+                                reject(error);
+                            }
+                            resolve(result);
+                        }
+                    );
+                    bufferStream.pipe(uploadStream);
+                });
+
+                updates.image_url = uploadResult.secure_url;
+                updates.public_id = uploadResult.public_id;
+
+                await Homeimg.findByIdAndUpdate(id, updates, { new: true });
+
+                return res.redirect('/admin/');
+            } else {
+                await Homeimg.findByIdAndUpdate(id, updates, { new: true });
+                return res.redirect('/admin/');
+            }
         } catch (err) {
             console.error(err);
-            res.status(500).send('Error updating home image');
+            return res.status(500).send('Error updating home image');
         }
     },
 
     async deleteHomeImage(req, res) {
         try {
             const { id } = req.params;
+            const homeImage = await Homeimg.findById(id);
+            if (!homeImage) {
+                return res.status(404).send('Home image not found');
+            }
+
+            const publicId = homeImage.public_id;
+
+            await cloudinary.uploader.destroy(publicId);
+
             await Homeimg.findByIdAndDelete(id);
+
             res.redirect('/admin/');
         } catch (err) {
             console.error(err);
@@ -110,9 +181,40 @@ module.exports = {
     async createVisionMission(req, res) {
         try {
             const { image_title } = req.body;
-            const image = req.file.buffer;
-            const newItem = new VisionMission({ image_title, image });
-            await newItem.save();
+
+            if (!req.file) {
+                return res.status(400).send('No file uploaded');
+            }
+
+            const streamifier = require('streamifier');
+            const bufferStream = streamifier.createReadStream(req.file.buffer);
+
+            const uploadResult = await new Promise((resolve, reject) => {
+                const uploadStream = cloudinary.uploader.upload_stream(
+                    {
+                        folder: 'home_images',
+                        public_id: image_title,
+                        resource_type: 'image',
+                    },
+                    (error, result) => {
+                        if (error) {
+                            reject(error);
+                        }
+                        resolve(result);
+                    }
+                );
+
+                bufferStream.pipe(uploadStream);
+            });
+
+            const newImage = new VisionMission({
+                image_title,
+                image_url: uploadResult.secure_url,
+                public_id: uploadResult.public_id,
+            });
+
+            await newImage.save();
+
             res.redirect('/admin/');
         } catch (err) {
             console.error(err);
@@ -124,10 +226,39 @@ module.exports = {
         try {
             const { id } = req.params;
             const { image_title } = req.body;
+
             const updates = { image_title };
-            if (req.file) updates.image = req.file.buffer;
-            await VisionMission.findByIdAndUpdate(id, updates, { new: true });
-            res.redirect('/admin/');
+
+            if (req.file) {
+                const streamifier = require('streamifier');
+                const bufferStream = streamifier.createReadStream(req.file.buffer);
+
+                const uploadResult = await new Promise((resolve, reject) => {
+                    const uploadStream = cloudinary.uploader.upload_stream(
+                        {
+                            folder: 'home_images',
+                            public_id: image_title,
+                        },
+                        (error, result) => {
+                            if (error) {
+                                reject(error);
+                            }
+                            resolve(result);
+                        }
+                    );
+                    bufferStream.pipe(uploadStream);
+                });
+
+                updates.image_url = uploadResult.secure_url;
+                updates.public_id = uploadResult.public_id;
+
+                await VisionMission.findByIdAndUpdate(id, updates, { new: true });
+
+                return res.redirect('/admin/');
+            } else {
+                await VisionMission.findByIdAndUpdate(id, updates, { new: true });
+                return res.redirect('/admin/');
+            }
         } catch (err) {
             console.error(err);
             res.status(500).send('Error updating VisionMission item');
@@ -137,7 +268,17 @@ module.exports = {
     async deleteVisionMission(req, res) {
         try {
             const { id } = req.params;
+            const homeImage = await VisionMission.findById(id);
+            if (!homeImage) {
+                return res.status(404).send('VisionMission image not found');
+            }
+
+            const publicId = homeImage.public_id;
+
+            await cloudinary.uploader.destroy(publicId);
+
             await VisionMission.findByIdAndDelete(id);
+
             res.redirect('/admin/');
         } catch (err) {
             console.error(err);
@@ -149,9 +290,40 @@ module.exports = {
     async createEnvironment(req, res) {
         try {
             const { image_title } = req.body;
-            const image = req.file.buffer;
-            const newItem = new Environment({ image_title, image });
-            await newItem.save();
+
+            if (!req.file) {
+                return res.status(400).send('No file uploaded');
+            }
+
+            const streamifier = require('streamifier');
+            const bufferStream = streamifier.createReadStream(req.file.buffer);
+
+            const uploadResult = await new Promise((resolve, reject) => {
+                const uploadStream = cloudinary.uploader.upload_stream(
+                    {
+                        folder: 'home_images',
+                        public_id: image_title,
+                        resource_type: 'image',
+                    },
+                    (error, result) => {
+                        if (error) {
+                            reject(error);
+                        }
+                        resolve(result);
+                    }
+                );
+
+                bufferStream.pipe(uploadStream);
+            });
+
+            const newImage = new Environment({
+                image_title,
+                image_url: uploadResult.secure_url,
+                public_id: uploadResult.public_id,
+            });
+
+            await newImage.save();
+
             res.redirect('/admin/');
         } catch (err) {
             console.error(err);
@@ -163,10 +335,39 @@ module.exports = {
         try {
             const { id } = req.params;
             const { image_title } = req.body;
+
             const updates = { image_title };
-            if (req.file) updates.image = req.file.buffer;
-            await Environment.findByIdAndUpdate(id, updates, { new: true });
-            res.redirect('/admin/');
+
+            if (req.file) {
+                const streamifier = require('streamifier');
+                const bufferStream = streamifier.createReadStream(req.file.buffer);
+
+                const uploadResult = await new Promise((resolve, reject) => {
+                    const uploadStream = cloudinary.uploader.upload_stream(
+                        {
+                            folder: 'home_images',
+                            public_id: image_title,
+                        },
+                        (error, result) => {
+                            if (error) {
+                                reject(error);
+                            }
+                            resolve(result);
+                        }
+                    );
+                    bufferStream.pipe(uploadStream);
+                });
+
+                updates.image_url = uploadResult.secure_url;
+                updates.public_id = uploadResult.public_id;
+
+                await Environment.findByIdAndUpdate(id, updates, { new: true });
+
+                return res.redirect('/admin/');
+            } else {
+                await Environment.findByIdAndUpdate(id, updates, { new: true });
+                return res.redirect('/admin/');
+            }
         } catch (err) {
             console.error(err);
             res.status(500).send('Error updating environment item');
@@ -176,7 +377,17 @@ module.exports = {
     async deleteEnvironment(req, res) {
         try {
             const { id } = req.params;
+            const homeImage = await Environment.findById(id);
+            if (!homeImage) {
+                return res.status(404).send('Envirement image not found');
+            }
+
+            const publicId = homeImage.public_id;
+
+            await cloudinary.uploader.destroy(publicId);
+
             await Environment.findByIdAndDelete(id);
+
             res.redirect('/admin/');
         } catch (err) {
             console.error(err);
@@ -188,8 +399,35 @@ module.exports = {
     async createTeacher(req, res) {
         try {
             const { name, designation, image_title } = req.body;
-            const image = req.file.buffer;
-            const newTeacher = new Teacher({ name, designation, image_title, image });
+            if (!req.file) {
+                return res.status(400).send('No file uploaded');
+            }
+            const streamifier = require('streamifier');
+            const bufferStream = streamifier.createReadStream(req.file.buffer);
+            const uploadResult = await new Promise((resolve, reject) => {
+                const uploadStream = cloudinary.uploader.upload_stream(
+                    {
+                        folder: 'home_images',
+                        public_id: image_title,
+                        resource_type: 'image',
+                    },
+                    (error, result) => {
+                        if (error) {
+                            reject(error);
+                        }
+                        resolve(result);
+                    }
+                );
+
+                bufferStream.pipe(uploadStream);
+            });
+            const newTeacher = new Teacher({
+                name,
+                designation,
+                image_title,
+                image_url: uploadResult.secure_url,
+                public_id: uploadResult.public_id,
+            });
             await newTeacher.save();
             res.redirect('/admin/');
         } catch (err) {
@@ -203,9 +441,35 @@ module.exports = {
             const { id } = req.params;
             const { name, designation, image_title } = req.body;
             const updates = { name, designation, image_title };
-            if (req.file) updates.image = req.file.buffer;
-            await Teacher.findByIdAndUpdate(id, updates, { new: true });
-            res.redirect('/admin/');
+            if (req.file) {
+                const streamifier = require('streamifier');
+                const bufferStream = streamifier.createReadStream(req.file.buffer);
+
+                const uploadResult = await new Promise((resolve, reject) => {
+                    const uploadStream = cloudinary.uploader.upload_stream(
+                        {
+                            folder: 'home_images',
+                            public_id: image_title,
+                        },
+                        (error, result) => {
+                            if (error) {
+                                reject(error);
+                            }
+                            resolve(result);
+                        }
+                    );
+                    bufferStream.pipe(uploadStream);
+                });
+
+                updates.image_url = uploadResult.secure_url;
+                updates.public_id = uploadResult.public_id;
+
+                await Teacher.findByIdAndUpdate(id, updates, { new: true });
+                res.redirect('/admin/');
+            } else {
+                await Environment.findByIdAndUpdate(id, updates, { new: true });
+                return res.redirect('/admin/');
+            }
         } catch (err) {
             console.error(err);
             res.status(500).send('Error updating teacher');
@@ -215,7 +479,17 @@ module.exports = {
     async deleteTeacher(req, res) {
         try {
             const { id } = req.params;
+            const homeImage = await Teacher.findById(id);
+            if (!homeImage) {
+                return res.status(404).send('Teacher image not found');
+            }
+
+            const publicId = homeImage.public_id;
+
+            await cloudinary.uploader.destroy(publicId);
+
             await Teacher.findByIdAndDelete(id);
+
             res.redirect('/admin/');
         } catch (err) {
             console.error(err);
@@ -303,100 +577,34 @@ module.exports = {
     async getHomeImageById(req, res) {
         try {
             const { id } = req.params;
-            const homeImage = await Homeimg.findById(id).select('image');
-            if (!homeImage || !homeImage.image) {
+            const homeImage = await Homeimg.findById(id).select('image_url');
+
+            if (!homeImage || !homeImage.image_url) {
                 return res.status(404).send("Home image not found");
             }
-            const imageBuffer = homeImage.image;
-            const mimeType = 'image/jpeg';
-            res.setHeader('Content-Type', mimeType);
-            res.send(imageBuffer);
+
+            const imageUrl = homeImage.image_url;
+
+            https.get(imageUrl, (response) => {
+                if (response.statusCode !== 200) {
+                    console.log(`Error fetching image: ${response.statusCode}`);
+                    return res.status(500).send('Error fetching image from Cloudinary');
+                }
+                const ext = path.extname(imageUrl);
+                const mimeType = ext === '.jpg' || ext === '.jpeg' ? 'image/jpeg' : 'image/png';
+                console.log(`Detected MIME type: ${mimeType}`);
+
+                res.setHeader('Content-Type', mimeType);
+                response.pipe(res);
+                console.log('Piping image data to response');
+            }).on('error', (err) => {
+                console.error('Error during https request:', err);
+                return res.status(500).send('Error fetching image from Cloudinary');
+            });
+
         } catch (err) {
-            console.error(err);
-            res.status(500).send('Error retrieving home image');
-        }
-    },
-    async getVisionMissionById(req, res) {
-        try {
-            const { id } = req.params;
-            const visionMission = await VisionMission.findById(id).select('image');
-            if (!visionMission) {
-                return res.status(404).json({ message: "Vision Mission item not found" });
-            }
-            const imageBuffer = visionMission.image;
-            const mimeType = 'image/jpeg';
-            res.setHeader('Content-Type', mimeType);
-            res.send(imageBuffer);
-        } catch (err) {
-            console.error(err);
-            res.status(500).send('Error retrieving vision mission item');
-        }
-    },
-
-    async getEnvironmentById(req, res) {
-        try {
-            const { id } = req.params;
-            const environment = await Environment.findById(id).select('image');
-
-            if (!environment) {
-                return res.status(404).json({ message: "Environment item not found" });
-            }
-            const imageBuffer = environment.image;
-            const mimeType = 'image/jpeg';
-            res.setHeader('Content-Type', mimeType);
-            res.send(imageBuffer);
-        } catch (err) {
-            console.error(err);
-            res.status(500).send('Error retrieving environment item');
-        }
-    },
-
-    async getTeacherById(req, res) {
-        try {
-            const { id } = req.params;
-            const teacher = await Teacher.findById(id).select('image');
-            if (!teacher) {
-                return res.status(404).json({ message: "Teacher not found" });
-            }
-            const imageBuffer = teacher.image;
-            const mimeType = 'image/jpeg';
-            res.setHeader('Content-Type', mimeType);
-            res.send(imageBuffer);
-        } catch (err) {
-            console.error(err);
-            res.status(500).send('Error retrieving teacher');
-        }
-    },
-
-    async getProgramById(req, res) {
-        try {
-            const { id } = req.params;
-            const program = await Program.findById(id).select('image');
-
-            if (!program) {
-                return res.status(404).json({ message: "Program not found" });
-            }
-
-            res.json(program);  // Return the program item as JSON
-        } catch (err) {
-            console.error(err);
-            res.status(500).send('Error retrieving program');
-        }
-    },
-
-    async getReviewById(req, res) {
-        try {
-            const { id } = req.params;
-            const review = await Review.findById(id).select('image');
-
-            if (!review) {
-                return res.status(404).json({ message: "Review not found" });
-            }
-
-            res.json(review);  // Return the review item as JSON
-        } catch (err) {
-            console.error(err);
-            res.status(500).send('Error retrieving review');
+            console.error('Error retrieving home image:', err);
+            res.status(500).send('Error retrieving home image test');
         }
     }
 };

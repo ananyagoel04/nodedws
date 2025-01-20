@@ -10,7 +10,7 @@
         <section class="my-4">
             <!-- Home Images Section -->
             <% if (images && images.length> 0) { %>
-                <h2 class="text-2xl font-semibold text-gray-800 mb-4">only one image can be upload</h2>
+                <!-- <h2 class="text-2xl font-semibold text-gray-800 mb-4">only one image can be upload</h2> -->
                 <% } else { %>
                     <section class="bg-white p-6 rounded-lg shadow-md mb-8">
                         <h2 class="text-2xl font-semibold text-gray-800 mb-4">Home Images</h2>
@@ -53,7 +53,7 @@
                                                     <%= image.image_title %>
                                                 </td>
                                                 <td class="px-4 py-2 text-sm text-gray-700">
-                                                    <img src="data:image/png;base64,<%= image.image.toString('base64') %>"
+                                                    <img src="<%= image.image_url%>"
                                                         alt="<%= image.image_title %>" width="100" class="rounded-md">
                                                 </td>
                                                 <td class="px-4 py-2 space-x-2">
@@ -93,7 +93,7 @@
         <section class="my-4">
             <!-- Vision Mission Section -->
             <% if (visionMissions && visionMissions.length> 1) { %>
-                <h2 class="text-2xl font-semibold text-gray-800 mb-4">only one image can be upload</h2>
+                <!-- <h2 class="text-2xl font-semibold text-gray-800 mb-4">only one image can be upload</h2> -->
                 <% } else { %>
                     <section class="bg-white p-6 rounded-lg shadow-md mb-8">
                         <h2 class="text-2xl font-semibold text-gray-800 mb-4">Vision & Mission</h2>
@@ -137,7 +137,7 @@
                                                     <%= item.image_title %>
                                                 </td>
                                                 <td class="px-4 py-2 text-sm text-gray-700">
-                                                    <img src="data:image/png;base64,<%= item.image.toString('base64') %>"
+                                                    <img src="<%= item.image_url %>"
                                                         alt="<%= item.image_title %>" width="100" class="rounded-md">
                                                 </td>
                                                 <td class="px-4 py-2 space-x-2">
@@ -177,7 +177,7 @@
         <section class="my-4">
             <!-- Environment Section -->
             <% if (environments && environments.length> 1) { %>
-                <h2 class="text-2xl font-semibold text-gray-800 mb-4">only one image can be upload</h2>
+                <!-- <h2 class="text-2xl font-semibold text-gray-800 mb-4">only one image can be upload</h2> -->
                 <% } else { %>
                     <section class="bg-white p-6 rounded-lg shadow-md mb-8">
                         <h2 class="text-2xl font-semibold text-gray-800 mb-4">Environment</h2>
@@ -221,7 +221,7 @@
                                                     <%= item.image_title %>
                                                 </td>
                                                 <td class="px-4 py-2 text-sm text-gray-700">
-                                                    <img src="data:image/png;base64,<%= item.image.toString('base64') %>"
+                                                    <img src="<%= item.image_url %>"
                                                         alt="<%= item.image_title %>" width="100" class="rounded-md">
                                                 </td>
                                                 <td class="px-4 py-2 space-x-2">
@@ -276,9 +276,9 @@
                             <!-- Teacher Designation -->
                             <div>
                                 <label for="designation"
-                                    class="block text-sm font-medium text-gray-700">Designation:</label>
+                                    class="block text-sm font-medium text-gray-700">Education:</label>
                                 <input type="text" id="designation" name="designation"
-                                    placeholder="Enter Teacher's Designation" required
+                                    placeholder="Enter Teacher's Education" required
                                     class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                             </div>
 
@@ -326,7 +326,7 @@
                                                     <%= item.name %>
                                                 </td>
                                                 <td class="px-4 py-2 text-sm text-gray-700">
-                                                    <img src="data:image/png;base64,<%= item.image.toString('base64') %>"
+                                                    <img src="<%= item.image_url %>"
                                                         alt="<%= item.image_title %>" width="100" class="rounded-md">
                                                 </td>
                                                 <td class="px-4 py-2 space-x-2">
@@ -340,7 +340,7 @@
                                                         <input type="text" name="designation"
                                                             value="<%= item.designation %>" required
                                                             class="p-1 border border-gray-300 rounded-md"
-                                                            placeholder="Teacher's Designation">
+                                                            placeholder="Teacher's Education">
                                                         <input type="text" name="image_title"
                                                             value="<%= item.image_title %>" required
                                                             class="p-1 border border-gray-300 rounded-md"
