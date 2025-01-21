@@ -184,8 +184,10 @@ router.get('/tc', async (req, res) => {
 router.get('/gallery', async (req, res) => {
   try {
     // Fetch all data from MongoDB collections
-    const galleryItems = await Gallery.find({});
-    const maingalleryItems = await Maingallery.find({});
+    const [galleryItems, maingalleryItems] = await Promise.all([
+      Gallery.find({}),
+      Maingallery.find({}),
+    ]);
     res.render('gallery', {
       galleryItems,
       maingalleryItems,
