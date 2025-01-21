@@ -134,7 +134,7 @@ router.get('/', async (req, res) => {
       visionMissionData,
       environmentData,
       teacherData,
-      randomAd: null, 
+      randomAd: null,
       cookieConsent: req.cookies.cookieConsent,
     });
   } catch (err) {
@@ -146,8 +146,14 @@ router.get('/', async (req, res) => {
 
 router.get('/about', async (req, res) => {
   try {
+    const [aboutImages, messages] = await Promise.all([
+      AboutImage.find({}),
+      Message.find({}),
+    ]);
     const { successMessage, errorMessage } = req.query;
     res.render('About', {
+      aboutImages,
+      messages,
       successMessage,
       errorMessage,
     });

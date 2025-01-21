@@ -55,7 +55,7 @@
                                         <%= image.image_title %>
                                     </td>
                                     <td class="px-4 py-2 text-sm text-gray-700">
-                                        <img src="data:image/png;base64,<%= image.image.toString('base64') %>"
+                                        <img src="<%= image.image_url %>"
                                             alt="<%= image.image_title %>" width="100" class="rounded-md">
                                     </td>
                                     <td class="px-4 py-2 space-x-2">
@@ -131,7 +131,7 @@
                             <% messages.forEach(msg => { %>
                                 <tr class="border-b hover:bg-gray-50">
                                     <td class="px-4 py-2 text-sm text-gray-700">
-                                        <img src="data:image/png;base64,<%= msg.image.toString('base64') %>"
+                                        <img src="<%= msg.image_url%>"
                                             alt="<%= msg.image_title %>" width="100" class="rounded-md">
                                     </td>
                                     <td class="px-4 py-2 space-x-2">

@@ -2,6 +2,7 @@
 
     <head>
         <link href="https://fonts.googleapis.com/css?family=Gochi Hand" rel="stylesheet">
+
         <style>
             .background {
                 background-color: #f3f0fc;
@@ -17,312 +18,563 @@
 
     <body>
         <div class="bg-[#f3f0fc]">
-            <div class="text-center text-6xl font-bold">Why DWS ?</div>
-            <div class="text-center xl:px-96 lg:px-60 md:px-44 px-8 text-xl leading-9 mt-2">
-                Choose us for our holistic education approach, experienced faculty, personalized learning,
-                state-of-the-art facilities, and commitment to nurturing well-rounded, future-ready individuals from
-                nursery through grade 12.
-            </div>
+            <!-- {% for img in objects %}
+        <div class="w-full h-96">
+            <object data="{{img}}" width="100%" height="100%">
+            </object>
         </div>
-        <div class="bg-[#f3f0fc] xl:px-64 px-10 justify-start text-2xl">
-            <p class="p-4 text-justify">
-                Among prominent schools of the region Divine Wisdom School occupies a place of pride. It was established
-                in 2011 after the formation of Lala Atma Ram Memorial Society. Since inception, it has shown a
-                tremendous growth and progress. Divine Wisdom school was inaugurated on 12th March, 2011 by honourable
-                CPS, Chaudhary Sukh Ram. It started its working on 13th April, 2011 with enrollment of only 22 students.
-                By the grace of Almighty, the school has splendidly expanded.
-            </p>
-            <p class="p-4 text-justify"> The modern concept of education is child-centered. It was so in our ancient
-                system where the devoted Gurus focused all their time, energy and thoughts on the all-round development
-                of their disciples. This is so in our DIVINE WISDOM too, where there is a harmonious fusion of the
-                ancient and modern educational trends. By following this system, we are confident of providing the
-                children with ample opportunities for effective learning. The system also enables them to become worthy
-                citizens of the 21st century.Science & communication technology are taking rapid strides and the school
-                offers computer education. It has Internet facility also.
-            </p>
-            <p class="p-4 text-justify"> Admission tests are conducted at DIVINE WISDOM SCHOOL. The behavior of each and
-                every student is positively analysed and constructive solutions are arrived at Attitudinal change,
-                through special loving care is our proven experience.
-            </p>
-            <p class="p-4 text-justify"> No educational institution is more than its teachers. So the school bestows the
-                most modern dimensions to the role of teachers and pupils. The teachers and the students are constantly
-                undergoing an affectionate interaction with one another.
-            </p>
-        </div>
+        {% endfor %} -->
+            <% if ((successMessage && successMessage.length> 0) || (errorMessage && errorMessage.length > 0)) { %>
+                <div
+                    class="text-center text-white <%= successMessage ? 'bg-green-700' : 'bg-red-700' %> rounded-full p-2 w-fit mx-auto">
+                    <%= successMessage || errorMessage %>
+                </div>
 
-        <!-- Gradient -->
-        <!-- <div class="bg-gradient-to-b from-[#f3f0fc] from-0% to-white to-100% md:h-48 h-32"></div> -->
-        <!-- Gradient End -->
+                <script>
+                    // Redirect to the same URL for both success and error messages
+                    setTimeout(function () {
+                        window.location.href = '/about';
+                    }, 5000);
+                </script>
+                <% } %>
+                    <div class="text-center text-6xl font-bold">Why DWS ?</div>
+                    <div class="text-center xl:px-96 lg:px-60 md:px-44 px-8 text-xl leading-9 mt-2">
+                        Choose us for our holistic education approach, experienced faculty, personalized learning,
+                        state-of-the-art
+                        facilities, and commitment to nurturing well-rounded, future-ready individuals from nursery
+                        through
+                        grade
+                        12.
+                    </div>
+        </div>
+        <% if (aboutImages && aboutImages.length> 0) { %>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-6 gap-4 bg-[#f3f0fc]">
+                <% aboutImages.forEach(img_data=> { %>
+                    <div class="flex justify-center items-center">
+                        <img src="<%= img_data.image_url %>" loading="lazy" alt="<%= img_data.image_title %>"
+                            class="w-full aspect-square h-auto rounded-md">
+                    </div>
+                    <% }); %>
+            </div>
+            <% } else { %>
+                <p class="text-center text-gray-500 text-4xl w-full py-20 bg-[#f3f0fc]">No images found.</p>
+                <% } %>
+                    <div class="bg-[#f3f0fc] xl:px-64 px-10 justify-start text-2xl">
+                        <p class="p-4 text-justify">
+                            Among prominent schools of the region Divine Wisdom School occupies a place of pride. It was
+                            established in
+                            2011 after the formation of Lala Atma Ram Memorial Society. Since inception, it has shown a
+                            tremendous
+                            growth and progress. Divine Wisdom school was inaugurated on 12th March, 2011 by honourable
+                            CPS, Chaudhary
+                            Sukh Ram. It started its working on 13th April, 2011 with enrollment of only 22 students. By
+                            the grace of
+                            Almighty, the school has splendidly expanded.
+                        </p>
+                        <p class="p-4 text-justify">
+                            The modern concept of education is child-centered. It was so in our ancient system where the
+                            devoted Gurus
+                            focused all their time, energy and thoughts on the all-round development of their disciples.
+                            This is so in
+                            our DIVINE WISDOM too, where there is a harmonious fusion of the ancient and modern
+                            educational trends. By
+                            following this system, we are confident of providing the children with ample opportunities
+                            for effective
+                            learning. The system also enables them to become worthy citizens of the 21st century.Science
+                            & communication
+                            technology are taking rapid strides and the school offers computer education. It has
+                            Internet facility also.
+                        </p>
+                        <p class="p-4 text-justify">
+                            Admission tests are conducted at DIVINE WISDOM SCHOOL. The behavior of each and every
+                            student is positively
+                            analysed and constructive solutions are arrived at Attitudinal change, through special
+                            loving care is our
+                            proven experience.
+                        </p>
+                        <p class="p-4 text-justify">
+                            No educational institution is more than its teachers. So the school bestows the most modern
+                            dimensions to
+                            the role of teachers and pupils. The teachers and the students are constantly undergoing an
+                            affectionate
+                            interaction with one another.
+                        </p>
+                    </div>
 
-        <div class="block bg-[#f3f0fc] pb-4">
-            <div>
-                <h1 class="text-center md:text-6xl text-3xl lg:px-96 md:px-40 px-14 font-bold relative">
-                    A place for every child to learn and grow
-                </h1>
-            </div>
-            <div>
-                <img src="/icons/line2.svg" class="mx-auto lg:w-2/6 md:w-3/6 w-8/12 -mt-2 " alt="" />
-            </div>
-        </div>
-        <div class="block bg-[#4F49A5] text-white p-4 pt-16 pb-56">
-            <div class="text-center text-5xl font-bold xl:px-64">
-                Giving your child the best possible start to their education
-            </div>
-            <div class="text-center p-4">
-                Encourage early learning through engaging activities that foster curiosity and critical thinking,
-                setting a strong foundation for lifelong academic success.
-            </div>
-            <div class="md:grid grid-rows-2 grid-flow-col p-16 pt-0">
-                <div class="text-center">
-                    <div class="text-6xl font-bold py-4" style="font-family: 'Gochi Hand'">
-                        70+
-                    </div>
-                    <div>Teachers</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-6xl font-bold py-4" style="font-family: 'Gochi Hand'">
-                        10+
-                    </div>
-                    <div>Average years of teacher experience</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-6xl font-bold py-4" style="font-family: 'Gochi Hand'">
-                        30+
-                    </div>
-                    <div>Average number of students per class</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-6xl font-bold py-4" style="font-family: 'Gochi Hand'">
-                        5
-                    </div>
-                    <div>Student to teacher ratio</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-6xl font-bold py-4" style="font-family: 'Gochi Hand'">
-                        4
-                    </div>
-                    <div>Number of Sister Schools</div>
-                </div>
-                <div class="text-center">
-                    <div class="text-6xl font-bold py-4" style="font-family: 'Gochi Hand'">
-                        90%
-                    </div>
-                    <div>Student state exam percentile</div>
-                </div>
-            </div>
-            <div class="md:flex block" id="staff">
-                <div class="md:w-2/4 text-5xl font-bold p-6 text-center md:text-left mx-auto my-auto">
-                    Meet the awesome staff behind DIVINE WISDOM SCHOOL
-                </div>
-                <div class="md:w-2/4 p-8 px-16 text-2xl mx-auto my-auto">
-                    Meet the incredible team of educators and support staff at DIVINE WISDOM SCHOOL, whose expertise and
-                    commitment create a supportive learning environment. From passionate teachers who inspire curiosity
-                    to dedicated administrators ensuring smooth operations, each member plays a vital role in shaping
-                    students' educational journeys with care and excellence.
-                </div>
-            </div>
-        </div>
-        <div class="block sm:grid grid-cols-2 md:grid-cols-3 gap-4 p-6 relative top-0 -mt-48">
-            <div class="block">
-                <img class="h-auto max-w-full rounded-lg"
-                    src="https://www.shutterstock.com/blog/india/wp-content/uploads/sites/10/2018/08/teacher-day-featured.jpg"
-                    alt="" />
-                <!-- <div>Teacher Name and photo will be placed or else</div> -->
-            </div>
-            <div class="block">
-                <img class="h-auto max-w-full rounded-lg"
-                    src="https://www.learningroutes.in/_next/image?url=https%3A%2F%2Faskusedu.com%2Fblogdashboard%2Fwp-content%2Fuploads%2F2023%2F10%2Fteacher-professional-development.jpg&w=1920&q=75"
-                    alt="" />
-                <!-- <div>Teacher Name and photo will be placed or else</div> -->
-            </div>
-            <div class="block">
-                <img class="h-auto max-w-full rounded-lg"
-                    src="https://static.theprint.in/wp-content/uploads/2017/08/DIikHPKV4AAbjF0-696x522.jpg?compress=true&quality=80&w=376&dpr=2.6"
-                    alt="" />
-                <!-- <div>Teacher Name and photo will be placed or else</div> -->
-            </div>
-            <div class="block">
-                <img class="h-auto max-w-full rounded-lg"
-                    src="https://i0.wp.com/www.xamnation.com/wp-content/uploads/2019/09/849-03901398en_Masterfile.jpg?fit=450%2C300&ssl=1"
-                    alt="" />
-                <!-- <div>Teacher Name</div> -->
-            </div>
-            <div class="block">
-                <img class="h-auto max-w-full rounded-lg"
-                    src="https://img.freepik.com/premium-photo/world-teachers-day-concept-portrait-happy-indian-teacher-class_934629-462.jpg"
-                    alt="" />
-                <!-- <div>Teacher Name and photo will be placed or else</div> -->
-            </div>
-            <div class="block">
-                <img class="h-auto max-w-full rounded-lg"
-                    src="https://t3.ftcdn.net/jpg/06/47/16/36/360_F_647163613_Niia2kry7wlnFyhPoYzKlRCQgMAn8wmP.jpg"
-                    alt="" />
-                <!-- <div>Teacher Name and photo will be placed or else</div> -->
-            </div>
-        </div>
-        <div class="md:flex p-4 block my-12">
-            <div class="mx-auto my-auto md:w-1/2 max-w-lg md:hidden relative">
-                <img src="/icons/dotedlines.svg" class="mx-auto my-auto px-14 absolute inset-0 w-full h-96" alt="" />
-                <img src="https://storage.googleapis.com/a1aa/image/24105ed6-8884-4fd5-875d-2f7ef26a0baa.jpeg"
-                    alt="Second Image" class="relative z-10" />
-            </div>
-            <div class="block mx-auto my-auto md:w-1/2 p-8 relative md:mt-0 mt-10 z-50">
-                <div class="font-extrabold md:text-6xl text-4xl">Our core values and principles</div>
-                <div class="font-medium leading-8 mt-2">
-                    Our core values at DIVINE WISDOM SCHOOL center around integrity, respect, and academic excellence.
-                    These principles guide our community in fostering a supportive environment where students can thrive
-                    both academically and personally.
-                </div>
-                <div>
-                    <div class="flex py-4">
-                        <div class="pr-4">
-                            <img src="/icons/tick.svg" class="md:w-24 w-28 md:mt-1 mt-1" alt="">
+                    <!-- Gradient -->
+                    <div class="bg-gradient-to-b from-[#f3f0fc] from-0% to-white to-100% md:h-48 h-32"></div>
+                    <!-- Gradient End -->
+
+                    <div class="block">
+                        <div>
+                            <h1 class="text-center md:text-6xl text-3xl lg:px-96 md:px-40 px-14 font-bold relative">
+                                A place for every child to learn and grow
+                            </h1>
                         </div>
                         <div>
-                            <h1 class="text-2xl font-semibold">Excellence and Innovation</h1>
-                            <p class="md:pr-20">
-                                At DIVINE WISDOM SCHOOL, we strive for excellence in every aspect of education, from
-                                curriculum development to teaching methodologies. We continuously innovate to enhance
-                                learning experiences and prepare students for a rapidly changing world.
-                            </p>
+                            <img src="/icons/line2.svg" class="mx-auto lg:w-2/6 md:w-3/6 w-8/12 -mt-2 " alt="" />
                         </div>
                     </div>
-                    <div class="flex py-4">
-                        <div class="pr-4">
-                            <img src="/icons/tick.svg" class="md:w-24 w-28 md:mt-1 mt-1" alt="">
-                        </div>
-                        <div>
-                            <h1 class="text-2xl font-semibold">Creativity</h1>
-                            <p class="md:pr-20">
-                                Creativity is at the heart of our approach at DIVINE WISDOM SCHOOL. We encourage
-                                students to think outside the box, fostering imaginative thinking and innovative
-                                problem-solving skills that are essential for their future success.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex py-4">
-                        <div class="pr-4">
-                            <img src="/icons/tick.svg" class="md:w-24 w-28 md:mt-1 mt-1" alt="">
-                        </div>
-                        <div>
-                            <h1 class="text-2xl font-semibold">Trustworthiness</h1>
-                            <p class="md:pr-20">
-                                Trustworthiness is a core value embedded in everything we do at DIVINE WISDOM SCHOOL. We
-                                uphold high ethical standards and promote honesty, integrity, and reliability among our
-                                students, staff, and community.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="flex py-4">
-                        <div class="pr-4">
-                            <img src="/icons/tick.svg" class="md:w-24 w-28 md:mt-1 mt-1" alt="">
-                        </div>
-                        <div>
-                            <h1 class="text-2xl font-semibold">Nurturing Individuality</h1>
-                            <p class="md:pr-20">
-                                At DIVINE WISDOM SCHOOL, we celebrate and nurture the unique talents, interests, and
-                                perspectives of every student. We provide a supportive environment where each individual
-                                can thrive and develop into confident, self-aware learners.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="mx-auto my-auto md:w-1/2 max-w-lg md:relative hidden md:block">
-                <img src="/icons/dots.svg" alt="" class="w-48 top-16 relative z-40" />
-                <img src="/icons/circle.svg" alt="" class="absolute inset-0 w-full h-full mt-20" />
-                <img src="https://storage.googleapis.com/a1aa/image/24105ed6-8884-4fd5-875d-2f7ef26a0baa.jpeg"
-                    class="mx-auto my-auto relative z-10 w-96 h-96 rounded-3xl" alt="" />
-            </div>
-        </div>
-        <div class="" id="resume">
 
-            <h3 class="text-5xl text-center font-bold -mt-10">Explore yourself with us</h3>
-            <p class="text-center md:px-56 my-4 px-10">
-                Explore yourself with us at DIVINE WISDOM SCHOOL, where passionate educators are invited to join our
-                team in shaping young minds and making a meaningful impact through innovative teaching practices and
-                professional growth opportunities.
-            </p>
-            <div class="p-4">
-                <H1 class="text-center my-4 bg-red-500 p-3 rounded-xl w-fit mx-auto text-xl text-white">
-                    Our server is under maintenance. Please send us Your resume at
-                    <a class="underline text-black hover:text-white rounded-md px-2"
-                        href="mailto:info@divinewisdom.edu.in?cc=principal@divinewisdom.edu.in,management@divinewisdom.edu.in">
-                        info@divinewisdom.edu.in
-                    </a>
-                </H1>
-            </div>
-            <div class="md:px-40 px-8 my-4">
-                <form action="/send-resume" method="POST" enctype="multipart/form-data" onsubmit="return checkForm()"
-                    class="bg-white shadow-2xl w-full z-10 p-10 md:px-14 border-2 rounded-2xl">
-                    <div class="text-3xl font-bold text-center md:text-left">Send us your Resume</div>
-                    <br>
-                    <label for="">Name*</label>
-                    <br>
-                    <input type="text" placeholder='Name' name="Name" class="border-2 p-2 rounded-xl w-full h-10">
-                    <br>
-                    <label for="">Email*</label>
-                    <br>
-                    <input type="email" placeholder='xyz@gmail.com' name="Email"
-                        class="border-2 p-2 rounded-xl w-full h-10">
-                    <br>
-                    <label for="">Phone</label>
-                    <br>
-                    <input type="tel" placeholder='Phone Number' maxlength="10" name="Phone" maxlength="10"
-                        class="border-2 p-2 rounded-xl w-full h-10">
-                    <br>
-                    <label for="">Upload Your Resume*</label>
-                    <br>
-                    <input type="file" placeholder='Your Resume' name="Resume"
-                        class="border-2 p-2 rounded-xl w-full h-14">
-                    <br>
-                    <div class="bg-yellow-100 p-4 rounded-md border-l-4 border-yellow-500 my-2">
-                        <h1 class="text-sm text-red-600 font-semibold">
-                            <span class="text-red-500">NOTE:</span> File size must be less than 3MB. If you encounter a
-                            <span class="font-bold text-red-700">
-                                "Payload Too Large"</span> error, please reload the page, compress your file, and then
-                            upload your resume again.
-                        </h1>
-                    </div>
-                    <label for="">Message</label>
-                    <br>
-                    <textarea name="Message" placeholder='Message' id="" rows="4"
-                        class="w-full border-1 rounded-xl p-2 border-2"></textarea>
-                    <br>
-                    <button type="submit" tabindex="-1">
-                        <div
-                            class="p-2 px-4 lg:p-8 md:p-4 lg:py-2 md:py-2 w-fit text-center bg-[#F6C663] rounded-full text-lg font-medium my-auto hover:bg-[#F9BC3E]">
-                            Send
+                    <% if (messages && messages.length> 0) { %>
+                        <div class="md:flex p-4 block my-12">
+                            <div class="mx-auto my-auto md:w-1/2 max-w-lg md:hidden relative">
+                                <img src="/icons/dotedlines.svg"
+                                    class="mx-auto my-auto px-14 absolute inset-0 w-full h-96" alt="" />
+                                <img src="<%= messages[0].image_url%>" loading="lazy"
+                                    alt="<%= messages[0].name %>" class="relative z-10 mx-auto rounded-lg" />
+                            </div>
+                            <div class="block mx-auto my-auto z-50 md:w-1/2 p-8">
+                                <div
+                                    class="bg-[#D2C6FA] rounded-3xl w-fit my-4 p-2 text-center text-[#4F49A5] font-semibold rotate-[-1deg]">
+                                    Chairman's Message
+                                </div>
+                                <div class="font-extrabold md:text-6xl text-4xl">
+                                    <%= messages[0].name %>
+                                </div>
+                                <div class="font-medium leading-8">
+                                    <%= messages[0].message %>
+                                </div>
+                            </div>
+                            <div class="mx-auto my-auto md:w-1/2 max-w-lg z-10 md:relative hidden md:block">
+                                <!-- <img src="/icons/dots.svg" alt="" class="w-48 top-16 relative z-40" /> -->
+                                <img src="/icons/circle.svg" alt="" class="absolute inset-0 w-full h-full scale-125" />
+                                <img src="<%= messages[0].image_url%>" loading="lazy"
+                                    class="mx-auto my-auto relative z-10 w-96 h-96 rounded-3xl"
+                                    alt="<%= messages[0].name %>" />
+                            </div>
                         </div>
-                    </button>
+                        <% } %>
+                            <% if (messages && messages.length> 1) { %>
+                                <div class="md:flex p-4 block my-12">
+                                    <div class="mx-auto my-auto md:w-1/2 max-w-lg md:hidden relative">
+                                        <img src="/icons/dotedlines.svg"
+                                            class="mx-auto my-auto px-14 absolute inset-0 w-full h-96" alt="" />
+                                        <img src="<%= messages[1].image_url%>" loading="lazy"
+                                            alt="<%= messages[1].name %>" class="relative z-10 mx-auto rounded-lg" />
+                                    </div>
+                                    <div class="mx-auto my-auto md:w-1/2 max-w-lg md:relative hidden md:block">
+                                        <!-- <img src="/icons/dots.svg" alt="" class="w-48 top-16 relative z-40" /> -->
+                                        <img src="/icons/pink.svg" alt=""
+                                            class="absolute inset-0 w-full h-full scale-125" />
+                                        <img src="<%= messages[1].image_url%>" loading="lazy"
+                                            alt="<%= messages[1].name %>"
+                                            class="mx-auto my-auto relative z-10 w-96 h-96 rounded-3xl" />
+                                    </div>
+                                    <div class="block mx-auto my-auto z-50 md:w-1/2 p-8">
+                                        <div
+                                            class="bg-[#D2C6FA] rounded-3xl w-fit my-4 p-2 text-center text-[#4F49A5] font-semibold rotate-[-1deg]">
+                                            Director's Message
+                                        </div>
+                                        <div class="font-extrabold md:text-6xl text-4xl">
+                                            <%= messages[1].name %>
+                                        </div>
+                                        <div class="font-medium leading-8">
+                                            <%= messages[1].message %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <% } %>
+                                    <% if (messages && messages.length> 2) { %>
+                                        <div class="md:flex p-4 block my-12">
+                                            <div class="mx-auto my-auto md:w-1/2 max-w-lg md:hidden relative">
+                                                <img src="/icons/dotedlines.svg"
+                                                    class="mx-auto my-auto px-14 absolute inset-0 w-full h-96" alt="" />
+                                                <img src="<%= messages[2].image_url%>" loading="lazy"
+                                                    alt="<%= messages[2].name %>"
+                                                    class="relative z-10 mx-auto rounded-lg" />
+                                            </div>
+                                            <div class="block mx-auto my-auto md:w-1/2 z-50 p-8">
+                                                <div
+                                                    class="bg-[#D2C6FA] rounded-3xl w-fit my-4 p-2 text-center text-[#4F49A5] font-semibold rotate-[-1deg]">
+                                                    Principal's Message
+                                                </div>
+                                                <div class="font-extrabold md:text-6xl text-4xl">
+                                                    <%= messages[2].name %>
+                                                </div>
+                                                <div class="font-medium leading-8">
+                                                    <%= messages[2].message %>
+                                                </div>
+                                            </div>
+                                            <div class="mx-auto my-auto md:w-1/2 max-w-lg md:relative hidden md:block">
+                                                <!-- <img src="/icons/dots.svg" alt="" class="w-48 top-16 relative z-40" /> -->
+                                                <img src="/icons/lightpink.svg" alt=""
+                                                    class="absolute inset-0 w-full h-full scale-125" />
+                                                <img src="<%= messages[2].image_url%>" loading="lazy"
+                                                    alt="<%= messages[2].name %>"
+                                                    class="mx-auto my-auto relative z-10 w-96 h-96 rounded-3xl" />
+                                            </div>
+                                        </div>
+                                        <% } %>
+                                            <div class="block bg-[#4F49A5] text-white p-4 pt-16 pb-56">
+                                                <div class="text-center text-5xl font-bold xl:px-64">
+                                                    Giving your child the best possible start to their education
+                                                </div>
+                                                <div class="text-center p-4">
+                                                    Encourage early learning through engaging activities that foster
+                                                    curiosity
+                                                    and critical
+                                                    thinking, setting a
+                                                    strong foundation for lifelong academic success.
+                                                </div>
+                                                <div class="md:grid grid-rows-2 grid-flow-col p-16 pt-0">
+                                                    <div class="text-center">
+                                                        <div class="text-6xl font-bold py-4"
+                                                            style="font-family: 'Gochi Hand'">
+                                                            70+
+                                                        </div>
+                                                        <div>Teachers</div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div class="text-6xl font-bold py-4"
+                                                            style="font-family: 'Gochi Hand'">
+                                                            10+
+                                                        </div>
+                                                        <div>Average years of teacher experience</div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div class="text-6xl font-bold py-4"
+                                                            style="font-family: 'Gochi Hand'">
+                                                            30+
+                                                        </div>
+                                                        <div>Average number of students per class</div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div class="text-6xl font-bold py-4"
+                                                            style="font-family: 'Gochi Hand'">
+                                                            5
+                                                        </div>
+                                                        <div>Student to teacher ratio</div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div class="text-6xl font-bold py-4"
+                                                            style="font-family: 'Gochi Hand'">
+                                                            4
+                                                        </div>
+                                                        <div>Number of Sister Schools</div>
+                                                    </div>
+                                                    <div class="text-center">
+                                                        <div class="text-6xl font-bold py-4"
+                                                            style="font-family: 'Gochi Hand'">
+                                                            90%
+                                                        </div>
+                                                        <div>Student state exam percentile</div>
+                                                    </div>
+                                                </div>
+                                                <div class="md:flex block" id="staff">
+                                                    <div
+                                                        class="md:w-2/4 text-5xl font-bold p-6 text-center md:text-left mx-auto my-auto">
+                                                        Meet the awesome staff behind DIVINE WISDOM SCHOOL
+                                                    </div>
+                                                    <div class="md:w-2/4 p-8 px-16 text-2xl mx-auto my-auto">
+                                                        Meet the incredible team of educators and support staff at
+                                                        DIVINE WISDOM
+                                                        SCHOOL, whose
+                                                        expertise and
+                                                        commitment create a supportive learning environment. From
+                                                        passionate
+                                                        teachers who
+                                                        inspire curiosity to
+                                                        dedicated administrators ensuring smooth operations, each member
+                                                        plays a
+                                                        vital role in
+                                                        shaping students'
+                                                        educational journeys with care and excellence.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div
+                                                class="block sm:grid grid-cols-2 md:grid-cols-3 gap-4 p-6 relative top-0 -mt-48">
+                                                <div class="block">
+                                                    <img class="h-auto max-w-full rounded-lg"
+                                                        src="https://www.shutterstock.com/blog/india/wp-content/uploads/sites/10/2018/08/teacher-day-featured.jpg"
+                                                        alt="" />
+                                                    <!-- <div>Teacher Name and photo will be placed or else</div> -->
+                                                </div>
+                                                <div class="block">
+                                                    <img class="h-auto max-w-full rounded-lg"
+                                                        src="https://www.learningroutes.in/_next/image?url=https%3A%2F%2Faskusedu.com%2Fblogdashboard%2Fwp-content%2Fuploads%2F2023%2F10%2Fteacher-professional-development.jpg&w=1920&q=75"
+                                                        alt="" />
+                                                    <!-- <div>Teacher Name and photo will be placed or else</div> -->
+                                                </div>
+                                                <div class="block">
+                                                    <img class="h-auto max-w-full rounded-lg"
+                                                        src="https://static.theprint.in/wp-content/uploads/2017/08/DIikHPKV4AAbjF0-696x522.jpg?compress=true&quality=80&w=376&dpr=2.6"
+                                                        alt="" />
+                                                    <!-- <div>Teacher Name and photo will be placed or else</div> -->
+                                                </div>
+                                                <div class="block">
+                                                    <img class="h-auto max-w-full rounded-lg"
+                                                        src="https://i0.wp.com/www.xamnation.com/wp-content/uploads/2019/09/849-03901398en_Masterfile.jpg?fit=450%2C300&ssl=1"
+                                                        alt="" />
+                                                    <!-- <div>Teacher Name</div> -->
+                                                </div>
+                                                <div class="block">
+                                                    <img class="h-auto max-w-full rounded-lg"
+                                                        src="https://img.freepik.com/premium-photo/world-teachers-day-concept-portrait-happy-indian-teacher-class_934629-462.jpg"
+                                                        alt="" />
+                                                    <!-- <div>Teacher Name and photo will be placed or else</div> -->
+                                                </div>
+                                                <div class="block">
+                                                    <img class="h-auto max-w-full rounded-lg"
+                                                        src="https://t3.ftcdn.net/jpg/06/47/16/36/360_F_647163613_Niia2kry7wlnFyhPoYzKlRCQgMAn8wmP.jpg"
+                                                        alt="" />
+                                                    <!-- <div>Teacher Name and photo will be placed or else</div> -->
+                                                </div>
+                                            </div>
+                                            <div class="md:flex p-4 block my-12">
+                                                <div class="mx-auto my-auto md:w-1/2 max-w-lg md:hidden relative">
+                                                    <img src="/icons/dotedlines.svg"
+                                                        class="mx-auto my-auto px-14 absolute inset-0 w-full h-96"
+                                                        alt="" />
+                                                    <img src="https://storage.googleapis.com/a1aa/image/24105ed6-8884-4fd5-875d-2f7ef26a0baa.jpeg"
+                                                        alt="Second Image" class="relative z-10" />
+                                                </div>
+                                                <div
+                                                    class="block mx-auto my-auto md:w-1/2 p-8 relative md:mt-0 mt-10 z-50">
+                                                    <div class="font-extrabold md:text-6xl text-4xl">
+                                                        Our core values and principles
+                                                    </div>
+                                                    <div class="font-medium leading-8 mt-2">
+                                                        Our core values at DIVINE WISDOM SCHOOL center around integrity,
+                                                        respect, and academic
+                                                        excellence. These
+                                                        principles guide our community in fostering a supportive
+                                                        environment
+                                                        where students can
+                                                        thrive both
+                                                        academically and personally.
+                                                    </div>
+                                                    <div>
+                                                        <div class="flex py-4">
+                                                            <div class="pr-4">
+                                                                <img src="/icons/tick.svg"
+                                                                    class="md:w-24 w-28 md:mt-1 mt-1" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <h1 class="text-2xl font-semibold">Excellence and
+                                                                    Innovation
+                                                                </h1>
+                                                                <p class="md:pr-20">
+                                                                    At DIVINE WISDOM SCHOOL, we strive for excellence in
+                                                                    every
+                                                                    aspect of
+                                                                    education, from
+                                                                    curriculum development to teaching methodologies. We
+                                                                    continuously innovate
+                                                                    to enhance
+                                                                    learning experiences and prepare students for a
+                                                                    rapidly
+                                                                    changing world.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex py-4">
+                                                            <div class="pr-4">
+                                                                <img src="/icons/tick.svg"
+                                                                    class="md:w-24 w-28 md:mt-1 mt-1" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <h1 class="text-2xl font-semibold">Creativity</h1>
+                                                                <p class="md:pr-20">
+                                                                    Creativity is at the heart of our approach at DIVINE
+                                                                    WISDOM
+                                                                    SCHOOL. We
+                                                                    encourage students to
+                                                                    think outside the box, fostering imaginative
+                                                                    thinking and
+                                                                    innovative
+                                                                    problem-solving skills
+                                                                    that are essential for their future success.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex py-4">
+                                                            <div class="pr-4">
+                                                                <img src="/icons/tick.svg"
+                                                                    class="md:w-24 w-28 md:mt-1 mt-1" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <h1 class="text-2xl font-semibold">Trustworthiness</h1>
+                                                                <p class="md:pr-20">
+                                                                    Trustworthiness is a core value embedded in
+                                                                    everything we do
+                                                                    at DIVINE
+                                                                    WISDOM SCHOOL. We
+                                                                    uphold high ethical standards and promote honesty,
+                                                                    integrity, and
+                                                                    reliability among our
+                                                                    students, staff, and community.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                        <div class="flex py-4">
+                                                            <div class="pr-4">
+                                                                <img src="/icons/tick.svg"
+                                                                    class="md:w-24 w-28 md:mt-1 mt-1" alt="">
+                                                            </div>
+                                                            <div>
+                                                                <h1 class="text-2xl font-semibold">Nurturing
+                                                                    Individuality</h1>
+                                                                <p class="md:pr-20">
+                                                                    At DIVINE WISDOM SCHOOL, we celebrate and nurture
+                                                                    the unique
+                                                                    talents,
+                                                                    interests, and
+                                                                    perspectives of every student. We provide a
+                                                                    supportive
+                                                                    environment where
+                                                                    each individual can
+                                                                    thrive and develop into confident, self-aware
+                                                                    learners.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div
+                                                    class="mx-auto my-auto md:w-1/2 max-w-lg md:relative hidden md:block">
+                                                    <img src="/icons/dots.svg" alt=""
+                                                        class="w-48 top-16 relative z-40" />
+                                                    <img src="/icons/circle.svg" alt=""
+                                                        class="absolute inset-0 w-full h-full mt-20" />
+                                                    <img src="https://storage.googleapis.com/a1aa/image/24105ed6-8884-4fd5-875d-2f7ef26a0baa.jpeg"
+                                                        class="mx-auto my-auto relative z-10 w-96 h-96 rounded-3xl"
+                                                        alt="" />
+                                                </div>
+                                            </div>
+                                            <div class="" id="resume">
+                                                <h3 class="text-5xl text-center font-bold -mt-10">Explore yourself with
+                                                    us</h3>
+                                                <p class="text-center md:px-56 my-4 px-10">
+                                                    Explore yourself with us at DIVINE WISDOM SCHOOL, where passionate
+                                                    educators
+                                                    are invited to
+                                                    join our team in
+                                                    shaping young minds and making a meaningful impact through
+                                                    innovative
+                                                    teaching practices and
+                                                    professional
+                                                    growth opportunities.
+                                                </p>
+                                                <div class="md:px-40 px-8 my-4">
+                                                    <form action="/send-resume" method="POST"
+                                                        enctype="multipart/form-data" onsubmit="return checkForm()"
+                                                        class="bg-white shadow-2xl w-full z-10 p-10 md:px-14 border-2 rounded-2xl">
+                                                        <div class="text-3xl font-bold text-center md:text-left">Send us
+                                                            your
+                                                            Resume</div>
+                                                        <br>
+                                                        <label for="">Name*</label>
+                                                        <br>
+                                                        <input type="text" placeholder='Name' name="Name"
+                                                            class="border-2 p-2 rounded-xl w-full h-10">
+                                                        <br>
+                                                        <label for="">Email*</label>
+                                                        <br>
+                                                        <input type="email" placeholder='xyz@gmail.com' name="Email"
+                                                            class="border-2 p-2 rounded-xl w-full h-10">
+                                                        <br>
+                                                        <label for="">Phone</label>
+                                                        <br>
+                                                        <input type="tel" placeholder='Phone Number' maxlength="10"
+                                                            name="Phone" maxlength="10"
+                                                            class="border-2 p-2 rounded-xl w-full h-10">
+                                                        <br>
+                                                        <label for="">Upload Your Resume*</label>
+                                                        <br>
+                                                        <input type="file" placeholder='Your Resume' name="Resume"
+                                                            class="border-2 p-2 rounded-xl w-full h-14">
+                                                        <br>
+                                                        <div
+                                                            class="bg-yellow-100 p-4 rounded-md border-l-4 border-yellow-500 my-2">
+                                                            <h1 class="text-sm text-red-600 font-semibold">
+                                                                <span class="text-red-500">NOTE:</span> File size must
+                                                                be less than 3MB. If you encounter a
+                                                                <span class="font-bold text-red-700">"Payload Too
+                                                                    Large"</span> error, please reload the page,
+                                                                compress your file, and then upload your resume again.
+                                                            </h1>
+                                                        </div>
+                                                        <label for="">Message</label>
+                                                        <br>
+                                                        <textarea name="Message" placeholder='Message' id="" rows="4"
+                                                            class="w-full border-1 rounded-xl p-2 border-2"></textarea>
+                                                        <br>
+                                                        <button type="submit" tabindex="-1">
+                                                            <div
+                                                                class="p-2 px-4 lg:p-8 md:p-4 lg:py-2 md:py-2 w-fit text-center bg-[#F6C663] rounded-full text-lg font-medium my-auto hover:bg-[#F9BC3E]">
+                                                                Send
+                                                            </div>
+                                                        </button>
+                                                        <% if (successMessage && successMessage.length> 0) { %>
+                                                            <div class="text-center text-green-400">
+                                                                <%= successMessage %>
+                                                            </div>
+                                                            <% } %>
+                                                                <!-- Display Error Message -->
+                                                                <% if (errorMessage && errorMessage.length> 0) { %>
+                                                                    <div class="text-center text-red-400">
+                                                                        <%= errorMessage %>
+                                                                    </div>
+                                                                    <% } %>
 
-                </form>
-            </div>
+                                                    </form>
+                                                </div>
 
-            <script>
-                window.onload = function () {
-                    // Get the full URL including query parameters and hash
-                    const currentUrl = window.location.href;
+                                                <script>
+                                                    window.onload = function () {
+                                                        // Get the full URL including query parameters and hash
+                                                        const currentUrl = window.location.href;
 
-                    // Decode the URL to handle encoded parts like "%23resume"
-                    const decodedUrl = decodeURIComponent(currentUrl);
+                                                        // Decode the URL to handle encoded parts like "%23resume"
+                                                        const decodedUrl = decodeURIComponent(currentUrl);
 
-                    // Check if either the decoded URL or the original URL contains "#resume"
-                    if (decodedUrl.includes("#resume") || currentUrl.includes("%23resume")) {
-                        // Poll every 100ms to check if the resume section becomes available
-                        const interval = setInterval(function () {
-                            const resumeSection = document.getElementById("resume");
-                            if (resumeSection) {
-                                // Scroll to the resume section once it's available
-                                resumeSection.scrollIntoView({ behavior: 'smooth' });
-                                clearInterval(interval); // Stop polling once section is found
-                            }
-                        }, 100); // Polling every 100ms
-                    }
-                };
-            </script>
-        </div>
-        <%- include("logo.ejs") %>
-            <%- include("Footer.ejs") %>
+                                                        // Check if either the decoded URL or the original URL contains "#resume"
+                                                        if (decodedUrl.includes("#resume") || currentUrl.includes("%23resume")) {
+                                                            // Poll every 100ms to check if the resume section becomes available
+                                                            const interval = setInterval(function () {
+                                                                const resumeSection = document.getElementById("resume");
+                                                                if (resumeSection) {
+                                                                    // Scroll to the resume section once it's available
+                                                                    resumeSection.scrollIntoView({ behavior: 'smooth' });
+                                                                    clearInterval(interval); // Stop polling once section is found
+                                                                }
+                                                            }, 100); // Polling every 100ms
+                                                        }
+                                                    };
+                                                </script>
+                                                <script>
+                                                    function checkForm() {
+                                                        // Check if all required fields are filled
+                                                        var name = document.getElementsByName("Name")[0].value;
+                                                        var email = document.getElementsByName("Email")[0].value;
+                                                        var phone = document.getElementsByName("Phone")[0].value;
+                                                        var resume = document.getElementsByName("Resume")[0].files[0];
+                                                        var errorMessage = document.getElementById("error-message");
+                                                        var successMessage = document.getElementById("success-message");
 
-                </html>
+                                                        if (name === "" || email === "" || phone === "" || phone.length !== 10) {
+                                                            // Show the error message
+                                                            errorMessage.textContent = "Please fill out all the required fields.";
+                                                            errorMessage.style.display = "block";
+                                                            // Hide the success message
+                                                            successMessage.style.display = "none";
+                                                            // Prevent the form submission
+                                                            return false;
+                                                        } else if (phone.length !== 10) {
+                                                            // Show the error message
+                                                            errorMessage.textContent = "Phone number must be exactly 10 digits.";
+                                                            errorMessage.style.display = "block";
+                                                            // Hide the success message
+                                                            successMessage.style.display = "none";
+                                                            // Prevent the form submission
+                                                            return false;
+                                                        }
+                                                    }
+                                                </script>
+                                            </div>
+                                            <%- include("logo.ejs") %>
+                                                <%- include("Footer.ejs") %>
+
+                                                    </html>

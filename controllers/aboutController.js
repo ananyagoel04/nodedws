@@ -1,4 +1,29 @@
+const cloudinary = require('../config/cloudinaryConfig');
+const https = require('https');
+const path = require('path');
 const { AboutImage, Message } = require('../models/about');
+
+// Helper function for Cloudinary upload
+async function uploadImageToCloudinary(file, public_id, folder = 'about_images') {
+    const streamifier = require('streamifier');
+    const bufferStream = streamifier.createReadStream(file.buffer);
+    return new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+            {
+                folder: folder,
+                public_id: public_id,
+                resource_type: 'image',
+            },
+            (error, result) => {
+                if (error) {
+                    reject(error);
+                }
+                resolve(result);
+            }
+        );
+        bufferStream.pipe(uploadStream);
+    });
+}
 
 module.exports = {
     // ---------------------- AboutImage CRUD Operations ----------------------
@@ -6,9 +31,10 @@ module.exports = {
     // Get all About images data
     async getAllAboutData(req, res) {
         try {
-            const aboutImages = await AboutImage.find();
-            const messages = await Message.find();
-
+            const [aboutImages, messages] = await Promise.all([
+                AboutImage.find(),
+                Message.find()
+            ]);
             res.render('Admin/aboutadmin', { aboutImages, messages });
         } catch (err) {
             console.error('Error loading About data:', err);
@@ -20,9 +46,17 @@ module.exports = {
     async createAboutImage(req, res) {
         try {
             const { image_title } = req.body;
-            const image = req.file.buffer; // Get image buffer data from the uploaded file
-            const newAboutImage = new AboutImage({ image_title, image });
-            await newAboutImage.save();
+            if (!req.file) {
+                return res.status(400).send('Image file is required');
+            }
+
+            const uploadResult = await uploadImageToCloudinary(req.file, image_title);
+            const newImage = new AboutImage({
+                image_title,
+                image_url: uploadResult.secure_url,
+                public_id: uploadResult.public_id,
+            });
+            await newImage.save();
             res.redirect('/admin/about');
         } catch (err) {
             console.error('Error creating About image:', err);
@@ -36,7 +70,13 @@ module.exports = {
             const { id } = req.params;
             const { image_title } = req.body;
             const updates = { image_title };
-            if (req.file) updates.image = req.file.buffer; // If a new image is uploaded
+
+            if (req.file) {
+                const uploadResult = await uploadImageToCloudinary(req.file, image_title);
+                updates.image_url = uploadResult.secure_url;
+                updates.public_id = uploadResult.public_id;
+            }
+
             await AboutImage.findByIdAndUpdate(id, updates, { new: true });
             res.redirect('/admin/about');
         } catch (err) {
@@ -49,6 +89,10 @@ module.exports = {
     async deleteAboutImage(req, res) {
         try {
             const { id } = req.params;
+            const aboutImage = await AboutImage.findById(id);
+            if (!aboutImage) return res.status(404).send('About image not found');
+            
+            await cloudinary.uploader.destroy(aboutImage.public_id);
             await AboutImage.findByIdAndDelete(id);
             res.redirect('/admin/about');
         } catch (err) {
@@ -61,15 +105,11 @@ module.exports = {
     async getAboutImageById(req, res) {
         try {
             const { id } = req.params;
-            const image = await AboutImage.findById(id);
-            const aboutImage = await AboutImage.findById(id).select('image');
-            if (!image) {
+            const aboutImage = await AboutImage.findById(id);
+            if (!aboutImage) {
                 return res.status(404).send('Image not found');
             }
-            const imageBuffer = aboutImage.image;
-            const mimeType = 'image/jpeg';
-            res.setHeader('Content-Type', mimeType);
-            res.send(imageBuffer);
+            res.redirect(aboutImage.image_url);  // Redirect to the image URL or render it as needed
         } catch (err) {
             console.error('Error fetching About image:', err);
             res.status(500).send('Error fetching About image');
@@ -93,10 +133,21 @@ module.exports = {
     async createMessage(req, res) {
         try {
             const { name, message } = req.body;
-            const image = req.file ? req.file.buffer : null; // Check if image is uploaded
-            const newMessage = new Message({ name, message, image });
+            if (!req.file) {
+                return res.status(400).send('Image file is required');
+            }
+
+            const public_id = `${name}_${Date.now()}`; // Create unique public_id
+            const uploadResult = await uploadImageToCloudinary(req.file, public_id);
+
+            const newMessage = new Message({
+                name,
+                message,
+                image_url: uploadResult.secure_url,
+                public_id: uploadResult.public_id,
+            });
             await newMessage.save();
-            res.redirect('/admin/about'); // Redirect after saving
+            res.redirect('/admin/about');
         } catch (err) {
             console.error('Error creating message:', err);
             res.status(500).send('Error creating message');
@@ -109,9 +160,16 @@ module.exports = {
             const { id } = req.params;
             const { name, message } = req.body;
             const updates = { name, message };
-            if (req.file) updates.image = req.file.buffer; // If a new image is uploaded
+
+            if (req.file) {
+                const public_id = `${name}_${Date.now()}`; // Create unique public_id
+                const uploadResult = await uploadImageToCloudinary(req.file, public_id);
+                updates.image_url = uploadResult.secure_url;
+                updates.public_id = uploadResult.public_id;
+            }
+
             await Message.findByIdAndUpdate(id, updates, { new: true });
-            res.redirect('/admin/about'); // Redirect after updating
+            res.redirect('/admin/about');
         } catch (err) {
             console.error('Error updating message:', err);
             res.status(500).send('Error updating message');
@@ -122,8 +180,12 @@ module.exports = {
     async deleteMessage(req, res) {
         try {
             const { id } = req.params;
+            const message = await Message.findById(id);
+            if (!message) return res.status(404).send('Message not found');
+            
+            await cloudinary.uploader.destroy(message.public_id);
             await Message.findByIdAndDelete(id);
-            res.redirect('/admin/messages'); // Redirect after deleting
+            res.redirect('/admin/messages');
         } catch (err) {
             console.error('Error deleting message:', err);
             res.status(500).send('Error deleting message');
@@ -141,7 +203,7 @@ module.exports = {
             res.send({
                 name: message.name,
                 message: message.message,
-                imageData: message.image ? message.image.toString('base64') : null,
+                imageData: message.image_url ? message.image_url : null, // Return image URL
             });
         } catch (err) {
             console.error('Error fetching message:', err);
