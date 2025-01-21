@@ -10,26 +10,22 @@ const gallerySchema = new mongoose.Schema({
     type: String,
     default: 'Nature',
   },
-  image: {
-    type: Buffer,
-    required: true
-  }
+  image_url: { type: String, required: false, },
+  public_id: { type: String, required: false, },
 }, { timestamps: true });
 
 // Maingallery Schema
 const maingallerySchema = new mongoose.Schema({
-  image_title1: {
+  image_title: {
     type: String,
     required: true
   },
-  imagefilter1: {
+  imagefilter: {
     type: String,
     default: 'Nature',
   },
-  image1: {
-    type: Buffer,
-    required: true
-  }
+  image_url: { type: String, required: false, },
+  public_id: { type: String, required: false, },
 }, { timestamps: true });
 
 // Create Models for Gallery and Maingallery

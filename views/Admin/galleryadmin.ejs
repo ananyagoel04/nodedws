@@ -63,7 +63,7 @@
                                                         <%= item.image_title %>
                                                     </td>
                                                     <td class="px-4 py-2 text-sm text-gray-700">
-                                                        <img src="data:image/png;base64,<%= item.image.toString('base64') %>"
+                                                        <img src="<%= item.image_url %>"
                                                             alt="<%= item.image_title %>" width="100"
                                                             class="rounded-md">
                                                     </td>
@@ -120,9 +120,9 @@
                                 class="space-y-4">
                                 <input type="hidden" name="galleryType" id="galleryType" value="Maingallery">
                                 <div>
-                                    <label for="image_title1" class="block text-sm font-medium text-gray-700">Image
+                                    <label for="image_title" class="block text-sm font-medium text-gray-700">Image
                                         Title:</label>
-                                    <input type="text" id="image_title1" name="image_title"
+                                    <input type="text" id="image_title" name="image_title"
                                         placeholder="Enter Image Title" required
                                         class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                 </div>
@@ -168,14 +168,14 @@
                                             <% maingalleryItems.forEach(item=> { %>
                                                 <tr class="border-b hover:bg-gray-50">
                                                     <td class="px-4 py-2 text-sm text-gray-700">
-                                                        <%= item.image_title1 %>
+                                                        <%= item.image_title %>
                                                             <br>
-                                                            <span class="font-medium">Filter : <%= item.imagefilter1 %>
+                                                            <span class="font-medium">Filter : <%= item.imagefilter %>
                                                             </span>
                                                     </td>
                                                     <td class="px-4 py-2 text-sm text-gray-700">
-                                                        <img src="data:image/png;base64,<%= item.image1.toString('base64') %>"
-                                                            alt="<%= item.image_title1 %>" width="100"
+                                                        <img src="<%= item.image_url %>"
+                                                            alt="<%= item.image_title %>" width="100"
                                                             class="rounded-md">
                                                     </td>
                                                     <td class="px-4 py-2 space-x-2">
@@ -185,7 +185,7 @@
                                                             method="POST" enctype="multipart/form-data"
                                                             style="display:inline-block;">
                                                             <input type="text" name="image_title"
-                                                                value="<%= item.image_title1 %>" required
+                                                                value="<%= item.image_title %>" required
                                                                 class="p-1 border border-gray-300 rounded-md">
                                                             <select id="imagefilter" name="imagefilter" required
                                                                 class="p-1 border border-gray-300 rounded-md">

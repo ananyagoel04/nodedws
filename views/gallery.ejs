@@ -28,50 +28,45 @@
                 <div class="md:flex flex-wrap h-full w-full justify-center hidden p-6 ml-3 mb-10 relative z-10">
                     <% if (galleryItems && galleryItems.length> 0) { %>
                         <div class="w-2/12 mt-[12.5%]">
-                            <img onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[0].image.toString('base64')%>')"
+                            <img onclick="openModal('modal1', '<%= galleryItems[0].image_url%>')" loading="lazy"
                                 class=" aspect-square rounded-3xl shadow-2xl -rotate-6 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
-                                src="data:image/jpeg;base64,<%= galleryItems[0].image.toString('base64') %>"
-                                alt="<%= galleryItems[0].image_title %>">
+                                src="<%= galleryItems[0].image_url%>" alt="<%= galleryItems[0].image_title %>">
                         </div>
                         <% } %>
                             <div class="w-3/12 block">
                                 <% if (galleryItems && galleryItems.length> 1) { %>
-                                    <img loading="lazy"
-                                        onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[1].image.toString('base64')%>')"
+                                    <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[1].image_url%>')"
                                         class=" aspect-square rounded-3xl shadow-2xl -rotate-6 z-10 relative w-3/4 mx-auto transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
-                                        src="data:image/jpeg;base64,<%= galleryItems[1].image.toString('base64') %>"
-                                        alt="<%= galleryItems[1].image_title %>">
+                                        src="<%= galleryItems[1].image_url%>" alt="<%= galleryItems[1].image_title %>">
                                     <% } %>
                                         <% if (galleryItems && galleryItems.length> 2) { %>
                                             <img loading="lazy"
-                                                onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[2].image.toString('base64')%>')"
+                                                onclick="openModal('modal1', '<%= galleryItems[2].image_url%>')"
                                                 class=" aspect-square rounded-3xl shadow-2xl w-2/4 rotate-6 relative z-0 mx-auto transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer hover:z-20"
-                                                src="data:image/jpeg;base64,<%= galleryItems[2].image.toString('base64') %>"
+                                                src="<%= galleryItems[2].image_url %>"
                                                 alt="<%= galleryItems[2].image_title %>">
                                             <% } %>
                             </div>
                             <% if (galleryItems && galleryItems.length> 3) { %>
                                 <div class="w-3/12 my-auto ">
-                                    <img loading="lazy"
-                                        onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[3].image.toString('base64')%>')"
+                                    <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[3].image_url%>')"
                                         class=" aspect-square rounded-3xl shadow-2xl rotate-6 w-11/12 mx-auto mb-6 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
-                                        src="data:image/jpeg;base64,<%= galleryItems[3].image.toString('base64') %>"
-                                        alt="<%= galleryItems[3].image_title %>">
+                                        src="<%= galleryItems[3].image_url %>" alt="<%= galleryItems[3].image_title %>">
                                 </div>
                                 <% } %>
                                     <div class=" w-3/12 xl:ml-6 md:ml-4">
                                         <% if (galleryItems && galleryItems.length> 4) { %>
                                             <img loading="lazy"
-                                                onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[4].image.toString('base64')%>')"
+                                                onclick="openModal('modal1', '<%= galleryItems[4].image_url%>')"
                                                 class=" aspect-square rounded-3xl shadow-2xl rotate-6 w-3/4 mx-auto relative z-10 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
-                                                src="data:image/jpeg;base64,<%= galleryItems[4].image.toString('base64') %>"
+                                                src="<%= galleryItems[4].image_url %>"
                                                 alt="<%= galleryItems[4].image_title %>">
                                             <% } %>
                                                 <% if (galleryItems && galleryItems.length> 5) { %>
                                                     <img loading="lazy"
-                                                        onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[5].image.toString('base64')%>')"
+                                                        onclick="openModal('modal1', '<%= galleryItems[5].image_url%>')"
                                                         class=" aspect-square rounded-3xl shadow-2xl w-2/4 -rotate-6 -mt-3 relative z-0 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer hover:z-10"
-                                                        src="data:image/jpeg;base64,<%= galleryItems[5].image.toString('base64')%>"
+                                                        src="<%= galleryItems[5].image_url%>"
                                                         alt="<%= galleryItems[5].image_title %>">
                                                     <% } %>
                                     </div>
@@ -79,55 +74,51 @@
                 <div class="grid grid-cols-3 gap-4 px-4 md:hidden mt-4 mb-12">
                     <% if (galleryItems && galleryItems.length> 0) { %>
                         <div class=" w-full h-full">
-                            <img loading="lazy"
-                                onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[0].image.toString('base64')%>')"
+                            <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[0].image_url%>')"
                                 class=" aspect-square rounded-xl shadow-2xl rotate-6 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
-                                src="data:image/jpeg;base64,<%= galleryItems[0].image.toString('base64')%>"
-                                alt="<%= galleryItems[0].image_title %>">
+                                src="<%= galleryItems[0].image_url%>" alt="<%= galleryItems[0].image_title %>">
                         </div>
                         <% } %>
                             <% if (galleryItems && galleryItems.length> 1) { %>
                                 <div class="w-full h-full">
-                                    <img loading="lazy"
-                                        onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[1].image.toString('base64')%>')"
+                                    <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[1].image_url%>')"
                                         class=" aspect-square rounded-xl shadow-2xl -rotate-6 z-10 relative mx-auto transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
-                                        src="data:image/jpeg;base64,<%= galleryItems[1].image.toString('base64')%>"
-                                        alt="<%= galleryItems[1].image_title %>">
+                                        src="<%= galleryItems[1].image_url%>" alt="<%= galleryItems[1].image_title %>">
                                 </div>
                                 <% } %>
                                     <% if (galleryItems && galleryItems.length> 2) { %>
                                         <div class="w-full h-full">
                                             <img loading="lazy"
-                                                onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[2].image.toString('base64')%>')"
+                                                onclick="openModal('modal1', '<%= galleryItems[2].image_url%>')"
                                                 class=" aspect-square rounded-xl shadow-2xl rotate-6 relative z-0 mx-auto transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer hover:z-20"
-                                                src="data:image/jpeg;base64,<%= galleryItems[2].image.toString('base64')%>"
+                                                src="<%= galleryItems[2].image_url%>"
                                                 alt="<%= galleryItems[2].image_title %>">
                                         </div>
                                         <% } %>
                                             <% if (galleryItems && galleryItems.length> 3) { %>
                                                 <div class=" w-full h-full">
                                                     <img loading="lazy"
-                                                        onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[3].image.toString('base64')%>')"
+                                                        onclick="openModal('modal1', '<%= galleryItems[3].image_url%>')"
                                                         class=" aspect-square rounded-xl shadow-2xl rotate-6 w-11/12 mx-auto mb-6 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
-                                                        src="data:image/jpeg;base64,<%= galleryItems[3].image.toString('base64')%>"
+                                                        src="<%= galleryItems[3].image_url%>"
                                                         alt="<%= galleryItems[3].image_title %>">
                                                 </div>
                                                 <% } %>
                                                     <% if (galleryItems && galleryItems.length> 4) { %>
                                                         <div class="w-full h-full">
                                                             <img loading="lazy"
-                                                                onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[4].image.toString('base64')%>')"
+                                                                onclick="openModal('modal1', '<%= galleryItems[4].image_url%>')"
                                                                 class=" aspect-square rounded-xl shadow-2xl -rotate-6 mx-auto relative z-10 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
-                                                                src="data:image/jpeg;base64,<%= galleryItems[4].image.toString('base64')%>"
+                                                                src="<%= galleryItems[4].image_url%>"
                                                                 alt="<%= galleryItems[4].image_title %>">
                                                         </div>
                                                         <% } %>
                                                             <% if (galleryItems && galleryItems.length> 5) { %>
                                                                 <div class=" w-full h-full">
                                                                     <img loading="lazy"
-                                                                        onclick="openModal('modal1', 'data:image/jpeg;base64,<%= galleryItems[5].image.toString('base64')%>')"
+                                                                        onclick="openModal('modal1', '<%= galleryItems[5].image_url%>')"
                                                                         class=" aspect-square rounded-xl shadow-2xl -rotate-6 -mt-3 relative z-0 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer hover:z-10"
-                                                                        src="data:image/jpeg;base64,<%= galleryItems[5].image.toString('base64')%>"
+                                                                        src="<%= galleryItems[5].image_url%>"
                                                                         alt="<%= galleryItems[5].image_title %>">
                                                                 </div>
                                                                 <% } %>
@@ -213,7 +204,7 @@
         <script>
             const images1 = [
         <% for (let i = 0; i < galleryItems.length; i++) { %>
-                'data:image/jpeg;base64,<%= galleryItems[i].image.toString('base64')%>',
+                '<%= galleryItems[i].image_url%>',
         <% } %>];
 
             const titles1 = [
@@ -256,11 +247,9 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4" id="gallery">
             <% for (let i=0; i < maingalleryItems.length; i++) { %>
                 <div
-                    class="bg-white gallery-item <%= maingalleryItems[i].imagefilter1 %> rounded-md overflow-hidden shadow-md">
-                    <img loading="lazy"
-                        onclick="openModal1('modal','data:image/jpeg;base64,<%= maingalleryItems[i].image1.toString('base64')%>')"
-                        src="data:image/jpeg;base64,<%= maingalleryItems[i].image1.toString('base64') %>"
-                        alt="<%= maingalleryItems[i].image_title %>"
+                    class="bg-white gallery-item <%= maingalleryItems[i].imagefilter %> rounded-md overflow-hidden shadow-md">
+                    <img loading="lazy" onclick="openModal1('modal','<%= maingalleryItems[i].image_url%>')"
+                        src="<%= maingalleryItems[i].image_url%>" alt="<%= maingalleryItems[i].image_title %>"
                         class="w-fit h-fit object-cover aspect-square hover:opacity-40">
                 </div>
                 <% } %>
@@ -350,12 +339,12 @@
         <script>
             const images = [
             <% for (let i = 0; i < maingalleryItems.length; i++) { %>
-                'data:image/jpeg;base64,<%= maingalleryItems[i].image1.toString('base64')%>',
+                '<%= maingalleryItems[i].image_url%>',
             <% } %>
         ];
             const titles = [
             <% for (let i = 0; i < maingalleryItems.length; i++) { %>
-                '<%= maingalleryItems[i].image_title1 %>',
+                '<%= maingalleryItems[i].image_title %>',
             <% } %>
         ];
             let currentImageIndex = 0;
