@@ -1102,7 +1102,7 @@
                     class="modal-content px-4 py-10 pt-12 shadow-md flex flex-col items-center relative bg-black bg-opacity-50 w-full h-full overflow-hidden">
                     <div class="relative w-full h-full flex-grow overflow-hidden">
                         <!-- Ad Image -->
-                        <img src="data:image/png;base64,<%= randomAd.image.toString('base64') %>" loading="lazy"
+                        <img src="<%= randomAd.image_url%>" loading="lazy"
                             alt="<%= randomAd.title %>" class="w-full h-full object-contain rounded-md -top-2">
                     </div>
                 </div>
@@ -1129,10 +1129,9 @@
                 document.addEventListener('DOMContentLoaded', function () {
                     disableScrolling();
 
-                    // Automatically close the modal after 10 seconds
                     setTimeout(function () {
                         closeModal('modal1');
-                    }, 10000); // Close modal after 10 seconds (10000 ms)
+                    }, 10000);
                 });
             </script>
 
@@ -1158,7 +1157,6 @@
                     </div>
 
                     <script>
-                        // Cookie consent fade out logic
                         document.addEventListener('DOMContentLoaded', function () {
                             setTimeout(function () {
                                 var cookieConsentElement = document.getElementById('cookieConsent');

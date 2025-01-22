@@ -5,7 +5,7 @@ require('dotenv').config();
 
 // Set up the transport with Zoho's SMTP server details
 const transporter = nodemailer.createTransport({
-  host: 'smtppro.zoho.in',
+  host: 'smtp.zoho.in',
   port: process.env.SMTP_PORT || 587, 
   secure: process.env.SMTP_PORT == 465,
   auth: {

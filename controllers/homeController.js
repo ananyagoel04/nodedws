@@ -142,6 +142,7 @@ module.exports = {
 
                 updates.image_url = uploadResult.secure_url;
                 updates.public_id = uploadResult.public_id;
+                updates.updatedAt = Date.now();
 
                 await Homeimg.findByIdAndUpdate(id, updates, { new: true });
 
@@ -251,6 +252,7 @@ module.exports = {
 
                 updates.image_url = uploadResult.secure_url;
                 updates.public_id = uploadResult.public_id;
+                updates.updatedAt = Date.now();
 
                 await VisionMission.findByIdAndUpdate(id, updates, { new: true });
 
@@ -360,6 +362,7 @@ module.exports = {
 
                 updates.image_url = uploadResult.secure_url;
                 updates.public_id = uploadResult.public_id;
+                updates.updatedAt = Date.now();
 
                 await Environment.findByIdAndUpdate(id, updates, { new: true });
 
@@ -463,6 +466,7 @@ module.exports = {
 
                 updates.image_url = uploadResult.secure_url;
                 updates.public_id = uploadResult.public_id;
+                updates.updatedAt = Date.now();
 
                 await Teacher.findByIdAndUpdate(id, updates, { new: true });
                 res.redirect('/admin/');

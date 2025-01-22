@@ -1,4 +1,29 @@
+const cloudinary = require('../config/cloudinaryConfig');
+const https = require('https');
+const path = require('path');
 const Ad = require('../models/ad');
+
+
+async function uploadImageToCloudinary(file, public_id, folder = 'ads_images') {
+  const streamifier = require('streamifier');
+  const bufferStream = streamifier.createReadStream(file.buffer);
+  return new Promise((resolve, reject) => {
+    const uploadStream = cloudinary.uploader.upload_stream(
+      {
+        folder: folder,
+        public_id: public_id,
+        resource_type: 'image',
+      },
+      (error, result) => {
+        if (error) {
+          reject(error);
+        }
+        resolve(result);
+      }
+    );
+    bufferStream.pipe(uploadStream);
+  });
+}
 
 // Get all Ads
 const getAllAds = async (req, res) => {
@@ -20,12 +45,12 @@ const createAd = async (req, res) => {
   }
 
   try {
-    const imageBuffer = req.file.buffer; 
-
+    const uploadResult = await uploadImageToCloudinary(req.file, title);
     const newAd = new Ad({
       title,
-      isActive: isActive === 'on' ? true : false, 
-      image: imageBuffer
+      isActive: isActive === 'off' ? false : true,
+      image_url: uploadResult.secure_url,
+      public_id: uploadResult.public_id,
     });
 
     await newAd.save();
@@ -36,7 +61,6 @@ const createAd = async (req, res) => {
   }
 };
 
-// Get a specific Ad by ID (and display the image)
 const getAdById = async (req, res) => {
   const { id } = req.params;
 
@@ -47,7 +71,6 @@ const getAdById = async (req, res) => {
       return res.status(404).send('Ad not found');
     }
 
-    // Set headers and send image as response (assuming JPEG for simplicity)
     res.set('Content-Type', 'image/jpeg');
     res.send(ad.image);
   } catch (error) {
@@ -60,6 +83,7 @@ const getAdById = async (req, res) => {
 const updateAd = async (req, res) => {
   const { id } = req.params;
   const { title, isActive } = req.body;
+  console.log( isActive);
 
   try {
     const adToUpdate = await Ad.findById(id);
@@ -68,27 +92,24 @@ const updateAd = async (req, res) => {
       return res.status(404).send('Ad not found');
     }
 
-    // Update fields
     adToUpdate.title = title || adToUpdate.title;
-    adToUpdate.isActive = isActive === 'on' ? true : false;
+    adToUpdate.isActive = isActive === 'off' ? false : true;
 
-    // If there's a new file uploaded, update the image
     if (req.file) {
-      const imageBuffer = req.file.buffer;
-      adToUpdate.image = imageBuffer;  // Update the image buffer if a new file is uploaded
+      const uploadResult = await uploadImageToCloudinary(req.file, title);
+      adToUpdate.image_url = uploadResult.secure_url;
+      adToUpdate.public_id = uploadResult.public_id;
     }
-
-    adToUpdate.updatedAt = Date.now();  // Update the timestamp
-
+    adToUpdate.updatedAt = Date.now();
     await adToUpdate.save();
-    res.status(200).redirect("/admin/ads"); // Redirect back to the ads list
+
+    res.status(200).redirect("/admin/ads");
   } catch (error) {
     console.error('Error updating ad:', error);
     res.status(500).send('Error updating ad');
   }
 };
 
-// Delete an Ad by ID
 const deleteAd = async (req, res) => {
   const { id } = req.params;
 
@@ -98,16 +119,15 @@ const deleteAd = async (req, res) => {
     if (!adToDelete) {
       return res.status(404).send('Ad not found');
     }
-
-    await adToDelete.deleteOne();  // Delete the ad
-    res.status(200).redirect("/admin/ads");  // Redirect back to ads list
+    await cloudinary.uploader.destroy(adToDelete.public_id);
+    await adToDelete.deleteOne();
+    res.status(200).redirect("/admin/ads");
   } catch (error) {
     console.error('Error deleting ad:', error);
     res.status(500).send('Error deleting ad');
   }
 };
 
-// Export all the controller methods
 module.exports = {
   getAllAds,
   createAd,

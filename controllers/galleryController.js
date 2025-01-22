@@ -121,8 +121,10 @@ const updateGalleryItem = async (req, res) => {
     }
     // Update fields
     if (galleryType === 'Gallery') {
+      updates.updatedAt = Date.now();
       await Gallery.findByIdAndUpdate(id, updates, { new: true });
     } else if (galleryType === 'Maingallery') {
+      updates.updatedAt = Date.now();
       await Maingallery.findByIdAndUpdate(id, updates, { new: true });
     }
     res.status(200).redirect("/admin/gallery");

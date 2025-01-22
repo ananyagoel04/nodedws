@@ -1,8 +1,14 @@
 const mongoose = require('mongoose');
 
-// Define the Event schema
 const eventSchema = new mongoose.Schema({
-    image: { type: Buffer, required: false }, // Store image as Buffer in memory
+    image_url: {
+        type: String,
+        required: false,
+    },
+    public_id: {
+        type: String,
+        required: false,
+    },
     date: { type: Date, required: true },
     heading: { type: String, required: true, maxlength: 200 },
     description: { type: String, required: true },

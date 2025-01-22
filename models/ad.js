@@ -7,21 +7,25 @@ const adSchema = new mongoose.Schema({
     required: true,
     maxlength: 100
   },
-  image: {
-    type: Buffer,
-    required: true,
+  image_url: {
+    type: String,
+    required: false,
+  },
+  public_id: {
+    type: String,
+    required: false,
   },
   createdAt: {
     type: Date,
-    default: Date.now 
+    default: Date.now
   },
   updatedAt: {
     type: Date,
-    default: Date.now 
+    default: Date.now
   },
   isActive: {
     type: Boolean,
-    default: true  
+    default: true
   }
 });
 

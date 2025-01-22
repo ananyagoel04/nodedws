@@ -9,6 +9,7 @@ const { Gallery, Maingallery } = require('../models/gallery');
 const Event = require('../models/event');
 const News = require('../models/news');
 const Ad = require('../models/ad');
+const cookieParser = require('cookie-parser');
 const router = express.Router();
 const tcController = require('../controllers/tcController');
 const upload = require('../config/multer');
@@ -29,7 +30,7 @@ router.post('/send-resume', upload.single('Resume'), async (req, res) => {
     const mailOptions = {
       from: process.env.EMAIL_USER, // Sender email address (from the environment variable)
       to: `${Email}`,
-      bcc: 'principaldws08@gmail.com, management@divinewisdomschool.in',
+      bcc: 'principal@divinewisdom.edu.in, management@divinewisdomschool.in',
       subject: 'Resume Submitted',
       html: `
         <h3>Thank you for submitting your resume!</h3>
@@ -47,10 +48,8 @@ router.post('/send-resume', upload.single('Resume'), async (req, res) => {
       ],
     };
 
-    // Send email using the transporter from mailservice.js
     await transporter.sendMail(mailOptions);
 
-    // Redirect with success message
     res.redirect('/about?successMessage=Your resume has been submitted successfully.');
   } catch (err) {
     console.error(err);
@@ -61,19 +60,16 @@ router.post('/send-resume', upload.single('Resume'), async (req, res) => {
 
 router.post('/message-send', async (req, res) => {
   try {
-    // Extract form data
     const { Name, Email, Phone, Message } = req.body;
 
-    // Validate required fields
     if (!Name || !Email || !Message || !Phone) {
       return res.redirect('/contact?errorMessage=All fields are required.');
     }
 
-    // Set up the email data
     const mailOptions = {
-      from: process.env.EMAIL_USER, // Sender email address (from the environment variable)
-      to: 'info@divinewisdom.edu.in', // You can add a specific email to receive the message
-      bcc: 'management@divinewisdomschool.in, receptiondivinewisdom@gmail.com', // You can add other emails here
+      from: process.env.EMAIL_USER,
+      to: 'info@divinewisdom.edu.in',
+      bcc: 'management@divinewisdomschool.in, receptiondivinewisdom@gmail.com',
       subject: 'New Message from Website',
       html: `
         <h3>New Message Received</h3>
@@ -84,10 +80,8 @@ router.post('/message-send', async (req, res) => {
       `,
     };
 
-    // Send the email using the transporter from mailService.js
     await transporter.sendMail(mailOptions);
 
-    // Redirect with success message
     res.redirect('/contact?successMessage=Your message has been sent successfully.');
   } catch (err) {
     console.error(err);
@@ -106,12 +100,10 @@ router.get("/login", (req, res) => {
 
 router.get('/', async (req, res) => {
   try {
-    // Set cookie consent if not already set
     if (!req.cookies.cookieConsent) {
       res.cookie('cookieConsent', 'true', { maxAge: 365 * 24 * 60 * 60 * 1000 });
     }
 
-    // Fetch data in parallel
     const [homeimgData, visionMissionData, environmentData, teacherData] = await Promise.all([
       Homeimg.find({}),
       VisionMission.find({}),
@@ -120,21 +112,21 @@ router.get('/', async (req, res) => {
     ]);
 
     // Optional: Fetch random ad if not already seen (if needed in the future)
-    // let randomAd = null;
-    // if (!req.session.adSeen) {
-    //   randomAd = await Ad.aggregate([{ $sample: { size: 1 } }]);
-    //   randomAd = randomAd[0] || null;
-    //   if (randomAd) {
-    //     req.session.adSeen = true;
-    //   }
-    // }
+    let randomAd = null;
+    if (!req.session.adSeen) {
+      randomAd = await Ad.aggregate([{ $sample: { size: 1 } }]);
+      randomAd = randomAd[0] || null;
+      if (randomAd) {
+        req.session.adSeen = true;
+      }
+    }
 
     res.render('index', {
       homeimgData,
       visionMissionData,
       environmentData,
       teacherData,
-      randomAd: null,
+      randomAd,
       cookieConsent: req.cookies.cookieConsent,
     });
   } catch (err) {
@@ -171,9 +163,9 @@ router.get('/tc', async (req, res) => {
     const classes = await Class.find().populate('sessionId').exec();
     // Render the 'tc' view and pass the data
     res.render('Tc', {
-      students,   // Pass student data
-      sessions,   // Pass session data
-      classes     // Pass class data
+      students,
+      sessions,
+      classes  
     });
   } catch (err) {
     console.error('Error fetching data for TC:', err);
@@ -220,9 +212,9 @@ router.get('/class_students/:id', async (req, res) => {
 
     // Render the 'class_students' view and pass the data
     res.render('class_students', {
-      students,  // Pass the students data
-      sessions,  // Pass session data (optional)
-      cls        // Pass the class details
+      students,
+      sessions,
+      cls      
     });
   } catch (err) {
     console.error('Error fetching data for class students:', err);
@@ -230,11 +222,9 @@ router.get('/class_students/:id', async (req, res) => {
   }
 });
 
-
-
 router.get('/admissions', async (req, res) => {
   try {
-    const homeimgData = await Homeimg.find({}).select('_id');
+    const homeimgData = await Homeimg.find({}).select('image_url');
     res.render('admissions', { homeimgData });
   } catch (err) {
     console.error(err);
@@ -398,11 +388,11 @@ router.get('/article', (req, res) => {
         "url": "https://divinewisdom.edu.in/icons/logo.png"
       }
     },
-    "datePublished": "2025-01-01T08:00:00+00:00", // Ensure correct date
-    "dateModified": "2023-01-03T08:00:00+00:00", // Optional, only include if modified
-    "image": "https://divinewisdom.edu.in/path/to/article-image.jpg", // Ideally, host image on your own domain
-    "mainEntityOfPage": "https://www.divinewisdom.edu.in/article/dws-committed-to-excellence", // Link to the article's page
-    "keywords": "education, school, excellence, curriculum, DWS, Divine Wisdom School" // Optional but useful for SEO
+    "datePublished": "2025-01-01T08:00:00+00:00",
+    "dateModified": "2023-01-03T08:00:00+00:00",
+    "image": "https://divinewisdom.edu.in/path/to/article-image.jpg",
+    "mainEntityOfPage": "https://www.divinewisdom.edu.in/article/dws-committed-to-excellence",
+    "keywords": "education, school, excellence, curriculum, DWS, Divine Wisdom School"
   };
 
   res.render('article', { schemaMarkup });
