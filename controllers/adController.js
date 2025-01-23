@@ -83,7 +83,6 @@ const getAdById = async (req, res) => {
 const updateAd = async (req, res) => {
   const { id } = req.params;
   const { title, isActive } = req.body;
-  console.log( isActive);
 
   try {
     const adToUpdate = await Ad.findById(id);

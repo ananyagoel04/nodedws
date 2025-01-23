@@ -1,6 +1,4 @@
 const cloudinary = require('../config/cloudinaryConfig');
-const https = require('https');
-const path = require('path');
 const Event = require('../models/event');
 const News = require('../models/news');
 
@@ -39,14 +37,13 @@ exports.getAllParentItem = async (req, res) => {
     }
 };
 
-// Create an Event
 exports.createEvent = async (req, res) => {
     try {
         const { heading, date, description } = req.body;
         if (!req.file) {
             return res.status(400).send('No file uploaded');
         }
-        const uploadResult = await uploadImageToCloudinary(req.file, image_title);
+        const uploadResult = await uploadImageToCloudinary(req.file, heading);
 
         const newEvent = new Event({
             heading,
@@ -55,7 +52,6 @@ exports.createEvent = async (req, res) => {
             image_url: uploadResult.secure_url,
             public_id: uploadResult.public_id,
         });
-
         await newEvent.save();
         res.status(201).redirect("/admin/parent");
     } catch (err) {
@@ -64,7 +60,6 @@ exports.createEvent = async (req, res) => {
     }
 };
 
-// Update an Event
 exports.updateEvent = async (req, res) => {
     try {
         const { id } = req.params;
@@ -77,8 +72,11 @@ exports.updateEvent = async (req, res) => {
         event.heading = heading || event.heading;
         event.date = date || event.date;
         event.description = description || event.description;
-        event.image = image || event.image;
-
+        if (req.file) {
+            const uploadResult = await uploadImageToCloudinary(req.file, heading);
+            event.image_url = uploadResult.secure_url;
+            event.public_id = uploadResult.public_id;
+          }
         await event.save();
         res.status(200).redirect("/admin/parent");
     } catch (err) {
@@ -87,13 +85,12 @@ exports.updateEvent = async (req, res) => {
     }
 };
 
-// Delete an Event
 exports.deleteEvent = async (req, res) => {
     try {
         const { id } = req.params;
         const event = await Event.findById(id);
         if (!event) return res.status(404).json({ message: 'Event not found' });
-
+        await cloudinary.uploader.destroy(event.public_id);
         await Event.deleteOne({ _id: id });
         res.status(200).redirect("/admin/parent");
     } catch (err) {
