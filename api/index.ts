@@ -56,8 +56,8 @@ app.set('view engine', 'ejs');
 // Update the static file path to reflect the new directory structure
 app.use(express.static(path.join(__dirname, '..', 'public'), { maxAge: '7d' }));
 
-// Set up the route handlers
-app.use('/admin', adminRouter);
+
+app.use('/admin',isLoggedin, adminRouter);
 app.use('/', pageRouter);
 app.use('/', imghomeRouter);
 app.use('/admin', isLoggedin, aboutRoutes);
@@ -67,10 +67,18 @@ app.use('/admin/parent',isLoggedin, parentRoutes);
 app.use('/admin/ads',isLoggedin, adRouter);
 
 app.use('/admin/gallery', galleryRoutes);
-
 const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
-});
+
+db()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
+  })
+  .catch((err: Error) => {
+    console.error("Error connecting to the database:", err);
+    process.exit(1);
+  });
+
 
 module.exports = app;

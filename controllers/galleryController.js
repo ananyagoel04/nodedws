@@ -3,7 +3,6 @@ const https = require('https');
 const path = require('path');
 const { Gallery, Maingallery } = require('../models/gallery');
 
-
 async function uploadImageToCloudinary(file, public_id, folder = 'gallery_images') {
   const streamifier = require('streamifier');
   const bufferStream = streamifier.createReadStream(file.buffer);
@@ -39,7 +38,7 @@ const getAllGalleryItem = async (req, res) => {
   }
 };
 
-// Create a new Gallery or Maingallery item
+
 const createGalleryItem = async (req, res) => {
   const { image_title, imagefilter, galleryType } = req.body;
 
@@ -57,7 +56,6 @@ const createGalleryItem = async (req, res) => {
     let newImage;
 
 
-    // Check if it's a gallery or maingallery
     if (galleryType === 'Gallery') {
       newImage = new Gallery({
         image_title,
@@ -82,7 +80,7 @@ const createGalleryItem = async (req, res) => {
   }
 };
 
-// Get a Gallery or Maingallery item by ID
+
 const getGalleryItemById = async (req, res) => {
   const { galleryType, id } = req.params;
 
@@ -107,7 +105,7 @@ const getGalleryItemById = async (req, res) => {
   }
 };
 
-// Update a Gallery or Maingallery item by ID
+
 const updateGalleryItem = async (req, res) => {
   const { galleryType, id } = req.params;
   const { image_title, imagefilter } = req.body;
@@ -119,7 +117,6 @@ const updateGalleryItem = async (req, res) => {
       updates.image_url = uploadResult.secure_url;
       updates.public_id = uploadResult.public_id;
     }
-    // Update fields
     if (galleryType === 'Gallery') {
       updates.updatedAt = Date.now();
       await Gallery.findByIdAndUpdate(id, updates, { new: true });
@@ -134,7 +131,7 @@ const updateGalleryItem = async (req, res) => {
   }
 };
 
-// Delete a Gallery or Maingallery item by ID
+
 const deleteGalleryItem = async (req, res) => {
   const { galleryType, id } = req.params;
 
@@ -143,22 +140,29 @@ const deleteGalleryItem = async (req, res) => {
 
     if (galleryType === 'Gallery') {
       itemToDelete = await Gallery.findById(id);
+      if (!itemToDelete) {
+        return res.status(404).send('Gallery item not found');
+      }
+      await cloudinary.uploader.destroy(itemToDelete.public_id);
     } else if (galleryType === 'Maingallery') {
       itemToDelete = await Maingallery.findById(id);
+      if (!itemToDelete) {
+        return res.status(404).send('Main gallery item not found');
+      }
+      await cloudinary.uploader.destroy(itemToDelete.public_id);
+    } else {
+      return res.status(400).send('Invalid gallery type');
     }
 
-    if (!itemToDelete) {
-      return res.status(404).send('Item not found');
-    }
-    await itemToDelete.constructor.deleteOne({ _id: id });
+    await itemToDelete.deleteOne({ _id: id });
     res.status(200).redirect("/admin/gallery");
+
   } catch (error) {
     console.error(error);
     res.status(500).send('Error deleting item');
   }
 };
 
-// Export all the controller methods
 module.exports = {
   getAllGalleryItem,
   createGalleryItem,

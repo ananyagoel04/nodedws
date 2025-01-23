@@ -111,10 +111,12 @@ router.get('/', async (req, res) => {
       Teacher.find({})
     ]);
 
-    // Optional: Fetch random ad if not already seen (if needed in the future)
     let randomAd = null;
     if (!req.session.adSeen) {
-      randomAd = await Ad.aggregate([{ $sample: { size: 1 } }]);
+      randomAd = await Ad.aggregate([
+        { $match: { isActive: true } }, 
+        { $sample: { size: 1 } }
+      ]);
       randomAd = randomAd[0] || null;
       if (randomAd) {
         req.session.adSeen = true;
@@ -157,15 +159,13 @@ router.get('/about', async (req, res) => {
 
 router.get('/tc', async (req, res) => {
   try {
-    // Fetch all data from MongoDB collections
     const students = await Student.find().populate('classId').exec();
     const sessions = await Session.find();
     const classes = await Class.find().populate('sessionId').exec();
-    // Render the 'tc' view and pass the data
     res.render('Tc', {
       students,
       sessions,
-      classes  
+      classes
     });
   } catch (err) {
     console.error('Error fetching data for TC:', err);
@@ -214,7 +214,7 @@ router.get('/class_students/:id', async (req, res) => {
     res.render('class_students', {
       students,
       sessions,
-      cls      
+      cls
     });
   } catch (err) {
     console.error('Error fetching data for class students:', err);
