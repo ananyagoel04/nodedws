@@ -112,23 +112,29 @@ router.get('/', async (req, res) => {
     ]);
 
     let randomAd = null;
-    if (!req.session.adSeen) {
+
+    if (!req.session.lastAdShown || (Date.now() - req.session.lastAdShown >= 30 * 60 * 1000)) {
       randomAd = await Ad.aggregate([
-        { $match: { isActive: true } }, 
+        { $match: { isActive: true } },
         { $sample: { size: 1 } }
       ]);
       randomAd = randomAd[0] || null;
+
       if (randomAd) {
         req.session.adSeen = true;
+        req.session.lastAdShown = Date.now();
       }
+    } else {
+      req.session.adSeen = false;
     }
+
     res.render('index', {
       homeimgData,
       visionMissionData,
       environmentData,
       teacherData,
       randomAd,
-      cookieConsent: req.cookies.cookieConsent,
+      cookieConsent: req.cookies.cookieConsent
     });
   } catch (err) {
     console.error('Error fetching data:', err);

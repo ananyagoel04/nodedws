@@ -28,16 +28,16 @@ app.use(express.json());
 
 app.use(session({
   secret: process.env.SESSION_KEY,
-  resave: false, // Prevent session from being saved if not modified
-  saveUninitialized: false, // Only create session when needed (e.g., when a user logs in or interacts)
+  resave: false,
+  saveUninitialized: false,
   store: MongoStore.create({
     mongoUrl: process.env.DATA_BASE,
     collectionName: 'usersessions',
-    ttl: 1 * 60 * 60, // 1 hour TTL for session in seconds
+    ttl: 60,
   }),
   cookie: {
-    httpOnly: true, // Ensures cookie is only accessible by the server
-    secure: process.env.NODE_ENV === 'production', // Set to true for HTTPS only in production
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
     maxAge:  60 * 60 * 1000,
   },
 }));
@@ -49,14 +49,9 @@ const isLoggedin = require('../middlewares/isLoggedin');
 app.use(methodOverride('_method'));
 
 
-
-
-// Update the path to account for the 'api' directory
 app.set('views', path.join(__dirname, '..', 'views'));
 app.set('view engine', 'ejs');
 
-// Serve static files (CSS, images, etc.) from the public directory
-// Update the static file path to reflect the new directory structure
 app.use(express.static(path.join(__dirname, '..', 'public'), { maxAge: '7d' }));
 
 
