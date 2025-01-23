@@ -114,15 +114,15 @@ router.get('/', async (req, res) => {
     let randomAd = null;
     if (!req.session.adSeen) {
       randomAd = await Ad.aggregate([
-        { $match: { isActive: true } }, 
+        { $match: { isActive: true } },
         { $sample: { size: 1 } }
       ]);
       randomAd = randomAd[0] || null;
+
       if (randomAd) {
         req.session.adSeen = true;
       }
     }
-
     res.render('index', {
       homeimgData,
       visionMissionData,

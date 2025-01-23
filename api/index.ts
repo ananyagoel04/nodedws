@@ -32,8 +32,8 @@ app.use(session({
     saveUninitialized: true,
     store: MongoStore.create({
       mongoUrl: process.env.DATA_BASE,
-      collectionName: 'sessions',     
-      ttl: 14 * 24 * 60 * 60,         
+      collectionName: 'usersessions',     
+      ttl: 1 * 60 * 60,
     }),
     cookie: {
       httpOnly: true,                  
