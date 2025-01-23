@@ -28,19 +28,20 @@ app.use(express.json());
 
 app.use(session({
   secret: process.env.SESSION_KEY,
-  resave: false,
-  saveUninitialized: false,
+  resave: false, // Prevent session from being saved if not modified
+  saveUninitialized: false, // Only create session when needed (e.g., when a user logs in or interacts)
   store: MongoStore.create({
     mongoUrl: process.env.DATA_BASE,
     collectionName: 'usersessions',
-    ttl: 1 * 60 * 60,
+    ttl: 1 * 60 * 60, // 1 hour TTL for session in seconds
   }),
   cookie: {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    maxAge: 1 * 24 * 60 * 60 * 1000,
+    httpOnly: true, // Ensures cookie is only accessible by the server
+    secure: process.env.NODE_ENV === 'production', // Set to true for HTTPS only in production
+    maxAge:  60 * 60 * 1000,
   },
 }));
+
 
 
 const methodOverride = require('method-override');
