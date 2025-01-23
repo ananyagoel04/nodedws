@@ -19,6 +19,8 @@ const Ad = require('../models/ad');
 const app = express();
 require('dotenv').config();
 
+const dev = process.env.NODE_ENV;
+
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -72,7 +74,9 @@ const PORT = process.env.PORT || 3000;
 db()
   .then(() => {
     app.listen(PORT, () => {
+      if (dev === "dev") {
       console.log(`Server running on port ${PORT}`);
+    }
     });
   })
   .catch((err: Error) => {
