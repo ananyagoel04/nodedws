@@ -1,4 +1,5 @@
 <%- include("header.ejs") %>
+    <script src="/tinymce/tinymce.min.js"></script>
 
     <body>
         <div class="container mx-auto p-8">
@@ -174,62 +175,95 @@
                             <thead>
                                 <tr class="bg-gray-200">
                                     <th class="px-4 py-2 text-left text-sm font-medium text-gray-700">Image</th>
-                                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-700 hidden md:flex">Actions</th>
+                                    <th class="px-4 py-2 text-left text-sm font-medium text-gray-700 hidden md:flex">
+                                        Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <% if (messages && messages.length > 0) { %>
-                                    <% messages.forEach(msg => { %>
+                                <% if (messages && messages.length> 0) { %>
+                                    <% messages.forEach(msg=> { %>
                                         <!-- Desktop & Tablet View -->
                                         <tr class="border-b hover:bg-gray-50">
                                             <td class="px-4 py-2 text-sm text-gray-700">
-                                                <img src="<%= msg.image_url %>" alt="<%= msg.image_title %>" width="100" class="rounded-md">
+                                                <img src="<%= msg.image_url %>" alt="<%= msg.image_title %>" width="100"
+                                                    class="rounded-md">
                                             </td>
                                             <td class="px-4 py-2 space-x-2 text-center hidden md:block">
                                                 <!-- Update Message Form -->
-                                                <form action="/admin/messages/<%= msg._id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="space-y-4 mb-4">
-                                                    <input type="text" name="name" value="<%= msg.name %>" required class="p-1 border border-gray-300 rounded-md w-full sm:w-auto">
-                                                    <textarea name="message" required class="p-1 border border-gray-300 rounded-md w-full sm:w-auto" rows="10"><%= msg.message %></textarea>
-                                                    <input type="file" name="image" accept="image/*" class="p-1 text-sm border border-gray-300 rounded-md w-full sm:w-auto">
-                                                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 sm:w-auto">Update</button>
+                                                <form action="/admin/messages/<%= msg._id %>?_method=PUT" method="POST"
+                                                    enctype="multipart/form-data" class="space-y-4 mb-4">
+                                                    <input type="text" name="name" value="<%= msg.name %>" required
+                                                        class="p-1 border border-gray-300 rounded-md w-full sm:w-auto">
+                                                    <textarea id="message" name="message" required
+                                                        class="p-1 border border-gray-300 rounded-md w-full sm:w-auto"
+                                                        rows="10"><%= msg.message %></textarea>
+                                                    <input type="file" name="image" accept="image/*"
+                                                        class="p-1 text-sm border border-gray-300 rounded-md w-full sm:w-auto">
+                                                    <button type="submit"
+                                                        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 sm:w-auto">Update</button>
                                                 </form>
-                
+
                                                 <!-- Delete Message Form -->
-                                                <form action="/admin/messages/<%= msg._id %>?_method=DELETE" method="POST" class="inline-block">
-                                                    <button type="submit" onclick="return confirm('Are you sure you want to delete this message?')" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 w-full sm:w-auto">Delete</button>
+                                                <form action="/admin/messages/<%= msg._id %>?_method=DELETE"
+                                                    method="POST" class="inline-block">
+                                                    <button type="submit"
+                                                        onclick="return confirm('Are you sure you want to delete this message?')"
+                                                        class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 w-full sm:w-auto">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
-                
+
                                         <!-- Mobile View (Hidden on Larger Screens) -->
                                         <tr class="md:hidden border-b hover:bg-gray-50">
                                             <td colspan="2" class="px-4 py-2 text-center">
                                                 <!-- Update Message Form (Mobile Version) -->
-                                                <form action="/admin/messages/<%= msg._id %>?_method=PUT" method="POST" enctype="multipart/form-data" class="space-y-4">
-                                                    <input type="text" name="name" value="<%= msg.name %>" required class="p-1 border border-gray-300 rounded-md w-full sm:w-auto">
-                                                    <textarea name="message" required class="p-1 border border-gray-300 rounded-md w-full sm:w-auto" rows="6"><%= msg.message %></textarea>
-                                                    <input type="file" name="image" accept="image/*" class="p-1 text-sm border border-gray-300 rounded-md w-full sm:w-auto">
-                                                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 sm:w-auto">Update</button>
+                                                <form action="/admin/messages/<%= msg._id %>?_method=PUT" method="POST"
+                                                    enctype="multipart/form-data" class="space-y-4">
+                                                    <input type="text" name="name" value="<%= msg.name %>" required
+                                                        class="p-1 border border-gray-300 rounded-md w-full sm:w-auto">
+                                                    <textarea id="message" name="message" required
+                                                        class="p-1 border border-gray-300 rounded-md w-full sm:w-auto"
+                                                        rows="6"><%= msg.message %></textarea>
+                                                    <input type="file" name="image" accept="image/*"
+                                                        class="p-1 text-sm border border-gray-300 rounded-md w-full sm:w-auto">
+                                                    <button type="submit"
+                                                        class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 sm:w-auto">Update</button>
                                                 </form>
-                
+
                                                 <!-- Delete Message Form (Mobile Version) -->
-                                                <form action="/admin/messages/<%= msg._id %>?_method=DELETE" method="POST" class="inline-block">
-                                                    <button type="submit" onclick="return confirm('Are you sure you want to delete this message?')" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 w-full">Delete</button>
+                                                <form action="/admin/messages/<%= msg._id %>?_method=DELETE"
+                                                    method="POST" class="inline-block">
+                                                    <button type="submit"
+                                                        onclick="return confirm('Are you sure you want to delete this message?')"
+                                                        class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 w-full">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>
-                                    <% }); %>
-                                <% } else { %>
-                                    <tr>
-                                        <td colspan="2" class="text-center text-sm text-gray-500 py-4">No messages found.</td>
-                                    </tr>
-                                <% } %>
+                                        <% }); %>
+                                            <% } else { %>
+                                                <tr>
+                                                    <td colspan="2" class="text-center text-sm text-gray-500 py-4">No
+                                                        messages found.</td>
+                                                </tr>
+                                                <% } %>
                             </tbody>
                         </table>
                     </div>
                 </section>
-                            </section>
+            </section>
         </div>
-
+        <script>
+            tinymce.init({
+                selector: '#message',
+                plugins: 'link image code fontfamily fontsize table lists',
+                toolbar: 'undo redo | styleselect | bold italic underline | forecolor backcolor | alignleft aligncenter alignright | link image | fontfamily fontsize | table | bullist numlist | code',
+                menubar: false,
+                setup: function (editor) {
+                    editor.on('change', function () {
+                        editor.save();
+                    });
+                }
+            });
+        </script>
         <%- include("../Footer.ejs") %>
     </body>
