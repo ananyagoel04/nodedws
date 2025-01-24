@@ -6,11 +6,13 @@ const { Gallery, Maingallery } = require('../models/gallery');
 async function uploadImageToCloudinary(file, public_id, folder = 'gallery_images') {
   const streamifier = require('streamifier');
   const bufferStream = streamifier.createReadStream(file.buffer);
+  const sanitizedPublicId = public_id.replace(/\s+/g, '').replace(/&/g, '%26');
+  const uniquePublicId = `${sanitizedPublicId}_${new Date().toISOString()}`;
   return new Promise((resolve, reject) => {
     const uploadStream = cloudinary.uploader.upload_stream(
       {
         folder: folder,
-        public_id: public_id,
+        public_id: uniquePublicId,
         resource_type: 'image',
       },
       (error, result) => {
@@ -112,18 +114,34 @@ const updateGalleryItem = async (req, res) => {
   const updates = { image_title, imagefilter };
 
   try {
+    let itemToUpdate;
+    if (galleryType === 'Gallery') {
+      itemToUpdate = await Gallery.findById(id);
+    } else if (galleryType === 'Maingallery') {
+      itemToUpdate = await Maingallery.findById(id);
+    }
+
+    if (!itemToUpdate) {
+      return res.status(404).send('Item not found');
+    }
+
     if (req.file) {
+      if (itemToUpdate.public_id) {
+        await cloudinary.uploader.destroy(itemToUpdate.public_id);
+      }
+
       const uploadResult = await uploadImageToCloudinary(req.file, image_title);
       updates.image_url = uploadResult.secure_url;
       updates.public_id = uploadResult.public_id;
     }
+
+    updates.updatedAt = Date.now();
     if (galleryType === 'Gallery') {
-      updates.updatedAt = Date.now();
       await Gallery.findByIdAndUpdate(id, updates, { new: true });
     } else if (galleryType === 'Maingallery') {
-      updates.updatedAt = Date.now();
       await Maingallery.findByIdAndUpdate(id, updates, { new: true });
     }
+
     res.status(200).redirect("/admin/gallery");
   } catch (error) {
     console.error(error);

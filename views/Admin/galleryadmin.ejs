@@ -27,6 +27,8 @@
                                     <input type="text" id="image_title" name="image_title"
                                         placeholder="Enter Image Title" required
                                         class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <p class="text-red-600">Note: Make sure your name must not be ended with blank Space
+                                    </p>
                                 </div>
                                 <div>
                                     <label for="image" class="block text-sm font-medium text-gray-700">Upload
@@ -63,9 +65,8 @@
                                                         <%= item.image_title %>
                                                     </td>
                                                     <td class="px-4 py-2 text-sm text-gray-700">
-                                                        <img src="<%= item.image_url %>"
-                                                            alt="<%= item.image_title %>" width="100"
-                                                            class="rounded-md">
+                                                        <img src="<%= item.image_url %>" alt="<%= item.image_title %>"
+                                                            width="100" class="rounded-md">
                                                     </td>
                                                     <td class="px-4 py-2 space-x-2">
                                                         <!-- Update Image Form -->
@@ -110,8 +111,8 @@
                 <h2 class="text-2xl font-semibold text-gray-800 mb-4">Maingallery Section</h2>
 
                 <!-- Check if there are no existing images -->
-                <% if (maingalleryItems && maingalleryItems.length>= 5) { %>
-                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Maximum Maingallery image limit reached</h2>
+                <% if (maingalleryItems && maingalleryItems.length>= 40) { %>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Maximum Maingallery image limit reached(limit:40)</h2>
                     <% } else { %>
                         <!-- Form to upload a new Maingallery image -->
                         <section class="bg-white p-6 rounded-lg shadow-md mb-8">
@@ -125,15 +126,18 @@
                                     <input type="text" id="image_title" name="image_title"
                                         placeholder="Enter Image Title" required
                                         class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <p class="text-red-600">Note: Make sure your name must not be ended with blank Space
+                                    </p>
                                 </div>
                                 <div>
                                     <label for="imagefilter" class="block text-sm font-medium text-gray-700">Image
                                         Title:</label>
                                     <select id="imagefilter" name="imagefilter" required
                                         class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
-                                        <option value="Play">Play</option>
-                                        <option value="Kids">Kids</option>
-                                        <option value="Senior">Senior</option>
+                                        <option value="None">None</option>
+                                        <option value="GraduationCeremony">Graduation Ceremony</option>
+                                        <option value="Labs">Labs</option>
+                                        <option value="Rise&Run">Rise & Run</option>
                                     </select>
                                 </div>
                                 <div>
@@ -174,12 +178,10 @@
                                                             </span>
                                                     </td>
                                                     <td class="px-4 py-2 text-sm text-gray-700">
-                                                        <img src="<%= item.image_url %>"
-                                                            alt="<%= item.image_title %>" width="100"
-                                                            class="rounded-md">
+                                                        <img src="<%= item.image_url %>" alt="<%= item.image_title %>"
+                                                            width="100" class="rounded-md">
                                                     </td>
                                                     <td class="px-4 py-2 space-x-2">
-                                                        <!-- Update Image Form -->
                                                         <form
                                                             action="/admin/gallery/update/Maingallery/<%= item._id %>?_method=PUT"
                                                             method="POST" enctype="multipart/form-data"
@@ -190,12 +192,17 @@
                                                             <select id="imagefilter" name="imagefilter" required
                                                                 class="p-1 border border-gray-300 rounded-md">
                                                                 <option value="" disabled>Select Image Filter</option>
-                                                                <option value="Play" <%=item.imagefilter1==='Play'
-                                                                    ? 'selected' : '' %>>Play</option>
-                                                                <option value="Kids" <%=item.imagefilter1==='Kids'
-                                                                    ? 'selected' : '' %>>Kids</option>
-                                                                <option value="Senior" <%=item.imagefilter1==='Senior'
-                                                                    ? 'selected' : '' %>>Senior</option>
+                                                                <option value="None" <%=item.imagefilter==='None'
+                                                                    ? 'selected' : '' %>>None</option>
+                                                                <option value="GraduationCeremony"
+                                                                    <%=item.imagefilter==='GraduationCeremony'
+                                                                    ? 'selected' : '' %>>Graduation Ceremony</option>
+                                                                <option value="Labs"
+                                                                    <%=item.imagefilter==='Labs'
+                                                                    ? 'selected' : '' %>>Labs</option>
+                                                                <option value="Rise&Run"
+                                                                    <%=item.imagefilter==='Rise&Run'
+                                                                    ? 'selected' : '' %>>Rise & Run</option>
                                                             </select>
                                                             <input type="file" name="image" accept="image/*"
                                                                 class="p-1 text-sm border border-gray-300 rounded-md">

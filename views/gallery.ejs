@@ -1,317 +1,380 @@
 <%- include("header.ejs") %>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    .background {
-      background-color: #f3f0fc;
-    }
-  </style>
-</head>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      .background {
+        background-color: #f3f0fc;
+      }
+    </style>
+  </head>
 
-<body class="bg-gray-100 p-4">
-  <div class="bg-[#f3f0fc] -mt-6 pt-10">
-    <div class="bg-[#D2C6FA] rounded-3xl w-fit my-4 p-2 text-center text-[#200E42] font-semibold rotate-[-1deg] mx-auto">
-      Creating memories for life
-    </div>
-    <div class="text-center md:text-6xl text-5xl xl:px-80 lg:px-48 md:px-52 px-5 font-bold my-4">
-      See what the DWS experience looks like
-    </div>
-    <div class="text-center xl:px-96 lg:px-72 md:px-36 px-4 my-4">
-      At DWS, we create unforgettable experiences that shape lifelong memories. Our vibrant school community
-      fosters growth, creativity, and lasting friendships, all while providing students with opportunities to
-      explore, learn, and excel.
-    </div>
-    <div class=" w-fit overflow-hidden relative">
-      <div class="md:flex flex-wrap h-full w-full justify-center hidden p-6 ml-3 mb-10 relative z-10">
-        <% if (galleryItems && galleryItems.length> 0) { %>
-        <div class="w-2/12 mt-[12.5%]">
-          <img onclick="openModal('modal1', '<%= galleryItems[0].image_url%>')" loading="lazy" class=" aspect-square rounded-3xl shadow-2xl -rotate-6 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer" src="<%= galleryItems[0].image_url%>" alt="<%= galleryItems[0].image_title %>">
+  <body class="bg-gray-100 p-4">
+    <div class="bg-[#f3f0fc] -mt-6 pt-10">
+      <div
+        class="bg-[#D2C6FA] rounded-3xl w-fit my-4 p-2 text-center text-[#200E42] font-semibold rotate-[-1deg] mx-auto">
+        Creating memories for life
+      </div>
+      <div class="text-center md:text-6xl text-5xl xl:px-80 lg:px-48 md:px-52 px-5 font-bold my-4">
+        See what the DWS experience looks like
+      </div>
+      <div class="text-center xl:px-96 lg:px-72 md:px-36 px-4 my-4">
+        At DWS, we create unforgettable experiences that shape lifelong memories. Our vibrant school community
+        fosters growth, creativity, and lasting friendships, all while providing students with opportunities to
+        explore, learn, and excel.
+      </div>
+      <div class=" w-fit overflow-hidden relative">
+        <div class="md:flex flex-wrap h-full w-full justify-center hidden p-6 ml-3 mb-10 relative z-10">
+          <% if (galleryItems && galleryItems.length> 0) { %>
+            <div class="w-2/12 mt-[12.5%]">
+              <img onclick="openModal('modal1', '<%= galleryItems[0].image_url%>')" loading="lazy"
+                class=" aspect-square rounded-3xl shadow-2xl -rotate-6 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
+                src="<%= galleryItems[0].image_url%>" alt="<%= galleryItems[0].image_title %>">
+            </div>
+            <% } %>
+              <div class="w-3/12 block">
+                <% if (galleryItems && galleryItems.length> 1) { %>
+                  <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[1].image_url%>')"
+                    class=" aspect-square rounded-3xl shadow-2xl -rotate-6 z-10 relative w-3/4 mx-auto transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
+                    src="<%= galleryItems[1].image_url%>" alt="<%= galleryItems[1].image_title %>">
+                  <% } %>
+                    <% if (galleryItems && galleryItems.length> 2) { %>
+                      <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[2].image_url%>')"
+                        class=" aspect-square rounded-3xl shadow-2xl w-2/4 rotate-6 relative z-0 mx-auto transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer hover:z-20"
+                        src="<%= galleryItems[2].image_url %>" alt="<%= galleryItems[2].image_title %>">
+                      <% } %>
+              </div>
+              <% if (galleryItems && galleryItems.length> 3) { %>
+                <div class="w-3/12 my-auto ">
+                  <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[3].image_url%>')"
+                    class=" aspect-square rounded-3xl shadow-2xl rotate-6 w-11/12 mx-auto mb-6 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
+                    src="<%= galleryItems[3].image_url %>" alt="<%= galleryItems[3].image_title %>">
+                </div>
+                <% } %>
+                  <div class=" w-3/12 xl:ml-6 md:ml-4">
+                    <% if (galleryItems && galleryItems.length> 4) { %>
+                      <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[4].image_url%>')"
+                        class=" aspect-square rounded-3xl shadow-2xl rotate-6 w-3/4 mx-auto relative z-10 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
+                        src="<%= galleryItems[4].image_url %>" alt="<%= galleryItems[4].image_title %>">
+                      <% } %>
+                        <% if (galleryItems && galleryItems.length> 5) { %>
+                          <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[5].image_url%>')"
+                            class=" aspect-square rounded-3xl shadow-2xl w-2/4 -rotate-6 -mt-3 relative z-0 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer hover:z-10"
+                            src="<%= galleryItems[5].image_url%>" alt="<%= galleryItems[5].image_title %>">
+                          <% } %>
+                  </div>
         </div>
-        <% } %>
-        <div class="w-3/12 block">
-          <% if (galleryItems && galleryItems.length> 1) { %>
-          <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[1].image_url%>')" class=" aspect-square rounded-3xl shadow-2xl -rotate-6 z-10 relative w-3/4 mx-auto transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer" src="<%= galleryItems[1].image_url%>" alt="<%= galleryItems[1].image_title %>">
-          <% } %>
-          <% if (galleryItems && galleryItems.length> 2) { %>
-          <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[2].image_url%>')" class=" aspect-square rounded-3xl shadow-2xl w-2/4 rotate-6 relative z-0 mx-auto transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer hover:z-20" src="<%= galleryItems[2].image_url %>" alt="<%= galleryItems[2].image_title %>">
-          <% } %>
-        </div>
-        <% if (galleryItems && galleryItems.length> 3) { %>
-        <div class="w-3/12 my-auto ">
-          <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[3].image_url%>')" class=" aspect-square rounded-3xl shadow-2xl rotate-6 w-11/12 mx-auto mb-6 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer" src="<%= galleryItems[3].image_url %>" alt="<%= galleryItems[3].image_title %>">
-        </div>
-        <% } %>
-        <div class=" w-3/12 xl:ml-6 md:ml-4">
-          <% if (galleryItems && galleryItems.length> 4) { %>
-          <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[4].image_url%>')" class=" aspect-square rounded-3xl shadow-2xl rotate-6 w-3/4 mx-auto relative z-10 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer" src="<%= galleryItems[4].image_url %>" alt="<%= galleryItems[4].image_title %>">
-          <% } %>
-          <% if (galleryItems && galleryItems.length> 5) { %>
-          <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[5].image_url%>')" class=" aspect-square rounded-3xl shadow-2xl w-2/4 -rotate-6 -mt-3 relative z-0 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer hover:z-10" src="<%= galleryItems[5].image_url%>" alt="<%= galleryItems[5].image_title %>">
-          <% } %>
+        <div class="grid grid-cols-3 gap-4 px-4 md:hidden mt-4 mb-12">
+          <% if (galleryItems && galleryItems.length> 0) { %>
+            <div class=" w-full h-full">
+              <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[0].image_url%>')"
+                class=" aspect-square rounded-xl shadow-2xl rotate-6 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
+                src="<%= galleryItems[0].image_url%>" alt="<%= galleryItems[0].image_title %>">
+            </div>
+            <% } %>
+              <% if (galleryItems && galleryItems.length> 1) { %>
+                <div class="w-full h-full">
+                  <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[1].image_url%>')"
+                    class=" aspect-square rounded-xl shadow-2xl -rotate-6 z-10 relative mx-auto transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
+                    src="<%= galleryItems[1].image_url%>" alt="<%= galleryItems[1].image_title %>">
+                </div>
+                <% } %>
+                  <% if (galleryItems && galleryItems.length> 2) { %>
+                    <div class="w-full h-full">
+                      <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[2].image_url%>')"
+                        class=" aspect-square rounded-xl shadow-2xl rotate-6 relative z-0 mx-auto transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer hover:z-20"
+                        src="<%= galleryItems[2].image_url%>" alt="<%= galleryItems[2].image_title %>">
+                    </div>
+                    <% } %>
+                      <% if (galleryItems && galleryItems.length> 3) { %>
+                        <div class=" w-full h-full">
+                          <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[3].image_url%>')"
+                            class=" aspect-square rounded-xl shadow-2xl rotate-6 w-11/12 mx-auto mb-6 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
+                            src="<%= galleryItems[3].image_url%>" alt="<%= galleryItems[3].image_title %>">
+                        </div>
+                        <% } %>
+                          <% if (galleryItems && galleryItems.length> 4) { %>
+                            <div class="w-full h-full">
+                              <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[4].image_url%>')"
+                                class=" aspect-square rounded-xl shadow-2xl -rotate-6 mx-auto relative z-10 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer"
+                                src="<%= galleryItems[4].image_url%>" alt="<%= galleryItems[4].image_title %>">
+                            </div>
+                            <% } %>
+                              <% if (galleryItems && galleryItems.length> 5) { %>
+                                <div class=" w-full h-full">
+                                  <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[5].image_url%>')"
+                                    class=" aspect-square rounded-xl shadow-2xl -rotate-6 -mt-3 relative z-0 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer hover:z-10"
+                                    src="<%= galleryItems[5].image_url%>" alt="<%= galleryItems[5].image_title %>">
+                                </div>
+                                <% } %>
         </div>
       </div>
-      <div class="grid grid-cols-3 gap-4 px-4 md:hidden mt-4 mb-12">
-        <% if (galleryItems && galleryItems.length> 0) { %>
-        <div class=" w-full h-full">
-          <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[0].image_url%>')" class=" aspect-square rounded-xl shadow-2xl rotate-6 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer" src="<%= galleryItems[0].image_url%>" alt="<%= galleryItems[0].image_title %>">
+      <div class="bg-gradient-to-b from-[#f3f0fc] from-0% to-white to-100% md:h-48 h-32 relative z-0">
+        <div class="text-center bg-transparent md:text-6xl text-4xl  xl:px-80 lg:px-48 md:px-52 px-5 font-bold ">
+          See what it's like to be part of our school
         </div>
-        <% } %>
-        <% if (galleryItems && galleryItems.length> 1) { %>
-        <div class="w-full h-full">
-          <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[1].image_url%>')" class=" aspect-square rounded-xl shadow-2xl -rotate-6 z-10 relative mx-auto transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer" src="<%= galleryItems[1].image_url%>" alt="<%= galleryItems[1].image_title %>">
-        </div>
-        <% } %>
-        <% if (galleryItems && galleryItems.length> 2) { %>
-        <div class="w-full h-full">
-          <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[2].image_url%>')" class=" aspect-square rounded-xl shadow-2xl rotate-6 relative z-0 mx-auto transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer hover:z-20" src="<%= galleryItems[2].image_url%>" alt="<%= galleryItems[2].image_title %>">
-        </div>
-        <% } %>
-        <% if (galleryItems && galleryItems.length> 3) { %>
-        <div class=" w-full h-full">
-          <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[3].image_url%>')" class=" aspect-square rounded-xl shadow-2xl rotate-6 w-11/12 mx-auto mb-6 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer" src="<%= galleryItems[3].image_url%>" alt="<%= galleryItems[3].image_title %>">
-        </div>
-        <% } %>
-        <% if (galleryItems && galleryItems.length> 4) { %>
-        <div class="w-full h-full">
-          <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[4].image_url%>')" class=" aspect-square rounded-xl shadow-2xl -rotate-6 mx-auto relative z-10 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer" src="<%= galleryItems[4].image_url%>" alt="<%= galleryItems[4].image_title %>">
-        </div>
-        <% } %>
-        <% if (galleryItems && galleryItems.length> 5) { %>
-        <div class=" w-full h-full">
-          <img loading="lazy" onclick="openModal('modal1', '<%= galleryItems[5].image_url%>')" class=" aspect-square rounded-xl shadow-2xl -rotate-6 -mt-3 relative z-0 transition-transform transform origin-center hover:scale-110 hover:rotate-0 hover:cursor-pointer hover:z-10" src="<%= galleryItems[5].image_url%>" alt="<%= galleryItems[5].image_title %>">
-        </div>
-        <% } %>
       </div>
     </div>
-    <div class="bg-gradient-to-b from-[#f3f0fc] from-0% to-white to-100% md:h-48 h-32 relative z-0">
-      <div class="text-center bg-transparent md:text-6xl text-4xl  xl:px-80 lg:px-48 md:px-52 px-5 font-bold ">
-        See what it's like to be part of our school
+    <div id="modal1"
+      class="modal hidden fixed inset-0 bg-black bg-opacity-50 w-full h-full flex justify-center z-50 items-center">
+      <!-- Modal Header -->
+      <div class="absolute top-0 p-2 z-50 bg-black w-screen">
+        <h2 class="text-xl text-white absolute left-0 px-4 font-semibold text-center" id="imageSlideshowTitle">
+          ImageSlideshow</h2>
+        <button class="absolute top-0 z-50 right-0 p-2 px-4 text-white" onclick="closeModal('modal1')">
+          <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="#ffffff" stroke-width="0.72"
+                stroke-linecap="round"></path>
+              <path
+                d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7"
+                stroke="#ffffff" stroke-width="0.72" stroke-linecap="round"></path>
+            </g>
+          </svg>
+        </button>
       </div>
-    </div>
-  </div>
-  <div id="modal1" class="modal hidden fixed inset-0 bg-black bg-opacity-50 w-full h-full flex justify-center z-50 items-center">
-    <!-- Modal Header -->
-    <div class="absolute top-0 p-2 z-50 bg-black w-screen">
-      <h2 class="text-xl text-white absolute left-0 px-4 font-semibold text-center" id="imageSlideshowTitle">
-        ImageSlideshow</h2>
-      <button class="absolute top-0 z-50 right-0 p-2 px-4 text-white" onclick="closeModal('modal1')">
-        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <div
+        class="modal-content px-4 py-10 pt-12 rounded-md shadow-md flex flex-col items-center relative bg-black w-screen h-screen overflow-hidden">
+        <div class="relative w-auto h-auto flex-grow overflow-hidden">
+          <img id="modalImage1" alt="Modal Image" class="w-full h-full object-contain rounded-md">
+        </div>
+      </div>
+      <button
+        class="absolute top-1/2 z-50 left-4 rotate-180 transform -translate-y-1/2 bg-gray-800 hover:bg-gray-500 text-white rounded-lg"
+        onclick="prevSlide()">
+        <svg width="40px" height="40px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg"
+          stroke="#b18cfe">
           <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
+            stroke-width="0.048"></g>
           <g id="SVGRepo_iconCarrier">
-            <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="#ffffff" stroke-width="0.72" stroke-linecap="round"></path>
-            <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="#ffffff" stroke-width="0.72" stroke-linecap="round"></path>
+            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#ffffff" stroke-width="0.72" stroke-linecap="round"
+              stroke-linejoin="round"></path>
           </g>
         </svg>
       </button>
-    </div>
-    <div class="modal-content px-4 py-10 pt-12 rounded-md shadow-md flex flex-col items-center relative bg-black w-screen h-screen overflow-hidden">
-      <div class="relative w-auto h-auto flex-grow overflow-hidden">
-        <img id="modalImage1" alt="Modal Image" class="w-full h-full object-contain rounded-md">
+      <button
+        class="absolute top-1/2 z-50 right-4 transform -translate-y-1/2 bg-gray-800 hover:bg-gray-500 text-white rounded-lg"
+        onclick="nextSlide()">
+        <svg width="40px" height="40px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg"
+          stroke="#b18cfe">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
+            stroke-width="0.048"></g>
+          <g id="SVGRepo_iconCarrier">
+            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#ffffff" stroke-width="0.72" stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </g>
+        </svg>
+      </button>
+      <div class="absolute bottom-0 p-2 bg-black w-full">
+        <p class="text-2xl font-medium text-white text-center" id="imageFooter">Footer</p>
       </div>
     </div>
-    <button class="absolute top-1/2 z-50 left-4 rotate-180 transform -translate-y-1/2 bg-gray-800 hover:bg-gray-500 text-white rounded-lg" onclick="prevSlide()">
-      <svg width="40px" height="40px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#b18cfe">
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.048"></g>
-        <g id="SVGRepo_iconCarrier">
-          <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#ffffff" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round"></path>
-        </g>
-      </svg>
-    </button>
-    <button class="absolute top-1/2 z-50 right-4 transform -translate-y-1/2 bg-gray-800 hover:bg-gray-500 text-white rounded-lg" onclick="nextSlide()">
-      <svg width="40px" height="40px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#b18cfe">
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.048"></g>
-        <g id="SVGRepo_iconCarrier">
-          <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#ffffff" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round"></path>
-        </g>
-      </svg>
-    </button>
-    <div class="absolute bottom-0 p-2 bg-black w-full">
-      <p class="text-2xl font-medium text-white text-center" id="imageFooter">Footer</p>
-    </div>
-  </div>
-  <script>
-    // Add event listener for keydown event
-    document.addEventListener("keydown", function(event) {
-      if (event.keyCode === 27) {
-        closeModal('modal1');
-      } else if (event.keyCode === 37) {
-        prevSlide();
-      } else if (event.keyCode === 39) {
-        nextSlide();
-      }
-    });
-  </script>
-  <script>
-    const images1 = [
+    <script>
+      // Add event listener for keydown event
+      document.addEventListener("keydown", function (event) {
+        if (event.keyCode === 27) {
+          closeModal('modal1');
+        } else if (event.keyCode === 37) {
+          prevSlide();
+        } else if (event.keyCode === 39) {
+          nextSlide();
+        }
+      });
+    </script>
+    <script>
+      const images1 = [
       <% for (let i = 0; i < galleryItems.length; i++) { %> '<%= galleryItems[i].image_url%>',
       <% } %>
     ];
 
-    const titles1 = [
+      const titles1 = [
       <% for (let i = 0; i < galleryItems.length; i++) { %> '<%= galleryItems[i].image_title %>',
       <% } %>
     ];
-    let currentImageIndex1 = 0;
+      let currentImageIndex1 = 0;
 
-    function openModal(modalId, imageUrl) {
-      currentImageIndex1 = images1.indexOf(imageUrl);
-      showImage();
-      document.getElementById(modalId).classList.remove('hidden');
-      document.getElementById(modalId).classList.add('flex');
-    }
+      function openModal(modalId, imageUrl) {
+        currentImageIndex1 = images1.indexOf(imageUrl);
+        showImage();
+        document.getElementById(modalId).classList.remove('hidden');
+        document.getElementById(modalId).classList.add('flex');
+      }
 
-    function closeModal(modalId) {
-      document.getElementById(modalId).classList.add('hidden');
-    }
+      function closeModal(modalId) {
+        document.getElementById(modalId).classList.add('hidden');
+      }
 
-    function showImage() {
-      const imageUrl = images1[currentImageIndex1];
-      const title = titles1[currentImageIndex1];
-      document.getElementById('modalImage1').src = imageUrl;
-      document.getElementById('imageSlideshowTitle').innerText = `${currentImageIndex1 + 1}/6`;
-      document.getElementById('imageFooter').innerText = `${title}`;
-    }
+      function showImage() {
+        const imageUrl = images1[currentImageIndex1];
+        const title = titles1[currentImageIndex1];
+        document.getElementById('modalImage1').src = imageUrl;
+        document.getElementById('imageSlideshowTitle').innerText = `${currentImageIndex1 + 1}/6`;
+        document.getElementById('imageFooter').innerText = `${title}`;
+      }
 
-    function nextSlide() {
-      currentImageIndex1 = (currentImageIndex1 + 1) % images1.length;
-      showImage();
-    }
+      function nextSlide() {
+        currentImageIndex1 = (currentImageIndex1 + 1) % images1.length;
+        showImage();
+      }
 
-    function prevSlide() {
-      currentImageIndex1 = (currentImageIndex1 - 1 + images1.length) % images1.length;
-      showImage();
-    }
-  </script>
-  <!-- 
-        <div class="mb-4 flex justify-center">
-            <button class=" rounded-full px-4 bg-[#D2C6FA] mr-2" onclick="filterGallery('all')">All</button>
-            <button class=" rounded-full px-4 bg-[#D2C6FA] mr-2" onclick="filterGallery('Nature')">Nature</button>
-            <button class=" rounded-full px-4 bg-[#D2C6FA] mr-2"
-                onclick="filterGallery('Architect')">Architecture</button>
-        </div> -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4" id="gallery">
-    <% for (let i=0; i < maingalleryItems.length; i++) { %>
-    <div class="bg-white gallery-item <%= maingalleryItems[i].imagefilter %> rounded-md overflow-hidden shadow-md">
-      <img loading="lazy" onclick="openModal1('modal','<%= maingalleryItems[i].image_url%>')" src="<%= maingalleryItems[i].image_url%>" alt="<%= maingalleryItems[i].image_title %>" class="w-fit h-fit object-cover aspect-square hover:opacity-40">
+      function prevSlide() {
+        currentImageIndex1 = (currentImageIndex1 - 1 + images1.length) % images1.length;
+        showImage();
+      }
+    </script>
+
+    <div class="mb-4 flex justify-center">
+      <button class=" rounded-full px-4 bg-[#D2C6FA] mr-2" onclick="filterGallery('all')">All</button>
+      <button class=" rounded-full px-4 bg-[#D2C6FA] mr-2" onclick="filterGallery('Labs')">Labs</button>
+      <button class=" rounded-full px-4 bg-[#D2C6FA] mr-2" onclick="filterGallery('GraduationCeremony')">Graduation
+        Ceremony</button>
+      <button class=" rounded-full px-4 bg-[#D2C6FA] mr-2" onclick="filterGallery('Rise&Run')">Rise & Run</button>
     </div>
-    <% } %>
-  </div>
-  <!-- Modal -->
-  <div id="modal" class="modal hidden fixed inset-0 bg-black bg-opacity-50 w-full h-full z-50 flex justify-center items-center">
-    <div class="absolute top-0 p-2 z-50 bg-black w-screen">
-      <h2 class="text-xl text-white absolute left-0 px-4 font-semibold text-center" id="imageSlideshowTitle1">
-        Image Slideshow</h2>
-      <button class="absolute top-0 z-50 right-0 p-2 px-4 text-white" onclick="closeModal1('modal')">
-        <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4" id="gallery">
+      <% for (let i=0; i < maingalleryItems.length; i++) { %>
+        <div class="bg-white gallery-item <%= maingalleryItems[i].imagefilter %> rounded-md overflow-hidden shadow-md">
+          <img loading="lazy" onclick="openModal1('modal','<%= maingalleryItems[i].image_url%>')"
+            src="<%= maingalleryItems[i].image_url%>" alt="<%= maingalleryItems[i].image_title %>"
+            class="w-fit h-fit object-cover aspect-square hover:opacity-40 cursor-pointer">
+        </div>
+        <% } %>
+    </div>
+    <!-- Modal -->
+    <div id="modal"
+      class="modal hidden fixed inset-0 bg-black bg-opacity-50 w-full h-full z-50 flex justify-center items-center">
+      <div class="absolute top-0 p-2 z-50 bg-black w-screen">
+        <h2 class="text-xl text-white absolute left-0 px-4 font-semibold text-center" id="imageSlideshowTitle1">
+          Image Slideshow</h2>
+        <button class="absolute top-0 z-50 right-0 p-2 px-4 text-white" onclick="closeModal1('modal')">
+          <svg width="40px" height="40px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+            <g id="SVGRepo_iconCarrier">
+              <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="#ffffff" stroke-width="0.72"
+                stroke-linecap="round"></path>
+              <path
+                d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7"
+                stroke="#ffffff" stroke-width="0.72" stroke-linecap="round"></path>
+            </g>
+          </svg>
+
+        </button>
+      </div>
+      <div
+        class="modal-content px-4 py-10 pt-12 rounded-md shadow-md flex flex-col items-center relative bg-black w-screen h-screen overflow-hidden">
+        <div class="relative w-auto h-auto flex-grow overflow-hidden">
+          <img id="modalImage" alt="Modal Image" class="w-full h-full object-contain rounded-md">
+        </div>
+      </div>
+      <button
+        class="absolute top-1/2 z-50 left-4 rotate-180 transform -translate-y-1/2 bg-gray-800 text-white rounded-lg"
+        onclick="prevSlide1()">
+        <svg width="40px" height="40px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg"
+          stroke="#b18cfe">
           <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
+            stroke-width="0.048"></g>
           <g id="SVGRepo_iconCarrier">
-            <path d="M14.5 9.50002L9.5 14.5M9.49998 9.5L14.5 14.5" stroke="#ffffff" stroke-width="0.72" stroke-linecap="round"></path>
-            <path d="M7 3.33782C8.47087 2.48697 10.1786 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 10.1786 2.48697 8.47087 3.33782 7" stroke="#ffffff" stroke-width="0.72" stroke-linecap="round"></path>
+            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#ffffff" stroke-width="0.72" stroke-linecap="round"
+              stroke-linejoin="round"></path>
           </g>
         </svg>
-
       </button>
-    </div>
-    <div class="modal-content px-4 py-10 pt-12 rounded-md shadow-md flex flex-col items-center relative bg-black w-screen h-screen overflow-hidden">
-      <div class="relative w-auto h-auto flex-grow overflow-hidden">
-        <img id="modalImage" alt="Modal Image" class="w-full h-full object-contain rounded-md">
+      <button
+        class="absolute top-1/2 z-50 right-4 transform -translate-y-1/2 bg-gray-800 hover:bg-gray-500 text-white rounded-lg"
+        onclick="nextSlide1()">
+        <svg width="40px" height="40px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg"
+          stroke="#b18cfe">
+          <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+          <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC"
+            stroke-width="0.048"></g>
+          <g id="SVGRepo_iconCarrier">
+            <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#ffffff" stroke-width="0.72" stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </g>
+        </svg>
+      </button>
+      <div class="absolute bottom-0 p-2 bg-black w-full">
+        <p class="text-2xl font-medium text-white text-center" id="imageFooter1">Footer</p>
       </div>
     </div>
-    <button class="absolute top-1/2 z-50 left-4 rotate-180 transform -translate-y-1/2 bg-gray-800 text-white rounded-lg" onclick="prevSlide1()">
-      <svg width="40px" height="40px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#b18cfe">
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.048"></g>
-        <g id="SVGRepo_iconCarrier">
-          <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#ffffff" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round"></path>
-        </g>
-      </svg>
-    </button>
-    <button class="absolute top-1/2 z-50 right-4 transform -translate-y-1/2 bg-gray-800 hover:bg-gray-500 text-white rounded-lg" onclick="nextSlide1()">
-      <svg width="40px" height="40px" viewBox="-2.4 -2.4 28.80 28.80" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#b18cfe">
-        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="0.048"></g>
-        <g id="SVGRepo_iconCarrier">
-          <path d="M5 12H19M19 12L13 6M19 12L13 18" stroke="#ffffff" stroke-width="0.72" stroke-linecap="round" stroke-linejoin="round"></path>
-        </g>
-      </svg>
-    </button>
-    <div class="absolute bottom-0 p-2 bg-black w-full">
-      <p class="text-2xl font-medium text-white text-center" id="imageFooter1">Footer</p>
-    </div>
-  </div>
-  <script>
-    function filterGallery(category) {
-      const galleryItems = document.querySelectorAll('.gallery-item');
-      galleryItems.forEach(item => {
-        if (category === 'all' || item.classList.contains(category)) {
-          item.style.display = 'block';
-        } else {
-          item.style.display = 'none';
+    <script>
+      function filterGallery(category) {
+        const galleryItems = document.querySelectorAll('.gallery-item');
+        galleryItems.forEach(item => {
+          if (category === 'all' || item.classList.contains(category)) {
+            item.style.display = 'block';
+          } else {
+            item.style.display = 'none';
+          }
+        });
+      }
+    </script>
+    <script>
+      document.addEventListener("keydown", function (event) {
+        if (event.keyCode === 27) {
+          closeModal1('modal');
+        } else if (event.keyCode === 37) {
+          prevSlide1();
+        } else if (event.keyCode === 39) {
+          nextSlide1();
         }
       });
-    }
-  </script>
-  <script>
-    document.addEventListener("keydown", function(event) {
-      if (event.keyCode === 27) {
-        closeModal1('modal');
-      } else if (event.keyCode === 37) {
-        prevSlide1();
-      } else if (event.keyCode === 39) {
-        nextSlide1();
-      }
-    });
-  </script>
-  <script>
-    const images = [
+    </script>
+    <script>
+      const images = [
       <% for (let i = 0; i < maingalleryItems.length; i++) { %> '<%= maingalleryItems[i].image_url%>',
       <% } %>
     ];
-    const titles = [
+      const titles = [
       <% for (let i = 0; i < maingalleryItems.length; i++) { %> '<%= maingalleryItems[i].image_title %>',
       <% } %>
     ];
-    let currentImageIndex = 0;
+      function decodeHTMLEntities(text) {
+        const doc = new DOMParser().parseFromString(text, 'text/html');
+        return doc.documentElement.textContent;
+      }
+      const decodedTitles = titles.map(title => decodeHTMLEntities(title));
+      let currentImageIndex = 0;
 
-    function openModal1(modalId, imageUrl) {
-      currentImageIndex = images.indexOf(imageUrl);
-      showImage1();
-      document.getElementById(modalId).classList.remove('hidden');
-      document.getElementById(modalId).classList.add('flex');
-    }
+      function openModal1(modalId, imageUrl) {
+        currentImageIndex = images.indexOf(imageUrl);
+        showImage1();
+        document.getElementById(modalId).classList.remove('hidden');
+        document.getElementById(modalId).classList.add('flex');
+      }
 
-    function closeModal1(modalId) {
-      document.getElementById(modalId).classList.add('hidden');
-    }
-    const totalItems = <%= maingalleryItems.length %>;
+      function closeModal1(modalId) {
+        document.getElementById(modalId).classList.add('hidden');
+      }
+      const totalItems = <%= maingalleryItems.length %>;
 
-    function showImage1() {
-      const imageUrl = images[currentImageIndex];
-      const title = titles[currentImageIndex];
-      document.getElementById('modalImage').src = imageUrl;
-      document.getElementById('imageSlideshowTitle1').innerText = `${currentImageIndex + 1}/${totalItems}`;
-      document.getElementById('imageFooter1').innerText = `${title}`;
+      function showImage1() {
+        const imageUrl = images[currentImageIndex];
+        const title = decodedTitles[currentImageIndex];
+        document.getElementById('modalImage').src = imageUrl;
+        document.getElementById('imageSlideshowTitle1').innerText = `${currentImageIndex + 1}/${totalItems}`;
+        document.getElementById('imageFooter1').innerText = `${title}`;
 
-    }
+      }
 
-    function nextSlide1() {
-      currentImageIndex = (currentImageIndex + 1) % images.length;
-      showImage1();
-    }
+      function nextSlide1() {
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        showImage1();
+      }
 
-    function prevSlide1() {
-      currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
-      showImage1();
-    }
-  </script>
-  <%- include("logo.ejs") %>
-  <%- include("Footer.ejs") %>
-</body>
+      function prevSlide1() {
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        showImage1();
+      }
+    </script>
+    <%- include("logo.ejs") %>
+      <%- include("Footer.ejs") %>
+  </body>
 
-</html>
+  </html>
