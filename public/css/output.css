@@ -851,6 +851,9 @@ video {
 .aspect-square {
   aspect-ratio: 1 / 1;
 }
+.aspect-video {
+  aspect-ratio: 16 / 9;
+}
 .h-1 {
   height: 0.25rem;
 }
@@ -2324,10 +2327,6 @@ video {
 
   .md\:hidden {
     display: none;
-  }
-
-  .md\:aspect-auto {
-    aspect-ratio: auto;
   }
 
   .md\:h-12 {
