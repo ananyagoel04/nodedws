@@ -921,6 +921,9 @@ video {
 .h-screen {
   height: 100vh;
 }
+.max-h-\[650px\] {
+  max-height: 650px;
+}
 .max-h-max {
   max-height: -moz-max-content;
   max-height: max-content;
