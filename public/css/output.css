@@ -2326,6 +2326,10 @@ video {
     display: none;
   }
 
+  .md\:aspect-auto {
+    aspect-ratio: auto;
+  }
+
   .md\:h-12 {
     height: 3rem;
   }
