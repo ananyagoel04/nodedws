@@ -1,3 +1,27 @@
+const sharp = require('sharp');
+
+async function resizeFile(fileBuffer, mimetype) {
+    const MAX_SIZE_MB = 5;
+    const MAX_SIZE_BYTES = MAX_SIZE_MB * 1024 * 1024;
+
+    // Check if it's an image file based on mimetype
+    if (!mimetype.startsWith('image')) {
+        // Handle non-image file (e.g., reject or compress using a different method)
+        return fileBuffer;
+    }
+
+    if (fileBuffer.length > MAX_SIZE_BYTES) {
+        const compressedBuffer = await sharp(fileBuffer)
+            .resize({ width: 1024 })  // Resize width to 1024px (adjustable)
+            .toBuffer();
+        
+        return compressedBuffer;
+    }
+    return fileBuffer;
+}
+
+
+
 const Class = require('../models/tc/class');
 const Session = require('../models/tc/session');
 const Student = require('../models/tc/student');
@@ -174,12 +198,14 @@ async function createStudent(req, res) {
         const classObj = await Class.findById(classId);
         if (!classObj) return res.status(404).json({ message: 'Class not found' });
 
+        const compressedFileBuffer = await resizeFile(file.buffer, file.mimetype);
+
         // Create a new student instance
         const newStudent = new Student({
             student_name,
             classId,  // Reference to the class
             TC: {
-                data: file.buffer, // Store the file buffer
+                data: compressedFileBuffer, // Store the file buffer
                 contentType: file.mimetype, // Store the MIME type
             },
         });
@@ -230,7 +256,8 @@ async function updateStudent(req, res) {
 
         // Update student file if a new one is provided
         if (file) {
-            student.TC.data = file.buffer;
+            const compressedFileBuffer = await resizeFile(file.buffer, file.mimetype);
+            student.TC.data = compressedFileBuffer;
             student.TC.contentType = file.mimetype;
         }
 
