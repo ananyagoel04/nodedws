@@ -32,7 +32,15 @@ async function getAllClassesSessionsStudents(req, res) {
         // Fetch all classes, sessions, and students
         const classes = await Class.find().populate('sessionId').exec();
         const sessions = await Session.find();
-        const students = await Student.find().populate('classId').exec();
+        const students = await Student.find()
+            .populate({
+                path: 'classId',
+                populate: {
+                    path: 'sessionId', // Populate sessionId inside classId
+                    model: 'Session' // Make sure it's referring to the correct model
+                }
+            })
+            .exec();
         // Render the view and pass the data
         res.render('Admin/tcadmin', { classes, sessions, students });
     } catch (err) {
