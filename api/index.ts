@@ -33,11 +33,11 @@ app.use(session({
   store: MongoStore.create({
     mongoUrl: process.env.DATA_BASE,
     collectionName: 'usersessions',
-    ttl: 60,
+    ttl: 60* 60,
   }),
   cookie: {
     httpOnly: true,
-    secure: process.env.NODE_ENV !== 'dev',
+    secure: process.env.NODE_ENV === 'production' && process.env.USE_HTTPS === 'true',
     maxAge:  60 * 60 * 1000,
   },
 }));
