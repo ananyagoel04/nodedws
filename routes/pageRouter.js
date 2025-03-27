@@ -17,18 +17,15 @@ const transporter = require('../config/mailService');
 
 router.post('/send-resume', upload.single('Resume'), async (req, res) => {
   try {
-    // Extract form data
     const { Name, Email, Phone, Message } = req.body;
     const resumeFile = req.file;
 
-    // Validate required fields
     if (!Name || !Email || !resumeFile) {
       return res.redirect('/about?errorMessage=All fields are required.');
     }
 
-    // Set up the email data
     const mailOptions = {
-      from: process.env.EMAIL_USER, // Sender email address (from the environment variable)
+      from: process.env.EMAIL_USER,
       to: `${Email}`,
       bcc: 'principal@divinewisdom.edu.in, management@divinewisdomschool.in',
       subject: 'Resume Submitted',
@@ -56,7 +53,6 @@ router.post('/send-resume', upload.single('Resume'), async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-
 
 router.post('/message-send', async (req, res) => {
   try {
@@ -88,10 +84,6 @@ router.post('/message-send', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
-
-
-
-
 
 router.get("/login", (req, res) => {
   const { errorMessage } = req.query;
@@ -142,7 +134,6 @@ router.get('/', async (req, res) => {
   }
 });
 
-
 router.get('/about', async (req, res) => {
   try {
     const [aboutImages, messages] = await Promise.all([
@@ -180,7 +171,6 @@ router.get('/tc', async (req, res) => {
 
 router.get('/gallery', async (req, res) => {
   try {
-    // Fetch all data from MongoDB collections
     const [galleryItems, maingalleryItems] = await Promise.all([
       Gallery.find({}),
       Maingallery.find({}),
@@ -199,23 +189,16 @@ router.get('/student/:studentId/view', tcController.viewStudentTC);
 
 router.get('/class_students/:id', async (req, res) => {
   try {
-    // Get the class ID from the request params
     const classId = req.params.id;
-
-    // Fetch the class details using the classId
     const cls = await Class.findById(classId).populate('sessionId').exec();
 
     if (!cls) {
       return res.status(404).send('Class not found');
     }
 
-    // Fetch all students that belong to this class (using classId)
     const students = await Student.find({ classId: classId }).exec();
-
-    // Fetch all sessions (optional, if needed in the view)
     const sessions = await Session.find();
 
-    // Render the 'class_students' view and pass the data
     res.render('class_students', {
       students,
       sessions,
@@ -236,6 +219,7 @@ router.get('/admissions', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
 router.get('/Infrastructure', async (req, res) => {
   try {
     res.render('Infrastructure');
@@ -244,6 +228,7 @@ router.get('/Infrastructure', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
 router.get('/Club', async (req, res) => {
   try {
     res.render('Clubs');
@@ -252,6 +237,7 @@ router.get('/Club', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
 router.get('/Cbse', async (req, res) => {
   try {
     res.render('Cbse');
@@ -260,6 +246,7 @@ router.get('/Cbse', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
 router.get('/parent', async (req, res) => {
   try {
     const events = await Event.find();
@@ -270,6 +257,7 @@ router.get('/parent', async (req, res) => {
     res.status(500).send('Internal Server Error');
   }
 });
+
 router.get('/contact', async (req, res) => {
   try {
     const { successMessage, errorMessage } = req.query;
@@ -282,9 +270,6 @@ router.get('/contact', async (req, res) => {
     res.status(500).send('Internal Server Error contact us not found');
   }
 });
-
-
-
 
 router.get('/PersonalGrowthandDevelopment', async (req, res) => {
   try {
