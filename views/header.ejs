@@ -436,6 +436,39 @@
                                 class="w-full h-2 bg-[#FBDE9B] rounded-full {% if request.path != '/contact/'%} ut-2 {% endif %}">
                             </div>
                         </a>
+                        <li class="z-50 block rounded-md py-2 text-base text-center font-medium w-fit mx-auto">
+                            <button id="dropdownButton4" data-collapse-toggle="dropdownContent4" type="button"
+                                tabindex="-1" aria-controls="dropdownContent3" aria-expanded="false"
+                                class="text-gray-300 ut-1">
+                                <div class="flex mx-auto px-3">ERP Portal
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="mt-0.5">
+                                        <path d="M6 9l6 6l6 -6"></path>
+                                    </svg>
+                                </div>
+                            </button>
+                            <div id="dropdownContent4"
+                                class="hidden mx-auto top-0 w-full left-0 z-20 bg-[#e6e2f4] rounded-xl mt-2 ">
+                                <ul class="py-2 text-sm text-gray-700 text-center">
+                                    <li>
+                                        <a href="https://sikhlo.com/DIVINE/parent" target="_blank" tabindex="-1"
+                                            class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
+                                            <div class="text-center text-xl py-2 text-violet-800">Parent Portal</div>
+                                        </a>
+                                    </li>
+                                    <span
+                                        class="block border-t-2 border-purple-300 w-[98%] mx-auto rounded-full"></span>
+                                    <li>
+                                        <a href="https://sikhlo.com/DIVINE/student" target="_blank" tabindex="-1"
+                                            class="block px-4 py-2 hover:bg-violet-100 rounded-xl ">
+                                            <div class="text-center text-xl py-2 text-violet-800">Student Portal</div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+
                         <a href="/admissions/" tabindex="-1">
                             <div
                                 class=" mx-auto p-4 w-fit text-center bg-[#F6C663] rounded-full text-lg font-medium my-auto hover:bg-[#F9BC3E]">
@@ -642,6 +675,41 @@
                             class="w-full h-2 bg-[#FBDE9B] rounded-full {% if request.path != '/contact/'%} ut-2 {% endif %}">
                         </div>
                     </li>
+                    <li class="p-2 text-xl font-medium block ut-1">
+                        <button id="dropdownDefaultButton3" data-dropdown-toggle="dropdown3" class="flex" type="button"
+                            tabindex="-1">
+                            <div class="flex"><span class="home">ERP Portal</span>
+                                <svg id="arrow3" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round" class="mt-0.5">
+                                    <path d="M6 9l6 6l6 -6"></path>
+                                </svg>
+                            </div>
+                        </button>
+                        <div class="w-full h-2 bg-[#FBDE9B] rounded-full {% if request.path != '//'%} ut-2 {% endif %}">
+                        </div>
+                        <!-- Dropdown menu -->
+                        <div id="dropdown3"
+                            class="z-50 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-72 px-4 py-2">
+                            <ul class="py-2 text-sm text-gray-700 text-center overflow-y-auto max-h-max"
+                                aria-labelledby="dropdownDefaultButton1">
+                                <li>
+                                    <a href="https://sikhlo.com/DIVINE/parent" target="_blank" tabindex="-1"
+                                        class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
+                                        <div class="text-center text-xl text-violet-800">Parent Portal</div>
+                                    </a>
+                                </li>
+                                <hr class="w-[90%] mx-auto my-2">
+                                <li>
+                                    <a href="https://sikhlo.com/DIVINE/student" target="_blank" tabindex="-1"
+                                        class="block px-4 py-1 hover:bg-violet-100 rounded-xl ">
+                                        <div class="text-center text-xl text-violet-800 ">Student Portal</div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
                 </ul>
                 <!-- <a href="http://registration.divinewisdom.edu.in/"> -->
                 <a href="/admissions/" tabindex="-1">
