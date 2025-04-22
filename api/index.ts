@@ -66,9 +66,6 @@ app.use("/admin/ads", isLoggedin, adRouter);
 app.use("/admin/gallery", galleryRoutes);
 const PORT = process.env.PORT || 3000;
 
-// app.listen(PORT, () => {
-//   console.log(`Server running on port ${PORT}`);
-// });
 
 db()
   .then(() => {
