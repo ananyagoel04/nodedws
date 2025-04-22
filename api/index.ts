@@ -19,14 +19,13 @@ const imghomeRouter = require("../routes/imagehomeRouter");
 const Ad = require("../models/ad");
 const app = express();
 const dev = process.env.NODE_ENV;
-// require("dotenv").config();
-require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
+require("dotenv").config();
+// require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-console.log("MongoStore connection string:", process.env.DATA_BASE);
 
 app.use(
   session({
