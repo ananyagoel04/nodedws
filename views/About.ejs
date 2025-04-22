@@ -414,129 +414,103 @@
                                                         alt="" />
                                                 </div>
                                             </div>
-                                            <div class="" id="resume">
-                                                <h3 class="text-5xl text-center font-bold -mt-10">Explore yourself with
-                                                    us</h3>
+                                            <div id="resume">
+                                                <h3 class="text-5xl text-center font-bold -mt-10">Explore yourself with us</h3>
                                                 <p class="text-center md:px-56 my-4 px-10">
-                                                    Explore yourself with us at DIVINE WISDOM SCHOOL, where passionate
-                                                    educators are invited to join our team in shaping young minds and
-                                                    making a meaningful impact through innovative teaching practices and
-                                                    professional growth opportunities.
+                                                    Explore yourself with us at DIVINE WISDOM SCHOOL, where passionate educators are invited to join our team in shaping young minds and making a meaningful impact through innovative teaching practices and professional growth opportunities.
                                                 </p>
                                                 <div class="md:px-40 px-8 my-4">
-                                                    <form action="/send-resume" method="POST"
-                                                        enctype="multipart/form-data" onsubmit="return checkForm()"
-                                                        class="bg-white shadow-2xl w-full z-10 p-10 md:px-14 border-2 rounded-2xl">
-                                                        <div class="text-3xl font-bold text-center md:text-left">Send us
-                                                            your
-                                                            Resume</div>
+                                                    <form action="/send-resume" method="POST" enctype="multipart/form-data" onsubmit="return checkForm()" class="bg-white shadow-2xl w-full z-10 p-10 md:px-14 border-2 rounded-2xl">
+                                                        <div class="text-3xl font-bold text-center md:text-left">Send us your Resume</div>
                                                         <br>
-                                                        <label for="">Name*</label>
-                                                        <br>
-                                                        <input type="text" placeholder='Name' name="Name"
-                                                            class="border-2 p-2 rounded-xl w-full h-10">
-                                                        <br>
-                                                        <label for="">Email*</label>
-                                                        <br>
-                                                        <input type="email" placeholder='xyz@gmail.com' name="Email"
-                                                            class="border-2 p-2 rounded-xl w-full h-10">
-                                                        <br>
-                                                        <label for="">Phone</label>
-                                                        <br>
-                                                        <input type="tel" placeholder='Phone Number' maxlength="10"
-                                                            name="Phone" maxlength="10"
-                                                            class="border-2 p-2 rounded-xl w-full h-10">
-                                                        <br>
-                                                        <label for="">Upload Your Resume*</label>
-                                                        <br>
-                                                        <input type="file" placeholder='Your Resume' name="Resume"
-                                                            class="border-2 p-2 rounded-xl w-full h-14">
-                                                        <br>
-                                                        <!-- <div
-                                                            class="bg-yellow-100 p-4 rounded-md border-l-4 border-yellow-500 my-2">
-                                                            <h1 class="text-sm text-red-600 font-semibold">
-                                                                <span class="text-red-500">NOTE:</span> File size must
-                                                                be less than 3MB. If you encounter a
-                                                                <span class="font-bold text-red-700">"Payload Too
-                                                                    Large"</span> error, please reload the page,
-                                                                compress your file, and then upload your resume again.
-                                                            </h1>
-                                                        </div> -->
-                                                        <label for="">Message</label>
-                                                        <br>
-                                                        <textarea name="Message" placeholder='Message' id="" rows="4"
-                                                            class="w-full border-1 rounded-xl p-2 border-2"></textarea>
-                                                        <br>
+                                                        <label for="">Name*</label><br>
+                                                        <input type="text" placeholder="Name" name="Name" class="border-2 p-2 rounded-xl w-full h-10"><br>
+                                            
+                                                        <label for="">Email*</label><br>
+                                                        <input type="email" placeholder="xyz@gmail.com" name="Email" class="border-2 p-2 rounded-xl w-full h-10"><br>
+                                            
+                                                        <label for="">Phone</label><br>
+                                                        <input type="tel" placeholder="Phone Number" maxlength="10" name="Phone" class="border-2 p-2 rounded-xl w-full h-10"><br>
+                                            
+                                                        <label for="">Upload Your Resume*</label><br>
+                                                        <input type="file" name="Resume" class="border-2 p-2 rounded-xl w-full h-14"><br>
+                                            
+                                                        <label for="">Message</label><br>
+                                                        <textarea name="Message" placeholder="Message" rows="4" class="w-full border-1 rounded-xl p-2 border-2"></textarea><br>
+                                            
+                                                        <!-- CAPTCHA -->
+                                                        <label for="captcha">What is <span id="num1"></span> + <span id="num2"></span>? *</label><br>
+                                                        <input type="text" id="captcha" placeholder="Your answer" class="border-2 p-2 rounded-xl w-full h-10"><br>
+                                            
+                                                        <!-- Error and Success Messages -->
+                                                        <div id="error-message" class="text-red-500 text-sm my-2" style="display: none;"></div>
+                                                        <div id="success-message" class="text-green-500 text-sm my-2" style="display: none;"></div>
+                                            
                                                         <button type="submit" tabindex="-1">
-                                                            <div
-                                                                class="p-2 px-4 lg:p-8 md:p-4 lg:py-2 md:py-2 w-fit text-center bg-[#F6C663] rounded-full text-lg font-medium my-auto hover:bg-[#F9BC3E]">
+                                                            <div class="p-2 px-4 lg:p-8 md:p-4 lg:py-2 md:py-2 w-fit text-center bg-[#F6C663] rounded-full text-lg font-medium my-auto hover:bg-[#F9BC3E]">
                                                                 Send
                                                             </div>
                                                         </button>
-                                                        <% if (successMessage && successMessage.length> 0) { %>
-                                                            <div class="text-center text-green-400">
-                                                                <%= successMessage %>
-                                                            </div>
-                                                            <% } %>
-                                                                <!-- Display Error Message -->
-                                                                <% if (errorMessage && errorMessage.length> 0) { %>
-                                                                    <div class="text-center text-red-400">
-                                                                        <%= errorMessage %>
-                                                                    </div>
-                                                                    <% } %>
-
                                                     </form>
                                                 </div>
-
+                                            
                                                 <script>
+                                                    // Generate simple math CAPTCHA
+                                                    let n1 = Math.floor(Math.random() * 10);
+                                                    let n2 = Math.floor(Math.random() * 10);
                                                     window.onload = function () {
-                                                        // Get the full URL including query parameters and hash
-                                                        const currentUrl = window.location.href;
-
-                                                        // Decode the URL to handle encoded parts like "%23resume"
-                                                        const decodedUrl = decodeURIComponent(currentUrl);
-
-                                                        // Check if either the decoded URL or the original URL contains "#resume"
-                                                        if (decodedUrl.includes("#resume") || currentUrl.includes("%23resume")) {
-                                                            // Poll every 100ms to check if the resume section becomes available
-                                                            const interval = setInterval(function () {
-                                                                const resumeSection = document.getElementById("resume");
-                                                                if (resumeSection) {
-                                                                    // Scroll to the resume section once it's available
-                                                                    resumeSection.scrollIntoView({ behavior: 'smooth' });
-                                                                    clearInterval(interval); // Stop polling once section is found
-                                                                }
-                                                            }, 100); // Polling every 100ms
-                                                        }
+                                                        document.getElementById("num1").textContent = n1;
+                                                        document.getElementById("num2").textContent = n2;
                                                     };
-                                                </script>
-                                                <script>
+                                            
                                                     function checkForm() {
-                                                        // Check if all required fields are filled
-                                                        var name = document.getElementsByName("Name")[0].value;
-                                                        var email = document.getElementsByName("Email")[0].value;
-                                                        var phone = document.getElementsByName("Phone")[0].value;
+                                                        var name = document.getElementsByName("Name")[0].value.trim();
+                                                        var email = document.getElementsByName("Email")[0].value.trim();
+                                                        var phone = document.getElementsByName("Phone")[0].value.trim();
                                                         var resume = document.getElementsByName("Resume")[0].files[0];
+                                                        var captchaInput = document.getElementById("captcha").value.trim();
+                                            
                                                         var errorMessage = document.getElementById("error-message");
                                                         var successMessage = document.getElementById("success-message");
-
-                                                        if (name === "" || email === "" || phone === "" || phone.length !== 10) {
-                                                            // Show the error message
-                                                            errorMessage.textContent = "Please fill out all the required fields.";
+                                            
+                                                        // Clear previous messages
+                                                        errorMessage.style.display = "none";
+                                                        successMessage.style.display = "none";
+                                            
+                                                        // Name Validation - alphabets and spaces only
+                                                        var nameRegex = /^[A-Za-z\s]+$/;
+                                                        if (!nameRegex.test(name)) {
+                                                            errorMessage.textContent = "Please enter a valid name (letters and spaces only).";
                                                             errorMessage.style.display = "block";
-                                                            // Hide the success message
-                                                            successMessage.style.display = "none";
-                                                            // Prevent the form submission
-                                                            return false;
-                                                        } else if (phone.length !== 10) {
-                                                            // Show the error message
-                                                            errorMessage.textContent = "Phone number must be exactly 10 digits.";
-                                                            errorMessage.style.display = "block";
-                                                            // Hide the success message
-                                                            successMessage.style.display = "none";
-                                                            // Prevent the form submission
                                                             return false;
                                                         }
+                                            
+                                                        // Required Fields Validation
+                                                        if (name === "" || email === "" || phone === "" || phone.length !== 10 || !resume) {
+                                                            errorMessage.textContent = "Please fill out all the required fields.";
+                                                            errorMessage.style.display = "block";
+                                                            return false;
+                                                        }
+                                            
+                                                        // Phone length validation
+                                                        if (phone.length !== 10) {
+                                                            errorMessage.textContent = "Phone number must be exactly 10 digits.";
+                                                            errorMessage.style.display = "block";
+                                                            return false;
+                                                        }
+                                            
+                                                        // CAPTCHA validation
+                                                        var correctAnswer = n1 + n2;
+                                                        if (parseInt(captchaInput) !== correctAnswer) {
+                                                            errorMessage.textContent = "CAPTCHA is incorrect. Please try again.";
+                                                            errorMessage.style.display = "block";
+                                                            return false;
+                                                        }
+                                            
+                                                        // If everything is valid, show success message
+                                                        successMessage.textContent = "Your resume has been submitted successfully!";
+                                                        successMessage.style.display = "block";
+                                                        return true;
                                                     }
                                                 </script>
                                             </div>

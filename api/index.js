@@ -1,3 +1,5 @@
+
+
 const express = require("express");
 const path = require("path");
 const db = require("../config/mongoose-connection");
@@ -5,7 +7,6 @@ const cookieParser = require("cookie-parser");
 const upload = require("../config/multer");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-
 const adminRouter = require("../routes/adminRouter");
 const pageRouter = require("../routes/pageRouter");
 const aboutRoutes = require("../routes/aboutRouter");
@@ -17,13 +18,15 @@ const adRouter = require("../routes/adRouter");
 const imghomeRouter = require("../routes/imagehomeRouter");
 const Ad = require("../models/ad");
 const app = express();
-require("dotenv").config();
-
 const dev = process.env.NODE_ENV;
+// require("dotenv").config();
+require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+console.log("MongoStore connection string:", process.env.DATA_BASE);
 
 app.use(
   session({
@@ -76,9 +79,23 @@ db()
       }
     });
   })
-  .catch((err: Error) => {
+  .catch((err) => {
     console.error("Error connecting to the database:", err);
     process.exit(1);
   });
+
+
+// db()
+//   .then(() => {
+//     app.listen(PORT, () => {
+//       if (dev === "dev") {
+//         console.log(`Server running on port ${PORT}`);
+//       }
+//     });
+//   })
+//   .catch((err: Error) => {
+//     console.error("Error connecting to the database:", err);
+//     process.exit(1);
+//   });
 
 module.exports = app;
