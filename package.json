@@ -7,7 +7,8 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "node api/index.ts",
 		"build:css": "postcss public/css/styles.css -o public/css/output.css",
-		"watch:css": "chokidar 'public/css/styles.css' 'views/**/*.ejs' -c 'npm run build:css'"
+		"watch:css": "chokidar 'public/css/styles.css' 'views/**/*.ejs' -c 'npm run build:css'",
+		"cssupdate": "npx tailwindcss -i ./public/css/styles.css -o ./public/css/output.css --watch"
 	},
 	"keywords": [],
 	"author": "",
