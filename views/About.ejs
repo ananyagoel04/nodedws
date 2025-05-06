@@ -440,7 +440,11 @@
                                             
                                                         <!-- CAPTCHA -->
                                                         <label for="captcha">What is <span id="num1"></span> + <span id="num2"></span>? *</label><br>
-                                                        <input type="text" id="captcha" placeholder="Your answer" class="border-2 p-2 rounded-xl w-full h-10 mb-2"><br>
+                                                        <input type="text" id="captcha" name="captchaAnswer" placeholder="Your answer" class="border-2 p-2 rounded-xl w-full h-10 mb-2"><br>
+                                                        <input type="text" name="website" style="display:none;" autocomplete="off">
+                                                        <input type="hidden" name="captchaNum1" id="captchaNum1">
+                                                        <input type="hidden" name="captchaNum2" id="captchaNum2">
+                                                        
                                             
                                                         <!-- Error and Success Messages -->
                                                         <div id="error-message" class="text-red-500 text-sm my-2" style="display: none;"></div>
@@ -453,66 +457,66 @@
                                                         </button>
                                                     </form>
                                                 </div>
+                                                
                                             
                                                 <script>
-                                                    // Generate simple math CAPTCHA
                                                     let n1 = Math.floor(Math.random() * 10);
                                                     let n2 = Math.floor(Math.random() * 10);
+                                                
                                                     window.onload = function () {
+                                                        // Show CAPTCHA
                                                         document.getElementById("num1").textContent = n1;
                                                         document.getElementById("num2").textContent = n2;
+                                                
+                                                        // Store values for server-side verification
+                                                        document.getElementById("captchaNum1").value = n1;
+                                                        document.getElementById("captchaNum2").value = n2;
                                                     };
-                                            
+                                                
                                                     function checkForm() {
                                                         var name = document.getElementsByName("Name")[0].value.trim();
                                                         var email = document.getElementsByName("Email")[0].value.trim();
                                                         var phone = document.getElementsByName("Phone")[0].value.trim();
                                                         var resume = document.getElementsByName("Resume")[0].files[0];
                                                         var captchaInput = document.getElementById("captcha").value.trim();
-                                            
+                                                
                                                         var errorMessage = document.getElementById("error-message");
                                                         var successMessage = document.getElementById("success-message");
-                                            
-                                                        // Clear previous messages
+                                                
                                                         errorMessage.style.display = "none";
                                                         successMessage.style.display = "none";
-                                            
-                                                        // Name Validation - alphabets and spaces only
+                                                
                                                         var nameRegex = /^[A-Za-z\s]+$/;
                                                         if (!nameRegex.test(name)) {
                                                             errorMessage.textContent = "Please enter a valid name (letters and spaces only).";
                                                             errorMessage.style.display = "block";
                                                             return false;
                                                         }
-                                            
-                                                        // Required Fields Validation
+                                                
                                                         if (name === "" || email === "" || phone === "" || phone.length !== 10 || !resume) {
                                                             errorMessage.textContent = "Please fill out all the required fields.";
                                                             errorMessage.style.display = "block";
                                                             return false;
                                                         }
-                                            
-                                                        // Phone length validation
+                                                
                                                         if (phone.length !== 10) {
                                                             errorMessage.textContent = "Phone number must be exactly 10 digits.";
                                                             errorMessage.style.display = "block";
                                                             return false;
                                                         }
-                                            
-                                                        // CAPTCHA validation
+                                                
                                                         var correctAnswer = n1 + n2;
                                                         if (parseInt(captchaInput) !== correctAnswer) {
                                                             errorMessage.textContent = "CAPTCHA is incorrect. Please try again.";
                                                             errorMessage.style.display = "block";
                                                             return false;
                                                         }
-                                            
-                                                        // If everything is valid, show success message
+                                                
                                                         successMessage.textContent = "Your resume has been submitted successfully!";
                                                         successMessage.style.display = "block";
                                                         return true;
                                                     }
-                                                </script>
+                                                </script>                                                
                                             </div>
                                             <%- include("logo.ejs") %>
                                                 <%- include("Footer.ejs") %>

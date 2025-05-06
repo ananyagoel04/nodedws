@@ -14,14 +14,46 @@ const router = express.Router();
 const tcController = require('../controllers/tcController');
 const upload = require('../config/multer');
 const transporter = require('../config/mailService');
+const rateLimit = require('express-rate-limit');
 
-router.post('/send-resume', upload.single('Resume'), async (req, res) => {
+const resumeRateLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000,
+  max: 5,
+  message: "Too many submissions from this IP, please try again later."
+});
+
+
+router.post('/send-resume',resumeRateLimiter, upload.single('Resume'), async (req, res) => {
   try {
-    const { Name, Email, Phone, Message } = req.body;
+    const {
+      Name,
+      Email,
+      Phone,
+      Message,
+      captchaAnswer,
+      captchaNum1,
+      captchaNum2,
+      website
+    } = req.body;
+
     const resumeFile = req.file;
 
-    if (!Name || !Email || !resumeFile) {
-      return res.redirect('/about?errorMessage=All fields are required.');
+    if (website && website.trim() !== '') {
+      return res.redirect('/about?errorMessage=Spam detected.');
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(Email)) {
+      return res.redirect('/about?errorMessage=Invalid email address.');
+    }
+
+    const expectedAnswer = parseInt(captchaNum1) + parseInt(captchaNum2);
+    if (parseInt(captchaAnswer) !== expectedAnswer) {
+      return res.redirect('/about?errorMessage=CAPTCHA is incorrect.');
+    }
+
+    if (!Name || !Email || !Phone || !resumeFile) {
+      return res.redirect('/about?errorMessage=All required fields must be filled.');
     }
 
     const mailOptions = {
@@ -31,10 +63,10 @@ router.post('/send-resume', upload.single('Resume'), async (req, res) => {
       subject: 'Resume Submitted',
       html: `
         <h3>Thank you for submitting your resume!</h3>
-        <p>Name: ${Name}</p>
-        <p>Email: ${Email}</p>
-        <p>Phone: ${Phone}</p>
-        <p>Message: ${Message}</p>
+        <p><strong>Name:</strong> ${Name}</p>
+        <p><strong>Email:</strong> ${Email}</p>
+        <p><strong>Phone:</strong> ${Phone}</p>
+        <p><strong>Message:</strong> ${Message}</p>
       `,
       attachments: [
         {
