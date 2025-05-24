@@ -21,6 +21,11 @@ const resumeRateLimiter = rateLimit({
   max: 5,
   message: "Too many submissions from this IP, please try again later."
 });
+const messageRateLimiter = rateLimit({
+  windowMs: 1 * 60 * 1000,
+  max: 5,
+  message: "Too many submissions from this IP, please try again later."
+});
 
 
 router.post('/send-resume',resumeRateLimiter, upload.single('Resume'), async (req, res) => {
@@ -86,14 +91,40 @@ router.post('/send-resume',resumeRateLimiter, upload.single('Resume'), async (re
   }
 });
 
-router.post('/message-send', async (req, res) => {
+router.post('/message-send', messageRateLimiter, async (req, res) => {
   try {
-    const { Name, Email, Phone, Message } = req.body;
+    const {
+      Name,
+      Email,
+      Phone,
+      Message,
+      website,
+      formStartTime
+    } = req.body;
 
-    if (!Name || !Email || !Message || !Phone) {
+    // Honeypot field - must be empty
+    if (website && website.trim() !== '') {
+      return res.redirect('/contact?errorMessage=Spam detected.');
+    }
+
+    // Time check - at least 3 seconds must have passed
+    const submittedAt = Date.now();
+    const formStartedAt = parseInt(formStartTime, 10);
+    if (!formStartedAt || submittedAt - formStartedAt < 3000) {
+      return res.redirect('/contact?errorMessage=Form submitted too quickly. Possible bot.');
+    }
+
+    // Basic validations
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(Email)) {
+      return res.redirect('/contact?errorMessage=Invalid email format.');
+    }
+
+    if (!Name || !Email || !Phone || !Message) {
       return res.redirect('/contact?errorMessage=All fields are required.');
     }
 
+    // Compose and send email
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: 'info@divinewisdom.edu.in',
@@ -112,7 +143,7 @@ router.post('/message-send', async (req, res) => {
 
     res.redirect('/contact?successMessage=Your message has been sent successfully.');
   } catch (err) {
-    console.error(err);
+    console.error('Error in /message-send:', err);
     res.status(500).send('Internal Server Error');
   }
 });

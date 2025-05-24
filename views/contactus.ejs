@@ -51,90 +51,94 @@
                     <div class="md:w-2/4 xl:pl-32 lg:pr-10 relative mx-auto lg:p-10 p-4">
                         <img class="md:w-32 w-16 relative md:-bottom-24 -bottom-12  md:left-14 left-60"
                             src="/icons/dots1.svg" alt="">
-                            <div class="flex justify-center w-full relative h-fit ">
-                                <form action="/message-send" method="post" onsubmit="return checkForm()" class="bg-white shadow-2xl w-full z-10 p-10 md:px-14 border-2 rounded-2xl">
-                                    <div class="text-3xl font-bold text-center md:text-left">Send us a message</div>
-                                    <br>
-                                    <label for="">Name*</label><br>
-                                    <input type="text" placeholder="Name" required name="Name" class="border-2 p-2 rounded-xl w-full h-10"><br>
-                            
-                                    <label for="">Email*</label><br>
-                                    <input type="email" placeholder="xyz@gmail.com" name="Email" class="border-2 p-2 rounded-xl w-full h-10"><br>
-                            
-                                    <label for="">Phone</label><br>
-                                    <input type="tel" placeholder="Phone Number" name="Phone" required maxlength="10" class="border-2 p-2 rounded-xl w-full h-10"><br>
-                            
-                                    <label for="">Message</label><br>
-                                    <textarea name="Message" placeholder="Message" required id="" rows="4" class="w-full border-1 rounded-xl p-2 border-2"></textarea><br>
-                            
-                                    <button type="submit" tabindex="-1">
-                                        <div class="p-2 lg:p-8 md:p-4 lg:py-4 md:py-2 w-fit text-center bg-[#F6C663] rounded-full text-lg font-medium my-auto hover:bg-[#F9BC3E]">
-                                            Send Message
-                                        </div>
-                                    </button>
-                            
-                                    <!-- Error Message -->
-                                    <div id="error-message" class="text-red-500 text-center mt-4" style="display: none;"></div>
-                            
-                                    <!-- Success Message -->
-                                    <div id="success-message" class="text-green-500 text-center mt-4" style="display: none;"></div>
-                                </form>
-                            
-                                <!-- Image Decoration -->
-                                <img class="w-24 hidden md:flex rotate-0 top-28 my-auto -left-16 bottom-0 relative right-0 h-fit z-0" src="/icons/dots1.svg" alt="">
-                            </div>
-                            
-                            <script>
-                                function checkForm() {
-                                    var name = document.getElementsByName("Name")[0].value.trim();
-                                    var email = document.getElementsByName("Email")[0].value.trim();
-                                    var phone = document.getElementsByName("Phone")[0].value.trim();
-                                    var message = document.getElementsByName("Message")[0].value.trim();
-                            
-                                    var errorMessage = document.getElementById("error-message");
-                                    var successMessage = document.getElementById("success-message");
-                            
-                                    // Clear previous messages
-                                    errorMessage.style.display = "none";
-                                    successMessage.style.display = "none";
-                            
-                                    // Name Validation - alphabets and spaces only
-                                    var nameRegex = /^[A-Za-z\s]+$/;
-                                    if (!nameRegex.test(name)) {
-                                        errorMessage.textContent = "Please enter a valid name (letters and spaces only).";
-                                        errorMessage.style.display = "block";
-                                        return false;
-                                    }
-                            
-                                    // Required Fields Validation
-                                    if (name === "" || email === "" || phone === "" || message === "") {
-                                        errorMessage.textContent = "Please fill out all the required fields.";
-                                        errorMessage.style.display = "block";
-                                        return false;
-                                    }
-                            
-                                    // Phone length validation
-                                    if (phone.length !== 10) {
-                                        errorMessage.textContent = "Phone number must be exactly 10 digits.";
-                                        errorMessage.style.display = "block";
-                                        return false;
-                                    }
-                            
-                                    // Email Validation (basic check)
-                                    var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-                                    if (!emailRegex.test(email)) {
-                                        errorMessage.textContent = "Please enter a valid email address.";
-                                        errorMessage.style.display = "block";
-                                        return false;
-                                    }
-                            
-                                    // If everything is valid, show success message
-                                    successMessage.textContent = "Your message has been sent successfully!";
-                                    successMessage.style.display = "block";
-                                    return true;  // Proceed with form submission
+                        <div class="flex justify-center w-full relative h-fit">
+                            <form action="/message-send" method="post" onsubmit="return checkForm()"
+                                class="bg-white shadow-2xl w-full z-10 p-10 md:px-14 border-2 rounded-2xl">
+                                <div class="text-3xl font-bold text-center md:text-left">Send us a message</div>
+                                <br>
+
+                                <label>Name*</label><br>
+                                <input type="text" name="Name" placeholder="Name"
+                                    class="border-2 p-2 rounded-xl w-full h-10" required><br>
+
+                                <label>Email*</label><br>
+                                <input type="email" name="Email" placeholder="xyz@gmail.com"
+                                    class="border-2 p-2 rounded-xl w-full h-10" required><br>
+
+                                <label>Phone*</label><br>
+                                <input type="tel" name="Phone" placeholder="Phone Number" maxlength="10"
+                                    class="border-2 p-2 rounded-xl w-full h-10" required><br>
+
+                                <label>Message*</label><br>
+                                <textarea name="Message" placeholder="Message" rows="4"
+                                    class="w-full border-1 rounded-xl p-2 border-2" required></textarea><br>
+
+                                <!-- Hidden Honeypot Field -->
+                                <input type="text" name="website" style="display:none;" autocomplete="off">
+
+                                <!-- Hidden Timestamp Field -->
+                                <input type="hidden" name="formStartTime" id="formStartTime">
+
+                                <!-- Error Message -->
+                                <div id="error-message" class="text-red-500 text-center mt-4" style="display: none;">
+                                </div>
+
+                                <button type="submit" tabindex="-1">
+                                    <div
+                                        class="p-2 lg:p-8 md:p-4 lg:py-4 md:py-2 w-fit text-center bg-[#F6C663] rounded-full text-lg font-medium my-auto hover:bg-[#F9BC3E]">
+                                        Send Message
+                                    </div>
+                                </button>
+                            </form>
+
+                            <!-- Image Decoration -->
+                            <img class="w-24 hidden md:flex rotate-0 top-28 my-auto -left-16 bottom-0 relative right-0 h-fit z-0"
+                                src="/icons/dots1.svg" alt="">
+                        </div>
+
+                        <script>
+                            window.onload = function () {
+                                document.getElementById('formStartTime').value = Date.now();
+                            };
+
+                            function checkForm() {
+                                const name = document.getElementsByName("Name")[0].value.trim();
+                                const email = document.getElementsByName("Email")[0].value.trim();
+                                const phone = document.getElementsByName("Phone")[0].value.trim();
+                                const message = document.getElementsByName("Message")[0].value.trim();
+
+                                const errorMessage = document.getElementById("error-message");
+                                const successMessage = document.getElementById("success-message");
+
+                                errorMessage.style.display = "none";
+                                successMessage.style.display = "none";
+
+                                const nameRegex = /^[A-Za-z\s]+$/;
+                                if (!nameRegex.test(name)) {
+                                    errorMessage.textContent = "Please enter a valid name.";
+                                    errorMessage.style.display = "block";
+                                    return false;
                                 }
-                            </script>
-                                                </div>
+
+                                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                                if (!emailRegex.test(email)) {
+                                    errorMessage.textContent = "Please enter a valid email address.";
+                                    errorMessage.style.display = "block";
+                                    return false;
+                                }
+
+                                if (phone.length !== 10 || isNaN(phone)) {
+                                    errorMessage.textContent = "Phone number must be 10 digits.";
+                                    errorMessage.style.display = "block";
+                                    return false;
+                                }
+
+                                successMessage.textContent = "Your message has been sent successfully!";
+                                successMessage.style.display = "block";
+                                return true;
+                            }
+                        </script>
+                    </div>
                 </div>
                 <div class="uppercase md:text-6xl text-4xl font-bold p-12 pt-12 pb-0 text-center">
                     Contact Information
