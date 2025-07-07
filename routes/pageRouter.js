@@ -218,32 +218,15 @@ router.get('/about', async (req, res) => {
 
 router.get('/tc', async (req, res) => {
   try {
-    const students = await Student.find().populate('classId').exec();
-    const sessions = await Session.find();
-    const classes = await Class.find().populate('sessionId').exec();
-    res.render('Tc', {
-      students,
-      sessions,
-      classes
-    });
+    const sessions = await Session.find().select('year').exec();
+    const classes = await Class.find()
+      .select('className sessionId')
+      .populate('sessionId', 'year')
+      .exec();
+
+    res.render('Tc', { sessions, classes });
   } catch (err) {
     console.error('Error fetching data for TC:', err);
-    res.status(500).send('Internal Server Error');
-  }
-});
-
-router.get('/gallery', async (req, res) => {
-  try {
-    const [galleryItems, maingalleryItems] = await Promise.all([
-      Gallery.find({}),
-      Maingallery.find({}),
-    ]);
-    res.render('gallery', {
-      galleryItems,
-      maingalleryItems,
-    });
-  } catch (err) {
-    console.error('Error fetching data for Gallery', err);
     res.status(500).send('Internal Server Error');
   }
 });
@@ -269,6 +252,22 @@ router.get('/class_students/:id', async (req, res) => {
     });
   } catch (err) {
     console.error('Error fetching data for class students:', err);
+    res.status(500).send('Internal Server Error');
+  }
+});
+
+router.get('/gallery', async (req, res) => {
+  try {
+    const [galleryItems, maingalleryItems] = await Promise.all([
+      Gallery.find({}),
+      Maingallery.find({}),
+    ]);
+    res.render('gallery', {
+      galleryItems,
+      maingalleryItems,
+    });
+  } catch (err) {
+    console.error('Error fetching data for Gallery', err);
     res.status(500).send('Internal Server Error');
   }
 });
