@@ -224,7 +224,37 @@ router.get('/tc', async (req, res) => {
       .populate('sessionId', 'year')
       .exec();
 
-    res.render('Tc', { sessions, classes });
+    const classOrder = [
+      'CLASS NUR', 'CLASS JKG', 'CLASS SKG',
+      'CLASS I', 'CLASS II', 'CLASS III', 'CLASS IV', 'CLASS V',
+      'CLASS VI', 'CLASS VII', 'CLASS VIII', 'CLASS IX', 'CLASS X',
+      'CLASS XI', 'CLASS XII'
+    ];
+
+    // Group and sort classes per session
+    const groupedClasses = {};
+
+    sessions.forEach((session) => {
+      const sessionClasses = classes
+        .filter(cls => cls.sessionId && cls.sessionId._id.toString() === session._id.toString())
+        .sort((a, b) => {
+          const nameA = a.className.trim();
+          const nameB = b.className.trim();
+
+          const indexA = classOrder.indexOf(nameA);
+          const indexB = classOrder.indexOf(nameB);
+
+          if (indexA !== -1 && indexB !== -1) return indexA - indexB;
+          if (indexA === -1) return 1;
+          if (indexB === -1) return -1;
+
+          return nameA.localeCompare(nameB);
+        });
+
+      groupedClasses[session._id] = sessionClasses;
+    });
+
+    res.render('Tc', { sessions, groupedClasses });
   } catch (err) {
     console.error('Error fetching data for TC:', err);
     res.status(500).send('Internal Server Error');

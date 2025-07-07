@@ -53,9 +53,12 @@ async function getAllClassesSessionsStudents(req, res) {
 // Create a new class for a session
 async function createClass(req, res) {
     try {
-        const { className, sessionId } = req.body;
+        let { className, sessionId } = req.body;
+
         const session = await Session.findById(sessionId);
         if (!session) return res.status(404).json({ message: 'Session not found' });
+
+        className = className.trim().toUpperCase();
 
         const newClass = new Class({
             className,
@@ -93,12 +96,16 @@ async function getClass(req, res) {
 // Update a class
 async function updateClass(req, res) {
     try {
-        const { className, sessionId } = req.body;
+        let { className, sessionId } = req.body;
 
         const classObj = await Class.findById(req.params.classId);
         if (!classObj) return res.status(404).json({ message: 'Class not found' });
 
-        classObj.className = className || classObj.className;
+        // Normalize className only if it's being updated
+        if (className) {
+            classObj.className = className.trim().toUpperCase();
+        }
+
         classObj.sessionId = sessionId || classObj.sessionId;
 
         await classObj.save();
