@@ -29,19 +29,18 @@ const Student = require('../models/tc/student');
 
 async function getAllClassesSessionsStudents(req, res) {
     try {
-        // Fetch all classes, sessions, and students
         const classes = await Class.find().populate('sessionId').exec();
         const sessions = await Session.find();
         const students = await Student.find()
+            .select('-TC.data')
             .populate({
                 path: 'classId',
                 populate: {
-                    path: 'sessionId', // Populate sessionId inside classId
-                    model: 'Session' // Make sure it's referring to the correct model
+                    path: 'sessionId',
+                    model: 'Session'
                 }
             })
             .exec();
-        // Render the view and pass the data
         res.render('Admin/tcadmin', { classes, sessions, students });
     } catch (err) {
         console.error('Error loading Classes, Sessions, and Students data:', err);
@@ -229,7 +228,8 @@ async function createStudent(req, res) {
 // Get all students
 async function getStudents(req, res) {
     try {
-        const students = await Student.find().populate('classId');
+        const students = await Student.find().populate('classId').select('-TC.data');
+        console.log(students);
         res.status(200).json(students);
     } catch (error) {
         res.status(500).json({ message: error.message });

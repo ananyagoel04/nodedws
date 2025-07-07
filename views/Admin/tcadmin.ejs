@@ -125,22 +125,29 @@
                 <!-- Section for displaying existing Classes -->
                 <section>
                     <h3 class="text-xl font-semibold text-gray-800 mb-4">Existing Classes</h3>
-                    <!-- Search Class by Name -->
+
+                    <!-- Filter by Session -->
+                    <div class="mb-4">
+                        <label for="classSessionFilter" class="block text-sm font-medium text-gray-700">Filter by
+                            Session:</label>
+                        <select id="classSessionFilter"
+                            class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select Session</option>
+                            <% sessions.forEach(session=> { %>
+                                <option value="<%= session._id %>">
+                                    <%= session.year %>
+                                </option>
+                                <% }); %>
+                        </select>
+                    </div>
+
+                    <!-- Filter by Class Name -->
                     <div class="mb-4">
                         <label for="classSearch" class="block text-sm font-medium text-gray-700">Search Class by
                             Name:</label>
                         <input type="text" id="classSearch"
                             class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                             placeholder="Search by class name">
-                    </div>
-
-                    <!-- Search Class by Session -->
-                    <div class="mb-4">
-                        <label for="sessionSearch" class="block text-sm font-medium text-gray-700">Search Class by
-                            Session:</label>
-                        <input type="text" id="sessionSearch"
-                            class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-                            placeholder="Search by session year">
                     </div>
 
                     <table class="min-w-full bg-white rounded-lg shadow-md">
@@ -155,8 +162,7 @@
                                 <% classes.forEach(classObj=> { %>
                                     <tr class="border-b hover:bg-gray-50"
                                         data-session-id="<%= classObj.sessionId._id %>"
-                                        data-class-name="<%= classObj.className.toLowerCase() %>"
-                                        data-session-year="<%= classObj.sessionId.year.toLowerCase() %>">
+                                        data-class-name="<%= classObj.className.toLowerCase() %>">
                                         <td class="px-4 py-2 text-sm text-gray-700">
                                             <%= classObj.className %>
                                         </td>
@@ -247,6 +253,32 @@
                 <!-- Section for displaying existing Students -->
                 <section>
                     <h3 class="text-xl font-semibold text-gray-800 mb-4">Existing Students</h3>
+                    <!-- Filter by Session -->
+                    <div class="mb-4">
+                        <label for="sessionFilter" class="block text-sm font-medium text-gray-700">Filter by
+                            Session:</label>
+                        <select id="sessionFilter"
+                            class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                            <option value="">Select Session</option>
+                            <% sessions.forEach(session=> { %>
+                                <option value="<%= session._id %>">
+                                    <%= session.year %>
+                                </option>
+                                <% }); %>
+                        </select>
+                    </div>
+
+                    <!-- Filter by Class (after session is selected) -->
+                    <div class="mb-4">
+                        <label for="studentClassFilter" class="block text-sm font-medium text-gray-700">Filter by
+                            Class:</label>
+                        <select id="studentClassFilter"
+                            class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            disabled>
+                            <option value="">Select Class</option>
+                        </select>
+                    </div>
+
                     <!-- Search Student Input -->
                     <div class="mb-4">
                         <label for="studentSearch" class="block text-sm font-medium text-gray-700">Search Student by
@@ -344,65 +376,90 @@
             });
         </script>
         <script>
-            document.addEventListener("DOMContentLoaded", function () {
-                const classSearch = document.getElementById('classSearch');
-                const sessionSearch = document.getElementById('sessionSearch');
-                const classTableBody = document.getElementById('classTableBody');
+            document.addEventListener('DOMContentLoaded', function () {
+                // --- For Students Table Filtering ---
+                const allClasses = <%- JSON.stringify(classes) %>; // Passed from server
+                const sessionFilter = document.getElementById('sessionFilter');
+                const classFilter = document.getElementById('studentClassFilter');
                 const studentSearch = document.getElementById('studentSearch');
-                const studentTableBody = document.getElementById('studentTableBody');
+                const studentRows = document.querySelectorAll('#studentTableBody tr');
 
-                // Filter Classes by Name
-                classSearch.addEventListener('input', function () {
-                    const searchTerm = classSearch.value.toLowerCase();
-                    const rows = classTableBody.querySelectorAll('tr');
+                // Hide all student rows initially
+                studentRows.forEach(row => row.style.display = 'none');
 
-                    rows.forEach(row => {
-                        const className = row.getAttribute('data-class-name').toLowerCase();
+                // Populate classes based on selected session
+                sessionFilter?.addEventListener('change', function () {
+                    const selectedSessionId = sessionFilter.value;
+                    classFilter.innerHTML = '<option value="">Select Class</option>';
+                    classFilter.disabled = true;
 
-                        // Show or hide based on search term
-                        if (className.includes(searchTerm)) {
-                            row.style.display = ''; // Show row
+                    if (selectedSessionId) {
+                        const filteredClasses = allClasses.filter(cls => cls.sessionId._id === selectedSessionId);
+                        filteredClasses.forEach(cls => {
+                            const option = document.createElement('option');
+                            option.value = cls._id;
+                            option.textContent = `${cls.className} - ${cls.sessionId.year}`;
+                            classFilter.appendChild(option);
+                        });
+                        classFilter.disabled = false;
+                    }
+
+                    filterStudents(); // Reset display when session changes
+                });
+
+                classFilter?.addEventListener('change', filterStudents);
+                studentSearch?.addEventListener('input', filterStudents);
+
+                function filterStudents() {
+                    const selectedClassId = classFilter.value.trim();
+                    const searchTerm = studentSearch.value.trim().toLowerCase();
+
+                    studentRows.forEach(row => {
+                        const rowClassId = row.getAttribute('data-class-id');
+                        const studentName = row.getAttribute('data-student-name');
+
+                        const matchClass = selectedClassId && rowClassId === selectedClassId;
+                        const matchName = studentName && studentName.includes(searchTerm);
+
+                        if (matchClass && matchName) {
+                            row.style.display = '';
                         } else {
-                            row.style.display = 'none'; // Hide row
+                            row.style.display = 'none';
                         }
                     });
-                });
-                sessionSearch.addEventListener('input', function () {
-                    const searchTerm = sessionSearch.value.toLowerCase();
-                    const rows = classTableBody.querySelectorAll('tr');
+                }
 
-                    rows.forEach(row => {
-                        const sessionYear = row.getAttribute('data-session-year').toLowerCase();
-                        if (sessionYear.includes(searchTerm)) {
-                            row.style.display = ''; // Show row
+                // --- For Classes Table Filtering ---
+                const classSessionFilter = document.getElementById('classSessionFilter');
+                const classSearch = document.getElementById('classSearch');
+                const classRows = document.querySelectorAll('#classTableBody tr');
+
+                // Hide all class rows initially
+                classRows.forEach(row => row.style.display = 'none');
+
+                classSessionFilter?.addEventListener('change', filterClasses);
+                classSearch?.addEventListener('input', filterClasses);
+
+                function filterClasses() {
+                    const selectedSessionId = classSessionFilter.value.trim();
+                    const searchTerm = classSearch.value.trim().toLowerCase();
+
+                    classRows.forEach(row => {
+                        const rowSessionId = row.getAttribute('data-session-id');
+                        const className = row.getAttribute('data-class-name');
+
+                        const matchSession = selectedSessionId && rowSessionId === selectedSessionId;
+                        const matchName = className && className.includes(searchTerm);
+
+                        if (matchSession && matchName) {
+                            row.style.display = '';
                         } else {
-                            row.style.display = 'none'; // Hide row
+                            row.style.display = 'none';
                         }
                     });
-                });
-
-                // Filter Students by Name
-                studentSearch.addEventListener('input', function () {
-                    const searchTerm = studentSearch.value.toLowerCase();
-                    const rows = studentTableBody.querySelectorAll('tr');
-
-                    rows.forEach(row => {
-                        const studentName = row.getAttribute('data-student-name').toLowerCase();
-
-                        // Show or hide based on search term
-                        if (studentName.includes(searchTerm)) {
-                            row.style.display = ''; // Show row
-                        } else {
-                            row.style.display = 'none'; // Hide row
-                        }
-                    });
-                });
-
-                // Initialize Select2 for searchable dropdowns
-                $('#classFilter, #studentClassFilter, #classId, #session').select2({
-                    placeholder: "Select a Class",
-                    allowClear: true
-                });
+                }
             });
         </script>
+
+
     </body>
