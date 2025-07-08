@@ -8,7 +8,8 @@ module.exports.registerUser = async function (req, res) {
         const foundUser = await userModel.findOne({ email });
 
         if (foundUser) {
-            return res.render("/login", { errorMessage: "User already exists." });
+            req.flash("errorMessage", "User already exists.");
+            return res.redirect("/login");
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -24,7 +25,8 @@ module.exports.registerUser = async function (req, res) {
         });
         return res.redirect("/admin/about");
     } catch (err) {
-        return res.render("register", { errorMessage: "Something went wrong. Please try again." });
+        req.flash("errorMessage", "Something went wrong. Please try again.");
+        return res.redirect("/register");
     }
 };
 
@@ -34,7 +36,8 @@ module.exports.loginUser = async function (req, res) {
         const { email, password } = req.body;
         const user = await userModel.findOne({ email });
         if (!user) {
-            return res.render("login", { errorMessage: "Email not found." });
+            req.flash("errorMessage", "Email not found.");
+            return res.redirect("/login");
         }
         const result = await bcrypt.compare(password, user.password);
         if (result) {
@@ -42,10 +45,12 @@ module.exports.loginUser = async function (req, res) {
             res.cookie("token", token);
             return res.redirect("/admin/");
         } else {
-            return res.render("login", { errorMessage: "Incorrect password. Please try again." });
+            req.flash("errorMessage", "Incorrect password. Please try again.");
+            return res.redirect("/login");
         }
     } catch (err) {
-        return res.redirect("/login?errorMessage=An error occurred. Please try again.");
+        req.flash("errorMessage", "An error occurred. Please try again.");
+        return res.redirect("/login");
     }
 };
 

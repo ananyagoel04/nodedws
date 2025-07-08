@@ -28,7 +28,7 @@ const messageRateLimiter = rateLimit({
 });
 
 
-router.post('/send-resume',resumeRateLimiter, upload.single('Resume'), async (req, res) => {
+router.post('/send-resume', resumeRateLimiter, upload.single('Resume'), async (req, res) => {
   try {
     const {
       Name,
@@ -149,9 +149,21 @@ router.post('/message-send', messageRateLimiter, async (req, res) => {
 });
 
 router.get("/login", (req, res) => {
-  const { errorMessage } = req.query;
-  res.render("login", { errorMessage });
+  console.log('Flash messages:', {
+    errorMessage: res.locals.errorMessage,
+    successMessage: res.locals.successMessage,
+  });
+  res.render("login");
 });
+
+
+
+router.get("/test-login-flash", (req, res) => {
+  req.flash("errorMessage", "This is a test login error.");
+  req.flash("successMessage", "This is a test success message.");
+  res.redirect("/login");
+});
+
 
 router.get('/', async (req, res) => {
   try {

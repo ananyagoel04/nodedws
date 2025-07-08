@@ -1,5 +1,3 @@
-
-
 const express = require("express");
 const path = require("path");
 const db = require("../config/mongoose-connection");
@@ -19,6 +17,8 @@ const imghomeRouter = require("../routes/imagehomeRouter");
 const Ad = require("../models/ad");
 const app = express();
 const dev = process.env.NODE_ENV;
+const flash = require("connect-flash");
+
 require("dotenv").config();
 // require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
 
@@ -45,9 +45,20 @@ app.use(
   })
 );
 
+
+
 const methodOverride = require("method-override");
 const isLoggedin = require("../middlewares/isLoggedin");
 app.use(methodOverride("_method"));
+
+app.use(flash());
+
+app.use((req, res, next) => {
+  res.locals.successMessage = req.flash("successMessage");
+  res.locals.errorMessage = req.flash("errorMessage");
+  next();
+});
+
 
 app.set("views", path.join(__dirname, "..", "views"));
 app.set("view engine", "ejs");
