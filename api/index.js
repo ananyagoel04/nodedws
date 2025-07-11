@@ -14,6 +14,7 @@ const galleryRoutes = require("../routes/galleryRoutes");
 const parentRoutes = require("../routes/parentRoutes");
 const adRouter = require("../routes/adRouter");
 const imghomeRouter = require("../routes/imagehomeRouter");
+const newsletterRotuer = require("../routes/newsletterRoutes");
 const Ad = require("../models/ad");
 const app = express();
 const dev = process.env.NODE_ENV;
@@ -73,6 +74,7 @@ app.use("/users", userRouter);
 app.use("/admin/tc", isLoggedin, studentRoutes);
 app.use("/admin/parent", isLoggedin, parentRoutes);
 app.use("/admin/ads", isLoggedin, adRouter);
+app.use("/admin/subscribe", isLoggedin, newsletterRotuer);
 
 app.use("/admin/gallery", galleryRoutes);
 const PORT = process.env.PORT || 3000;

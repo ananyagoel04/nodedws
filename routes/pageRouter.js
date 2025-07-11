@@ -15,6 +15,16 @@ const tcController = require('../controllers/tcController');
 const upload = require('../config/multer');
 const transporter = require('../config/mailService');
 const rateLimit = require('express-rate-limit');
+const newsletterController = require('../controllers/newsletterController');
+
+
+
+
+const publicSubscribeLimiter = rateLimit({
+  windowMs: 60 * 1000, // 1 minute window
+  max: 5,              // limit each IP to 5 requests per windowMs
+  message: 'Too many subscription attempts from this IP, please try again later.'
+});
 
 const resumeRateLimiter = rateLimit({
   windowMs: 1 * 60 * 1000,
@@ -148,6 +158,10 @@ router.post('/message-send', messageRateLimiter, async (req, res) => {
   }
 });
 
+router.post('/subscribe', publicSubscribeLimiter, newsletterController.subscribe);
+
+router.post('/subscribe', publicSubscribeLimiter, newsletterController.unsubscribe);
+
 router.get("/login", (req, res) => {
   console.log('Flash messages:', {
     errorMessage: res.locals.errorMessage,
@@ -156,19 +170,17 @@ router.get("/login", (req, res) => {
   res.render("login");
 });
 
-
-
-router.get("/test-login-flash", (req, res) => {
-  req.flash("errorMessage", "This is a test login error.");
-  req.flash("successMessage", "This is a test success message.");
-  res.redirect("/login");
-});
-
-
 router.get('/', async (req, res) => {
   try {
     if (!req.cookies.cookieConsent) {
       res.cookie('cookieConsent', 'true', { maxAge: 365 * 24 * 60 * 60 * 1000 });
+    }
+
+    // Show modal only if 'showSubscribeModal' cookie NOT set
+    let showSubscribeModal = false;
+    if (!req.cookies.showSubscribeModal) {
+      showSubscribeModal = true;
+      res.cookie('showSubscribeModal', 'true', { maxAge: 365 * 24 * 60 * 60 * 1000 });
     }
 
     const [homeimgData, visionMissionData, environmentData, teacherData] = await Promise.all([
@@ -179,7 +191,6 @@ router.get('/', async (req, res) => {
     ]);
 
     let randomAd = null;
-
     if (!req.session.lastAdShown || (Date.now() - req.session.lastAdShown >= 30 * 60 * 1000)) {
       randomAd = await Ad.aggregate([
         { $match: { isActive: true } },
@@ -194,14 +205,18 @@ router.get('/', async (req, res) => {
     } else {
       req.session.adSeen = false;
     }
-
+    showSubscribeModal=true;
+    
+    // console.log(showSubscribeModal)
     res.render('index', {
       homeimgData,
       visionMissionData,
       environmentData,
       teacherData,
       randomAd,
-      cookieConsent: req.cookies.cookieConsent
+      cookieConsent: req.cookies.cookieConsent,
+      showSubscribeModal,
+      errorMessage: res.locals.errorMessage,
     });
   } catch (err) {
     console.error('Error fetching data:', err);
