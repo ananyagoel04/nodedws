@@ -8,7 +8,10 @@
 		"start": "node api/index.ts",
 		"build:css": "postcss public/css/styles.css -o public/css/output.css",
 		"watch:css": "chokidar 'public/css/styles.css' 'views/**/*.ejs' -c 'npm run build:css'",
-		"cssupdate": "npx tailwindcss -i ./public/css/styles.css -o ./public/css/output.css --watch"
+		"cssupdate": "npx tailwindcss -i ./public/css/styles.css -o ./public/css/output.css --watch",
+		"minify-js": "terser public/javascript/index.js -o public/javascript/index.js --compress --mangle",
+		"minify-css": "cleancss -o public/css/style1.css public/css/style1.css && cleancss -o public/css/output.css public/css/output.css",
+		"build": "npm run minify-js && npm run minify-css"
 	},
 	"keywords": [],
 	"author": "",
@@ -20,6 +23,7 @@
 		"bcryptjs": "^2.4.3",
 		"body-parser": "^1.20.3",
 		"chokidar-cli": "^3.0.0",
+		"clean-css-cli": "^5.6.3",
 		"cloudinary": "^2.5.1",
 		"config": "^3.3.12",
 		"connect-flash": "^0.1.1",
@@ -41,7 +45,8 @@
 		"postcss-cli": "^11.0.0",
 		"sharp": "^0.33.5",
 		"streamifier": "^0.1.1",
-		"tailwindcss": "^3.4.17"
+		"tailwindcss": "^3.4.17",
+		"terser": "^5.43.1"
 	},
 	"devDependencies": {
 		"chokidar-cli": "^3.0.0",

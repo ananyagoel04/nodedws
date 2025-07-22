@@ -1,24 +1,60 @@
 {
-	"version": 2,
-	"rewrites": [
-		{
-			"source": "/api/(.*)",
-			"destination": "/api/$1"
-		},
-		{
-			"source": "/(.*)",
-			"destination": "/api"
-		}
-	],
-	"headers": [
-		{
-			"source": "/robots.txt",
-			"headers": [
-				{
-					"key": "Cache-Control",
-					"value": "public, max-age=86400"
-				}
-			]
-		}
-	]
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api/$1"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/api"
+    }
+  ],
+  "headers": [
+    {
+      "source": "/robots.txt",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
+    },
+    {
+      "source": "/icons/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/images/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, immutable"
+        }
+      ]
+    },
+    {
+      "source": "/css/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    },
+    {
+      "source": "/javascript/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=604800"
+        }
+      ]
+    }
+  ]
 }
