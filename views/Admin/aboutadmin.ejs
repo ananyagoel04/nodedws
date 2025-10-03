@@ -258,6 +258,7 @@
                 plugins: 'link image code fontfamily fontsize table lists',
                 toolbar: 'undo redo | styleselect | bold italic underline | forecolor backcolor | alignleft aligncenter alignright | link image | fontfamily fontsize | table | bullist numlist | code',
                 menubar: false,
+                valid_elements: '*[*]',
                 setup: function (editor) {
                     editor.on('change', function () {
                         editor.save();

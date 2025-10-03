@@ -18,8 +18,6 @@ const rateLimit = require('express-rate-limit');
 const newsletterController = require('../controllers/newsletterController');
 
 
-
-
 const publicSubscribeLimiter = rateLimit({
   windowMs: 60 * 1000, // 1 minute window
   max: 5,              // limit each IP to 5 requests per windowMs
