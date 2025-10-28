@@ -112,7 +112,8 @@
 
                 <!-- Check if there are no existing images -->
                 <% if (maingalleryItems && maingalleryItems.length>= 40) { %>
-                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Maximum Maingallery image limit reached(limit:40)</h2>
+                    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Maximum Maingallery image limit
+                        reached(limit:40)</h2>
                     <% } else { %>
                         <!-- Form to upload a new Maingallery image -->
                         <section class="bg-white p-6 rounded-lg shadow-md mb-8">
@@ -131,7 +132,7 @@
                                 </div>
                                 <div>
                                     <label for="imagefilter" class="block text-sm font-medium text-gray-700">Image
-                                        Title:</label>
+                                        Filter:</label>
                                     <select id="imagefilter" name="imagefilter" required
                                         class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                         <option value="None">None</option>
@@ -200,28 +201,27 @@
                                                                 <option value="None" <%=item.imagefilter==='None'
                                                                     ? 'selected' : '' %>>None</option>
                                                                 <option value="GlimpsesofGlory"
-                                                                    <%=item.imagefilter==='GlimpsesofGlory'
-                                                                    ? 'selected' : '' %>>Glimpses of Glory</option>
+                                                                    <%=item.imagefilter==='GlimpsesofGlory' ? 'selected'
+                                                                    : '' %>>Glimpses of Glory</option>
                                                                 <option value="VibrantVibes"
-                                                                    <%=item.imagefilter==='VibrantVibes'
-                                                                    ? 'selected' : '' %>>Vibrant Vibes</option>
+                                                                    <%=item.imagefilter==='VibrantVibes' ? 'selected'
+                                                                    : '' %>>Vibrant Vibes</option>
                                                                 <option value="FieldFrames"
-                                                                    <%=item.imagefilter==='FieldFrames'
-                                                                    ? 'selected' : '' %>>Field Frames</option>
+                                                                    <%=item.imagefilter==='FieldFrames' ? 'selected'
+                                                                    : '' %>>Field Frames</option>
                                                                 <option value="FestiveFrames"
-                                                                    <%=item.imagefilter==='FestiveFrames'
-                                                                    ? 'selected' : '' %>>Festive Frames</option>
+                                                                    <%=item.imagefilter==='FestiveFrames' ? 'selected'
+                                                                    : '' %>>Festive Frames</option>
                                                                 <option value="Play&Passion"
-                                                                    <%=item.imagefilter==='Play&Passion'
-                                                                    ? 'selected' : '' %>>Play & Passion</option>
+                                                                    <%=item.imagefilter==='Play&Passion' ? 'selected'
+                                                                    : '' %>>Play & Passion</option>
                                                                 <option value="GreenGuardians"
-                                                                    <%=item.imagefilter==='GreenGuardians'
-                                                                    ? 'selected' : '' %>>Green Guardians</option>
+                                                                    <%=item.imagefilter==='GreenGuardians' ? 'selected'
+                                                                    : '' %>>Green Guardians</option>
                                                                 <option value="LeadingLights"
-                                                                    <%=item.imagefilter==='LeadingLights'
-                                                                    ? 'selected' : '' %>>Leading Lights</option>
-                                                                <option value="Memoir"
-                                                                    <%=item.imagefilter==='Memoir'
+                                                                    <%=item.imagefilter==='LeadingLights' ? 'selected'
+                                                                    : '' %>>Leading Lights</option>
+                                                                <option value="Memoir" <%=item.imagefilter==='Memoir'
                                                                     ? 'selected' : '' %>>Memoir</option>
                                                             </select>
                                                             <input type="file" name="image" accept="image/*"
