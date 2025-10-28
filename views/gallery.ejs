@@ -228,13 +228,93 @@
       }
     </script>
 
-    <div class="mb-4 flex justify-center">
+    <!-- <div class="mb-4 flex justify-center ">
       <button class=" rounded-full px-4 bg-[#D2C6FA] mr-2" onclick="filterGallery('all')">All</button>
       <button class=" rounded-full px-4 bg-[#D2C6FA] mr-2" onclick="filterGallery('Labs')">Labs</button>
       <button class=" rounded-full px-4 bg-[#D2C6FA] mr-2" onclick="filterGallery('GraduationCeremony')">Graduation
         Ceremony</button>
       <button class=" rounded-full px-4 bg-[#D2C6FA] mr-2" onclick="filterGallery('Rise&Run')">Rise & Run</button>
     </div>
+
+    Filter Buttons -->
+    <div class="w-full max-w-6xl mx-auto mb-12 px-6">
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-3 gap-4">
+
+        <button class="w-full rounded-full bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 
+             text-gray-800 font-semibold py-3 px-4 text-sm sm:text-base 
+             transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 
+             hover:from-indigo-400 hover:via-purple-400 hover:to-pink-400 
+             focus:ring-2 focus:ring-purple-300 focus:outline-none"
+             onclick="filterGallery('all')">
+          All
+        </button>
+        <button class="w-full rounded-full bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 
+             text-gray-800 font-semibold py-3 px-4 text-sm sm:text-base 
+             transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 
+             hover:from-indigo-400 hover:via-purple-400 hover:to-pink-400 
+             focus:ring-2 focus:ring-purple-300 focus:outline-none"
+             onclick="filterGallery('GlimpsesofGlory')">
+          Glimpses of Glory
+        </button>
+        <button class="w-full rounded-full bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 
+             text-gray-800 font-semibold py-3 px-4 text-sm sm:text-base 
+             transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 
+             hover:from-indigo-400 hover:via-purple-400 hover:to-pink-400 
+             focus:ring-2 focus:ring-purple-300 focus:outline-none"
+             onclick="filterGallery('VibrantVibes')">
+          Vibrant Vibes
+        </button>
+        <button class="w-full rounded-full bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 
+             text-gray-800 font-semibold py-3 px-4 text-sm sm:text-base 
+             transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 
+             hover:from-indigo-400 hover:via-purple-400 hover:to-pink-400 
+             focus:ring-2 focus:ring-purple-300 focus:outline-none"
+             onclick="filterGallery('FieldFrames')">
+          Field Frames
+        </button>
+        <button class="w-full rounded-full bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 
+             text-gray-800 font-semibold py-3 px-4 text-sm sm:text-base 
+             transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 
+             hover:from-indigo-400 hover:via-purple-400 hover:to-pink-400 
+             focus:ring-2 focus:ring-purple-300 focus:outline-none"
+             onclick="filterGallery('FestiveFrames')">
+          Festive Frames
+        </button>
+        <button class="w-full rounded-full bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 
+             text-gray-800 font-semibold py-3 px-4 text-sm sm:text-base 
+             transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 
+             hover:from-indigo-400 hover:via-purple-400 hover:to-pink-400 
+             focus:ring-2 focus:ring-purple-300 focus:outline-none"
+             onclick="filterGallery('Play&Passion')">
+          Play & Passion
+        </button>
+        <button class="w-full rounded-full bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 
+             text-gray-800 font-semibold py-3 px-4 text-sm sm:text-base 
+             transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 
+             hover:from-indigo-400 hover:via-purple-400 hover:to-pink-400 
+             focus:ring-2 focus:ring-purple-300 focus:outline-none"
+             onclick="filterGallery('GreenGuardians')">
+          Green Guardians
+        </button>
+        <button class="w-full rounded-full bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 
+             text-gray-800 font-semibold py-3 px-4 text-sm sm:text-base 
+             transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 
+             hover:from-indigo-400 hover:via-purple-400 hover:to-pink-400 
+             focus:ring-2 focus:ring-purple-300 focus:outline-none"
+             onclick="filterGallery('LeadingLights')">
+          Leading Lights
+        </button>
+        <button class="w-full rounded-full bg-gradient-to-r from-indigo-300 via-purple-300 to-pink-300 
+             text-gray-800 font-semibold py-3 px-4 text-sm sm:text-base 
+             transition-all duration-300 shadow-md hover:shadow-lg hover:scale-105 
+             hover:from-indigo-400 hover:via-purple-400 hover:to-pink-400 
+             focus:ring-2 focus:ring-purple-300 focus:outline-none"
+             onclick="filterGallery('Memoir')">
+          Memoir
+        </button>
+      </div>
+    </div>
+
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 px-4" id="gallery">
       <% for (let i=0; i < maingalleryItems.length; i++) { %>
         <div class="bg-white gallery-item <%= maingalleryItems[i].imagefilter %> rounded-md overflow-hidden shadow-md">

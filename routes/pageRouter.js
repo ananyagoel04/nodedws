@@ -314,8 +314,8 @@ router.get('/class_students/:id', async (req, res) => {
 router.get('/gallery', async (req, res) => {
   try {
     const [galleryItems, maingalleryItems] = await Promise.all([
-      Gallery.find({}),
-      Maingallery.find({}),
+      Gallery.find({}).sort({ _id: -1 }),
+      Maingallery.find({}).sort({ _id: -1 }),
     ]);
     res.render('gallery', {
       galleryItems,

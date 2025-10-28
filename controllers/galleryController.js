@@ -29,10 +29,9 @@ async function uploadImageToCloudinary(file, public_id, folder = 'gallery_images
 const getAllGalleryItem = async (req, res) => {
   try {
     const [galleryItems, maingalleryItems] = await Promise.all([
-      Gallery.find(),
-      Maingallery.find(),
+      Gallery.find().sort({ _id: -1 }),
+      Maingallery.find().sort({ _id: -1 }),
     ]);
-
     res.render('Admin/galleryadmin', { galleryItems, maingalleryItems });
   } catch (err) {
     console.error('Error loading About data:', err);

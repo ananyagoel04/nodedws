@@ -135,9 +135,14 @@
                                     <select id="imagefilter" name="imagefilter" required
                                         class="mt-1 block w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                                         <option value="None">None</option>
-                                        <option value="GraduationCeremony">Graduation Ceremony</option>
-                                        <option value="Labs">Labs</option>
-                                        <option value="Rise&Run">Rise & Run</option>
+                                        <option value="GlimpsesofGlory">Glimpses of Glory</option>
+                                        <option value="VibrantVibes">Vibrant Vibes</option>
+                                        <option value="FieldFrames">Field Frames</option>
+                                        <option value="FestiveFrames">Festive Frames</option>
+                                        <option value="Play&Passion">Play & Passion</option>
+                                        <option value="GreenGuardians">Green Guardians</option>
+                                        <option value="LeadingLights">Leading Lights</option>
+                                        <option value="Memoir">Memoir</option>
                                     </select>
                                 </div>
                                 <div>
@@ -194,15 +199,30 @@
                                                                 <option value="" disabled>Select Image Filter</option>
                                                                 <option value="None" <%=item.imagefilter==='None'
                                                                     ? 'selected' : '' %>>None</option>
-                                                                <option value="GraduationCeremony"
-                                                                    <%=item.imagefilter==='GraduationCeremony'
-                                                                    ? 'selected' : '' %>>Graduation Ceremony</option>
-                                                                <option value="Labs"
-                                                                    <%=item.imagefilter==='Labs'
-                                                                    ? 'selected' : '' %>>Labs</option>
-                                                                <option value="Rise&Run"
-                                                                    <%=item.imagefilter==='Rise&Run'
-                                                                    ? 'selected' : '' %>>Rise & Run</option>
+                                                                <option value="GlimpsesofGlory"
+                                                                    <%=item.imagefilter==='GlimpsesofGlory'
+                                                                    ? 'selected' : '' %>>Glimpses of Glory</option>
+                                                                <option value="VibrantVibes"
+                                                                    <%=item.imagefilter==='VibrantVibes'
+                                                                    ? 'selected' : '' %>>Vibrant Vibes</option>
+                                                                <option value="FieldFrames"
+                                                                    <%=item.imagefilter==='FieldFrames'
+                                                                    ? 'selected' : '' %>>Field Frames</option>
+                                                                <option value="FestiveFrames"
+                                                                    <%=item.imagefilter==='FestiveFrames'
+                                                                    ? 'selected' : '' %>>Festive Frames</option>
+                                                                <option value="Play&Passion"
+                                                                    <%=item.imagefilter==='Play&Passion'
+                                                                    ? 'selected' : '' %>>Play & Passion</option>
+                                                                <option value="GreenGuardians"
+                                                                    <%=item.imagefilter==='GreenGuardians'
+                                                                    ? 'selected' : '' %>>Green Guardians</option>
+                                                                <option value="LeadingLights"
+                                                                    <%=item.imagefilter==='LeadingLights'
+                                                                    ? 'selected' : '' %>>Leading Lights</option>
+                                                                <option value="Memoir"
+                                                                    <%=item.imagefilter==='Memoir'
+                                                                    ? 'selected' : '' %>>Memoir</option>
                                                             </select>
                                                             <input type="file" name="image" accept="image/*"
                                                                 class="p-1 text-sm border border-gray-300 rounded-md">
