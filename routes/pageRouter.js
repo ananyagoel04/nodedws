@@ -72,7 +72,7 @@ router.post('/send-resume', resumeRateLimiter, upload.single('Resume'), async (r
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: `${Email}`,
-      bcc: 'principal@divinewisdom.edu.in, management@divinewisdomschool.in',
+      bcc: 'principal@divinewisdom.edu.in, chairman@divinewisdom.edu.in, director@divinewisdom.edu.in, info@divinewisdom.edu.in',
       subject: 'Resume Submitted',
       html: `
         <h3>Thank you for submitting your resume!</h3>
@@ -136,7 +136,7 @@ router.post('/message-send', messageRateLimiter, async (req, res) => {
     const mailOptions = {
       from: process.env.EMAIL_USER,
       to: 'info@divinewisdom.edu.in',
-      bcc: 'management@divinewisdomschool.in, receptiondivinewisdom@gmail.com',
+      bcc: 'chairman@divinewisdomschool.in, reception@divinewisdom.edu.in, cie@divinewisdom.edu.in',
       subject: 'New Message from Website',
       html: `
         <h3>New Message Received</h3>
