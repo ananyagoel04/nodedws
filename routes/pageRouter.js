@@ -73,14 +73,115 @@ router.post('/send-resume', resumeRateLimiter, upload.single('Resume'), async (r
       from: process.env.EMAIL_USER,
       to: `${Email}`,
       bcc: 'principal@divinewisdom.edu.in, chairman@divinewisdom.edu.in, director@divinewisdom.edu.in, info@divinewisdom.edu.in',
-      subject: 'Resume Submitted',
+      subject: '✅ Resume Submitted - Divine Wisdom School',
       html: `
-        <h3>Thank you for submitting your resume!</h3>
-        <p><strong>Name:</strong> ${Name}</p>
-        <p><strong>Email:</strong> ${Email}</p>
-        <p><strong>Phone:</strong> ${Phone}</p>
-        <p><strong>Message:</strong> ${Message}</p>
-      `,
+  <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+  </head>
+  <body style="margin:0; padding:0; background-color:#f4f6f8; font-family: Arial, Helvetica, sans-serif;">
+    
+    <table width="100%" cellpadding="0" cellspacing="0" style="padding:20px 0;">
+      <tr>
+        <td align="center">
+
+          <!-- Main Container -->
+          <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+
+            <!-- Header -->
+            <tr>
+              <td style="background:#0b1f3a; padding:25px; text-align:center;">
+                
+                <img 
+                  src="https://divinewisdom.edu.in/icons/logo.png" 
+                  alt="Divine Wisdom School"
+                  style="height:70px; margin-bottom:10px;"
+                />
+
+                <h1 style="color:#ffffff; margin:0; font-size:36px;">
+                  DIVINE WISDOM SCHOOL
+                </h1>
+
+                <p style="
+                  margin:0px 0 0;
+                  font-size:20px;
+                  color:#c62828;
+                ">
+                  COMMITTED TO EXCELLENCE IN EDUCATION
+                </p>
+
+              </td>
+            </tr>
+
+            <!-- Content -->
+            <tr>
+              <td style="padding:25px;">
+                <h2 style="color:#0b1f3a; margin-top:0;">
+                  🎉 Thank You for Submitting Your Resume!
+                </h2>
+
+                <p style="color:#333; line-height:1.6;">
+                  Dear ${Name},<br>
+                  We have successfully received your resume. Our team will review it and get back to you shortly.
+                </p>
+
+                <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:15px;">
+                  <tr>
+                    <td style="padding:12px; background:#e8f5e9; border-left:4px solid #2e7d32;">
+                      <strong style="color:#2e7d32;">Name:</strong>
+                      <span style="color:#333;"> ${Name}</span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:12px; background:#e3f2fd; border-left:4px solid #1565c0; margin-top:8px;">
+                      <strong style="color:#1565c0;">Email:</strong>
+                      <span style="color:#333;"> ${Email}</span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:12px; background:#fff3e0; border-left:4px solid #ef6c00; margin-top:8px;">
+                      <strong style="color:#ef6c00;">Phone:</strong>
+                      <span style="color:#333;"> ${Phone}</span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:15px; background:#fdecea; border-left:4px solid #c62828; margin-top:8px;">
+                      <strong style="color:#c62828;">Message:</strong>
+                      <p style="margin:8px 0 0; color:#333; line-height:1.6;">
+                        ${Message}
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td style="background:#f1f1f1; padding:15px; text-align:center;">
+                <p style="margin:0; font-size:12px; color:#555;">
+                  This message was sent from the official Divine Wisdom School recruitment portal.
+                </p>
+                <p style="margin:5px 0 0; font-size:12px; color:#0b1f3a;">
+                  © ${new Date().getFullYear()} Divine Wisdom School
+                </p>
+              </td>
+            </tr>
+
+          </table>
+
+        </td>
+      </tr>
+    </table>
+
+  </body>
+  </html>
+  `,
       attachments: [
         {
           filename: resumeFile.originalname,
@@ -89,6 +190,7 @@ router.post('/send-resume', resumeRateLimiter, upload.single('Resume'), async (r
         },
       ],
     };
+
 
     await transporter.sendMail(mailOptions);
 
@@ -137,16 +239,110 @@ router.post('/message-send', messageRateLimiter, async (req, res) => {
       from: process.env.EMAIL_USER,
       to: 'info@divinewisdom.edu.in',
       bcc: 'chairman@divinewisdomschool.in, reception@divinewisdom.edu.in, cie@divinewisdom.edu.in',
-      subject: 'New Message from Website',
+      subject: '📩 New Message from Website',
       html: `
-        <h3>New Message Received</h3>
-        <p><strong>Name:</strong> ${Name}</p>
-        <p><strong>Email:</strong> ${Email}</p>
-        <p><strong>Phone:</strong> ${Phone}</p>
-        <p><strong>Message:</strong> ${Message}</p>
-      `,
-    };
+      <!DOCTYPE html>
+  <html>
+  <head>
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap" rel="stylesheet">
+  </head>
+  <body style="margin:0; padding:0; background-color:#f4f6f8; font-family: Arial, Helvetica, sans-serif;">
+    
+    <table width="100%" cellpadding="0" cellspacing="0" style="padding:20px 0;">
+      <tr>
+        <td align="center">
+          
+          <!-- Main Container -->
+          <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff; border-radius:8px; overflow:hidden; box-shadow:0 4px 12px rgba(0,0,0,0.1);">
+            
+            <!-- Header -->
+            <tr>
+              <td style="background:#0b1f3a; padding:25px; text-align:center;">
+                
+                <img 
+                  src="https://divinewisdom.edu.in/icons/logo.png" 
+                  alt="Divine Wisdom School"
+                  style="height:70px; margin-bottom:10px;"
+                />
 
+                <h1 style="color:#ffffff; margin:0; font-size:36px;">
+                  DIVINE WISDOM SCHOOL
+                </h1>
+
+                <p style="
+                  margin:0px 0 0;
+                  font-size:20px;
+                  color:#c62828;
+                ">
+                  COMMITTED TO EXCELLENCE IN EDUCATION
+                </p>
+
+              </td>
+            </tr>
+
+            <!-- Content -->
+            <tr>
+              <td style="padding:25px;">
+                <h2 style="color:#0b1f3a; margin-top:0;">
+                  📬 New Message Received
+                </h2>
+
+                <table width="100%" cellpadding="0" cellspacing="0" style="margin-top:15px;">
+                  <tr>
+                    <td style="padding:12px; background:#e8f5e9; border-left:4px solid #2e7d32;">
+                      <strong style="color:#2e7d32;">Name:</strong>
+                      <span style="color:#333;"> ${Name}</span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:12px; background:#e3f2fd; border-left:4px solid #1565c0; margin-top:8px;">
+                      <strong style="color:#1565c0;">Email:</strong>
+                      <span style="color:#333;"> ${Email}</span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:12px; background:#fff3e0; border-left:4px solid #ef6c00; margin-top:8px;">
+                      <strong style="color:#ef6c00;">Phone:</strong>
+                      <span style="color:#333;"> ${Phone}</span>
+                    </td>
+                  </tr>
+
+                  <tr>
+                    <td style="padding:15px; background:#fdecea; border-left:4px solid #c62828; margin-top:8px;">
+                      <strong style="color:#c62828;">Message:</strong>
+                      <p style="margin:8px 0 0; color:#333; line-height:1.6;">
+                        ${Message}
+                      </p>
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Footer -->
+            <tr>
+              <td style="background:#f1f1f1; padding:15px; text-align:center;">
+                <p style="margin:0; font-size:12px; color:#555;">
+                  This message was sent from the official school website.
+                </p>
+                <p style="margin:5px 0 0; font-size:12px; color:#0b1f3a;">
+                  © ${new Date().getFullYear()} Divine Wisdom School
+                </p>
+              </td>
+            </tr>
+
+          </table>
+
+        </td>
+      </tr>
+    </table>
+
+  </body>
+  </html>`,
+    };
     await transporter.sendMail(mailOptions);
 
     res.redirect('/contact?successMessage=Your message has been sent successfully.');
@@ -203,8 +399,8 @@ router.get('/', async (req, res) => {
     } else {
       req.session.adSeen = false;
     }
-    showSubscribeModal=true;
-    
+    showSubscribeModal = true;
+
     // console.log(showSubscribeModal)
     res.render('index', {
       homeimgData,
