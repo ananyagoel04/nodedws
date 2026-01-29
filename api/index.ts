@@ -75,8 +75,16 @@ app.use("/admin/tc", isLoggedin, studentRoutes);
 app.use("/admin/parent", isLoggedin, parentRoutes);
 app.use("/admin/ads", isLoggedin, adRouter);
 app.use("/admin/subscribe", isLoggedin, newsletterRotuer);
-
 app.use("/admin/gallery", galleryRoutes);
+
+
+
+app.use((req, res) => {
+  res.status(404).render("404", {
+    url: req.originalUrl
+  });
+});
+
 const PORT = process.env.PORT || 3000;
 
 

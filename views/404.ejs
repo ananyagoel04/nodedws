@@ -1,0 +1,35 @@
+<%- include("header.ejs") %>
+
+    <body class="bg-[#FEF5E2] text-gray-800 min-h-screen flex flex-col">
+
+        <main class="flex-grow flex flex-col items-center justify-center px-4 py-12">
+
+            <!-- Illustration -->
+            <img src="https://stories.freepiklabs.com/storage/8198/Error-404-01.svg" alt="404 Not Found"
+                class="w-full max-w-lg h-auto mb-8" />
+
+            <!-- Buttons Group -->
+            <div class="flex gap-4 flex-wrap justify-center mt-6 mb-9">
+
+                <!-- Home Button -->
+
+                <a href="/"
+                    class="flex gap-2 items-center justify-center px-6 py-3 border-2 border-indigo-700 text-indigo-700 font-semibold rounded-lg hover:bg-indigo-50 transition">
+                    <img src="/icons/house_610100.png" width="20px" alt="">
+                    Home
+                </a>
+
+                <!-- Back Button -->
+                <a href="javascript:history.back()"
+                    class="flex gap-2 items-center justify-center px-6 py-3 border-2 border-indigo-700 text-indigo-700 font-semibold rounded-lg hover:bg-indigo-50 transition">
+                    <img src="/icons/return-arrow_18348525.png" width="20px" alt="">
+                    Back
+                </a>
+
+            </div>
+
+        </main>
+
+        <%- include("Footer.ejs") %>
+
+    </body>
