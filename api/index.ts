@@ -19,6 +19,8 @@ const Ad = require("../models/ad");
 const app = express();
 const dev = process.env.NODE_ENV;
 const flash = require("connect-flash");
+const { Homeimg } = require('../models/home.js');
+
 
 require("dotenv").config();
 // require("dotenv").config({ path: path.resolve(__dirname, "../.env") });
@@ -65,6 +67,29 @@ app.set("views", path.join(__dirname, "..", "views"));
 app.set("view engine", "ejs");
 
 app.use(express.static(path.join(__dirname, "..", "public"), { maxAge: "7d" }));
+
+// Subdomain middleware
+const subdomainMiddleware = require("../middlewares/subdomain");
+app.use(subdomainMiddleware);
+
+app.use(async (req, res, next) => {
+  if (!req.subdomain) return next(); // Not a subdomain, go to main site
+
+  // Example: admissions subdomain
+  if (req.subdomain === "admissions") {
+    // Load the same data as your old /admissions route
+    try {
+      const homeimgData = await Homeimg.find({}).select("image_url");
+      return res.render("admissions", { homeimgData });
+    } catch (err) {
+      console.error(err);
+      return res.status(500).send("Internal Server Error");
+    }
+  }
+
+  return res.status(404).send("Subdomain not found");
+});
+
 
 app.use("/admin", isLoggedin, adminRouter);
 app.use("/", pageRouter);

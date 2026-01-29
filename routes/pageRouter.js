@@ -523,15 +523,15 @@ router.get('/gallery', async (req, res) => {
   }
 });
 
-router.get('/admissions', async (req, res) => {
-  try {
-    const homeimgData = await Homeimg.find({}).select('image_url');
-    res.render('admissions', { homeimgData });
-  } catch (err) {
-    console.error(err);
-    res.status(500).send('Internal Server Error');
-  }
-});
+// router.get('/admissions', async (req, res) => {
+//   try {
+//     const homeimgData = await Homeimg.find({}).select('image_url');
+//     res.render('admissions', { homeimgData });
+//   } catch (err) {
+//     console.error(err);
+//     res.status(500).send('Internal Server Error');
+//   }
+// });
 
 router.get('/Infrastructure', async (req, res) => {
   try {
