@@ -533,6 +533,12 @@ router.get('/gallery', async (req, res) => {
 //   }
 // });
 
+
+router.get("/admissions", (req, res) => {
+  res.redirect(301, "https://admissions.divinewisdom.edu.in");
+});
+
+
 router.get('/Infrastructure', async (req, res) => {
   try {
     res.render('Infrastructure');
