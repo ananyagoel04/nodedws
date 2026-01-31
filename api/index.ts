@@ -1,21 +1,21 @@
 const express = require("express");
 const path = require("path");
-const db = require("../config/mongoose-connection");
+const db = require("../config/mongoose-connection.js");
 const cookieParser = require("cookie-parser");
-const upload = require("../config/multer");
+const upload = require("../config/multer.js");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
-const adminRouter = require("../routes/adminRouter");
-const pageRouter = require("../routes/pageRouter");
-const aboutRoutes = require("../routes/aboutRouter");
-const userRouter = require("../routes/userRouter");
-const studentRoutes = require("../routes/studentRouter");
-const galleryRoutes = require("../routes/galleryRoutes");
-const parentRoutes = require("../routes/parentRoutes");
-const adRouter = require("../routes/adRouter");
-const imghomeRouter = require("../routes/imagehomeRouter");
-const newsletterRotuer = require("../routes/newsletterRoutes");
-const Ad = require("../models/ad");
+const adminRouter = require("../routes/adminRouter.js");
+const pageRouter = require("../routes/pageRouter.js");
+const aboutRoutes = require("../routes/aboutRouter.js");
+const userRouter = require("../routes/userRouter.js");
+const studentRoutes = require("../routes/studentRouter.js");
+const galleryRoutes = require("../routes/galleryRoutes.js");
+const parentRoutes = require("../routes/parentRoutes.js");
+const adRouter = require("../routes/adRouter.js");
+const imghomeRouter = require("../routes/imagehomeRouter.js");
+const newsletterRotuer = require("../routes/newsletterRoutes.js");
+const Ad = require("../models/ad.js");
 const app = express();
 const dev = process.env.NODE_ENV;
 const flash = require("connect-flash");
@@ -51,7 +51,7 @@ app.use(
 
 
 const methodOverride = require("method-override");
-const isLoggedin = require("../middlewares/isLoggedin");
+const isLoggedin = require("../middlewares/isLoggedin.js");
 app.use(methodOverride("_method"));
 
 app.use(flash());
@@ -69,7 +69,7 @@ app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "..", "public"), { maxAge: "7d" }));
 
 // Subdomain middleware
-const subdomainMiddleware = require("../middlewares/subdomain");
+const subdomainMiddleware = require("../middlewares/subdomain.js");
 app.use(subdomainMiddleware);
 
 app.use(async (req, res, next) => {
