@@ -20,6 +20,7 @@ const app = express();
 const dev = process.env.NODE_ENV;
 const flash = require("connect-flash");
 const { Homeimg } = require('../models/home.js');
+const subdomainMap = require("../config/subdomainMap");
 
 
 require("dotenv").config();
@@ -71,26 +72,22 @@ app.use(express.static(path.join(__dirname, "..", "public"), { maxAge: "7d" }));
 // Subdomain middleware
 const subdomainMiddleware = require("../middlewares/subdomain.js");
 app.use(subdomainMiddleware);
+
 app.use(async (req, res, next) => {
-  if (!req.subdomain) return next(); // Not a subdomain
+  if (req.subdomain !== "admissions") return next();
+  if (req.path !== "/") return next();
 
-  // Only render root of subdomain
-  if (req.path === "/") {
-    try {
-      const homeimgData = await Homeimg.find({}).select("image_url");
+  try {
+    const homeimgData = await Homeimg.find({}).select("image_url");
 
-      return res.render("subdomain", {
-        subdomain: req.subdomain,
-        homeimgData,
-        req, // pass req if needed
-      });
-    } catch (err) {
-      console.error(err);
-      return res.status(500).send("Internal Server Error");
-    }
+    return res.render("admissions", {
+      homeimgData,
+      subdomain: "admissions",
+    });
+  } catch (err) {
+    console.error("Admissions subdomain error:", err);
+    return res.status(500).send("Internal Server Error");
   }
-
-  next();
 });
 
 app.use((req, res, next) => {
