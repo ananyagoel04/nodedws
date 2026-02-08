@@ -20,7 +20,7 @@ const app = express();
 const dev = process.env.NODE_ENV;
 const flash = require("connect-flash");
 const { Homeimg } = require('../models/home.js');
-const subdomainMap = require("../config/subdomainMap");
+const subdomainMap = require("../config/subdomainMap.js");
 
 
 require("dotenv").config();
