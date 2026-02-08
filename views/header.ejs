@@ -123,7 +123,7 @@
     <p class="sr-only">Divine Wisdom is a leading institution committed to quality education and holistic development.
     </p>
 
-    <% if (req.subdomain) { %>
+    <% if (typeof req !=="undefined" && req.subdomain) { %>
         <base href="https://divinewisdom.edu.in/">
         <% } else { %>
             <base href="/">

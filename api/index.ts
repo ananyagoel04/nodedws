@@ -66,6 +66,10 @@ app.use((req, res, next) => {
 
 app.set("views", path.join(__dirname, "..", "views"));
 app.set("view engine", "ejs");
+app.use((req, res, next) => {
+    res.locals.req = req;
+    next();
+});
 
 app.use(express.static(path.join(__dirname, "..", "public"), { maxAge: "7d" }));
 
@@ -97,11 +101,6 @@ app.use((req, res, next) => {
     }
   }
   next();
-});
-
-app.use((req, res, next) => {
-    res.locals.req = req;
-    next();
 });
 
 
