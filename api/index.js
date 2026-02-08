@@ -95,12 +95,16 @@ app.use(async (req, res, next) => {
 
 app.use((req, res, next) => {
   if (req.subdomain) {
-    // Only root path stays on subdomain; everything else goes to main domain
     if (req.path !== "/") {
       return res.redirect(301, `https://divinewisdom.edu.in${req.path}`);
     }
   }
   next();
+});
+
+app.use((req, res, next) => {
+    res.locals.req = req;
+    next();
 });
 
 
