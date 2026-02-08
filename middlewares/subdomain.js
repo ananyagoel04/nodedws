@@ -1,4 +1,4 @@
-// Detect subdomain for *.divinewisdom.edu.in
+// middlewares/subdomain.js
 module.exports = (req, res, next) => {
   const host = req.headers.host?.split(":")[0]; // remove port if present
   const parts = host?.split(".");
@@ -10,14 +10,6 @@ module.exports = (req, res, next) => {
     return next();
   }
 
-  const subdomain = parts[0];
-
-  // Only allow "admissions" as valid subdomain
-  if (subdomain === "admissions") {
-    req.subdomain = subdomain;
-  } else {
-    req.subdomain = null; // other subdomains ignored
-  }
-
+  req.subdomain = parts[0]; // dynamically detect first part as subdomain
   next();
 };

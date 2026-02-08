@@ -71,23 +71,36 @@ app.use(express.static(path.join(__dirname, "..", "public"), { maxAge: "7d" }));
 // Subdomain middleware
 const subdomainMiddleware = require("../middlewares/subdomain.js");
 app.use(subdomainMiddleware);
-
 app.use(async (req, res, next) => {
-  if (!req.subdomain) return next(); // Not a subdomain, go to main site
+  if (!req.subdomain) return next(); // Not a subdomain
 
-  // Example: admissions subdomain
-  if (req.subdomain === "admissions") {
-    // Load the same data as your old /admissions route
+  // Only render root of subdomain
+  if (req.path === "/") {
     try {
       const homeimgData = await Homeimg.find({}).select("image_url");
-      return res.render("admissions", { homeimgData });
+
+      return res.render("subdomain", {
+        subdomain: req.subdomain,
+        homeimgData,
+        req, // pass req if needed
+      });
     } catch (err) {
       console.error(err);
       return res.status(500).send("Internal Server Error");
     }
   }
 
-  return res.status(404).send("Subdomain not found");
+  next();
+});
+
+app.use((req, res, next) => {
+  if (req.subdomain) {
+    // Only root path stays on subdomain; everything else goes to main domain
+    if (req.path !== "/") {
+      return res.redirect(301, `https://divinewisdom.edu.in${req.path}`);
+    }
+  }
+  next();
 });
 
 
