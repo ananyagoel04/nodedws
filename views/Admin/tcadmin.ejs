@@ -302,7 +302,7 @@
                                     <tr class="border-b hover:bg-gray-50" data-class-id="<%= student.classId._id %>"
                                         data-student-name="<%= student.student_name.toLowerCase() %>">
                                         <td class="px-4 py-2 text-sm text-gray-700">
-                                            <% if (student.TC) { %>
+                                            <% if (student.tcUrl) { %>
                                                 <a href="/admin/tc/student/<%= student._id %>/view"
                                                     class="text-blue-600 hover:underline" target="_blank">View TC</a>
                                                 <% } else { %>
