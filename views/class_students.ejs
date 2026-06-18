@@ -35,7 +35,7 @@
                     <% students.forEach(student => { %>
                         <tr class="even:bg-[#FFEBEC] odd:bg-[#EAFDF7]">
                             <td class="px-4 py-2 text-center"><%= student.student_name %></td>
-                            <% if (student.TC) { %>
+                            <% if (student.tcUrl) { %>
                                 <td class="px-4 py-2 text-center">
                                     <a href="/student/<%= student._id %>/view" target="_blank"> 
                                         <span class="px-2">View</span>
